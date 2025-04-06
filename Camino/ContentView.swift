@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct ContentView: View {
     @State private var hasSeenWelcome = false
@@ -16,22 +17,28 @@ struct ContentView: View {
                 WelcomeView(hasSeenWelcome: $hasSeenWelcome)
             } else {
                 TabView {
-                    Text("Journey")
+                    MapView()
                         .tabItem {
                             Image(systemName: "figure.hiking")
                             Text("Journey")
                         }
                     
-                    Text("Map")
+                    Text("Lodging")
                         .tabItem {
-                            Image(systemName: "map")
-                            Text("Map")
+                            Image(systemName: "house")
+                            Text("Lodging")
                         }
                     
-                    Text("Details")
+                    Text("Routes")
                         .tabItem {
                             Image(systemName: "list.bullet")
-                            Text("Details")
+                            Text("Routes")
+                        }
+                    
+                    Text("Weather")
+                        .tabItem {
+                            Image(systemName: "cloud.sun")
+                            Text("Weather")
                         }
                     
                     Text("Settings")
@@ -58,23 +65,8 @@ struct WelcomeView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.black)
             
-            VStack(spacing: 20) {
-                Spacer()
-                
-                // Title
-                Text("Camino Frances")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .shadow(radius: 5)
-                
-                // Subtitle
-                Text("Begin Your Journey")
-                    .font(.title2)
-                    .foregroundColor(.white)
-                    .shadow(radius: 3)
-                
-                // Start button
+            VStack {
+                // Start button at the top
                 Button(action: {
                     withAnimation {
                         hasSeenWelcome = true
@@ -85,12 +77,29 @@ struct WelcomeView: View {
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .frame(width: 200, height: 50)
-                        .background(Color.green)
+                        .background(Color(red: 0.7, green: 0.8, blue: 0.9)) // Light blue-gray
                         .cornerRadius(10)
                         .shadow(radius: 5)
                 }
-                .padding(.top, 30)
-                .padding(.bottom, 50)
+                .padding(.top, 50)
+                
+                Spacer()
+                
+                // Title and subtitle
+                VStack(spacing: 20) {
+                    Text("Camino Frances")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .shadow(radius: 5)
+                    
+                    Text("Begin Your Journey")
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .shadow(radius: 3)
+                }
+                
+                Spacer()
             }
         }
     }
