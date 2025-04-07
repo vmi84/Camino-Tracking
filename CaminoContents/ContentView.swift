@@ -18,26 +18,33 @@ struct ContentView: View {
                     }
                     .tag(0)
                 
+                DestinationsView()
+                    .tabItem {
+                        Image(systemName: "list.bullet")
+                        Text("Destinations")
+                    }
+                    .tag(1)
+                
                 Text("Weather")
                     .tabItem {
                         Image(systemName: "cloud.sun")
                         Text("Weather")
                     }
-                    .tag(1)
+                    .tag(2)
                 
                 Text("Profile")
                     .tabItem {
                         Image(systemName: "person")
                         Text("Profile")
                     }
-                    .tag(2)
+                    .tag(3)
                 
                 Text("Settings")
                     .tabItem {
                         Image(systemName: "gear")
                         Text("Settings")
                     }
-                    .tag(3)
+                    .tag(4)
             }
             .tint(.blue)
         } else {
