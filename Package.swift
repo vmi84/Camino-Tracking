@@ -7,15 +7,28 @@ let package = Package(
         .iOS(.v17),
         .macOS(.v14)
     ],
+    products: [
+        .library(
+            name: "CaminoContents",
+            targets: ["CaminoContents"]),
+    ],
     dependencies: [
-        .package(path: "CaminoModels")
+        .package(name: "CaminoModels", path: "CaminoModels")
     ],
     targets: [
         .target(
             name: "Camino",
-            dependencies: [.product(name: "Models", package: "CaminoModels")]),
+            dependencies: [
+                .product(name: "Models", package: "CaminoModels")
+            ]),
+        .target(
+            name: "CaminoContents",
+            dependencies: [
+                .product(name: "Models", package: "CaminoModels")
+            ],
+            path: "CaminoContents/Sources"),
         .testTarget(
             name: "CaminoTests",
-            dependencies: ["Camino"]),
+            dependencies: ["Camino"])
     ]
 ) 

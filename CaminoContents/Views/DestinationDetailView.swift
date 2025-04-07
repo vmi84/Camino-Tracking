@@ -1,6 +1,43 @@
 import SwiftUI
+import Charts
 import MapKit
 import CoreLocation
+import Models
+
+struct StageProfileView: View {
+    let elevationData: [(distance: Double, elevation: Double)]
+    
+    var body: some View {
+        Chart {
+            ForEach(elevationData, id: \.distance) { point in
+                LineMark(
+                    x: .value("Distance (km)", point.distance),
+                    y: .value("Elevation (m)", point.elevation)
+                )
+                .foregroundStyle(.blue)
+                .interpolationMethod(.catmullRom)
+            }
+        }
+        .chartXAxis {
+            AxisMarks(values: .automatic) { value in
+                AxisGridLine()
+                AxisValueLabel(format: FloatingPointFormatStyle<Double>().precision(.fractionLength(1)))
+            }
+        }
+        .chartYAxis {
+            AxisMarks(values: .automatic) { value in
+                AxisGridLine()
+                AxisValueLabel(format: FloatingPointFormatStyle<Double>().precision(.fractionLength(0)))
+            }
+        }
+        .frame(height: 150)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(Color(.systemBackground))
+        .cornerRadius(12)
+        .shadow(radius: 2)
+    }
+}
 
 struct DestinationDetailView: View {
     let destination: CaminoDestination
@@ -17,11 +54,11 @@ struct DestinationDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                Map(coordinateRegion: $region, annotationItems: [destination]) { location in
-                    MapMarker(coordinate: location.coordinate)
+                if !destination.elevationProfile.isEmpty {
+                    StageProfileView(elevationData: destination.elevationProfile)
+                        .frame(height: 200)
+                        .cornerRadius(12)
                 }
-                .frame(height: 200)
-                .cornerRadius(12)
                 
                 VStack(alignment: .leading, spacing: 8) {
                     HStack {
@@ -39,6 +76,13 @@ struct DestinationDetailView: View {
                     Text(destination.hotelName)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Route Information:")
+                            .font(.headline)
+                        Text("• Distance: \(String(format: "%.1f", destination.dailyDistance)) km")
+                        Text("• Total: \(String(format: "%.1f", destination.cumulativeDistance)) km")
+                    }
                     
                     HStack {
                         Text("Coordinates:")

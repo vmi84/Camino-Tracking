@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EE5CA11E2DA45C62001F9693 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = EE5CA11D2DA45C62001F9693 /* Models */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		EE6A22AE2DA0B6B30013F9FD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE5CA11E2DA45C62001F9693 /* Models in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +77,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE5CA11C2DA45C62001F9693 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EE6A22962DA0B6B20013F9FD = {
 			isa = PBXGroup;
 			children = (
 				EE6A22A12DA0B6B20013F9FD /* CaminoContents */,
 				EE6A22B02DA0B6B30013F9FD /* CaminoTests */,
 				EE6A22BA2DA0B6B30013F9FD /* CaminoUITests */,
+				EE5CA11C2DA45C62001F9693 /* Frameworks */,
 				EE6A22A02DA0B6B20013F9FD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -189,6 +202,9 @@
 			);
 			mainGroup = EE6A22962DA0B6B20013F9FD;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				EE5CA11B2DA45B95001F9693 /* XCLocalSwiftPackageReference "CaminoModels" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EE6A22A02DA0B6B20013F9FD /* Products */;
 			projectDirPath = "";
@@ -582,6 +598,21 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		EE5CA11B2DA45B95001F9693 /* XCLocalSwiftPackageReference "CaminoModels" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = CaminoModels;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EE5CA11D2DA45C62001F9693 /* Models */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE5CA11B2DA45B95001F9693 /* XCLocalSwiftPackageReference "CaminoModels" */;
+			productName = Models;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EE6A22972DA0B6B20013F9FD /* Project object */;
 }

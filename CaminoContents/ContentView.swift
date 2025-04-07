@@ -10,13 +10,19 @@ struct ContentView: View {
     var body: some View {
         if isShowingMap {
             TabView(selection: $selectedTab) {
-                MapView()
-                    .ignoresSafeArea()
-                    .tabItem {
-                        Image(systemName: "map")
-                        Text("Map")
+                ZStack {
+                    MapView()
+                        .edgesIgnoringSafeArea(.top)
+                    VStack {
+                        Spacer()
+                        Color.clear.frame(height: 0)
                     }
-                    .tag(0)
+                }
+                .tabItem {
+                    Image(systemName: "map")
+                    Text("Map")
+                }
+                .tag(0)
                 
                 DestinationsView()
                     .tabItem {
@@ -61,21 +67,13 @@ struct WelcomeView: View {
         ZStack {
             Image("CaminoWelcome")
                 .resizable()
-                .aspectRatio(contentMode: .fill)
+                .aspectRatio(1.2, contentMode: .fill)
+                .scaleEffect(0.6)
+                .frame(maxHeight: .infinity)
                 .ignoresSafeArea()
-                .opacity(0.7)
+                .opacity(0.8)
             
-            VStack(spacing: 20) {
-                Text("Welcome to Camino")
-                    .font(.largeTitle)
-                    .bold()
-                    .foregroundColor(.primary)
-                
-                Text("Your journey along the Camino de Santiago begins here. Explore the route, track your progress, and discover the rich history of this ancient pilgrimage.")
-                    .multilineTextAlignment(.center)
-                    .padding()
-                    .foregroundColor(.primary)
-                
+            VStack(spacing: 0) {
                 Button(action: {
                     withAnimation {
                         isShowingMap = true
@@ -85,16 +83,37 @@ struct WelcomeView: View {
                         .font(.headline)
                         .foregroundColor(.white)
                         .padding()
+                        .frame(maxWidth: .infinity)
                         .background(Color.blue)
                         .cornerRadius(10)
                 }
+                .padding(.horizontal)
+                
+                Spacer()
+                
+                VStack(spacing: 4) {
+                    Text("Welcome to Camino")
+                        .font(.title3)
+                        .bold()
+                        .foregroundColor(.primary)
+                    
+                    Text("Your journey along the Camino de Santiago begins here. Explore the route, track your progress, and discover the rich history of this ancient pilgrimage.")
+                        .font(.body)
+                        .lineSpacing(2)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.primary)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(maxWidth: .infinity)
+                }
+                .padding(.vertical, 12)
+                .padding(.horizontal, 80)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color.white.opacity(0.98))
+                )
+                .padding(.horizontal, 80)
+                .padding(.bottom, 40)
             }
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.white.opacity(0.8))
-                    .padding()
-            )
         }
     }
 }

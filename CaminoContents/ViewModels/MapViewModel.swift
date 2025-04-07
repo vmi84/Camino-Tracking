@@ -8,6 +8,7 @@
 import SwiftUI
 import MapKit
 import CoreLocation
+import Models
 
 class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var region = MKCoordinateRegion(
@@ -41,9 +42,32 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
-    func centerOnDay(_ day: Int) {
-        if let destination = CaminoDestination.allDestinations.first(where: { $0.day == day }) {
-            region.center = destination.coordinate
+    func centerOnUserLocation() {
+        if let userLocation = userLocation {
+            withAnimation {
+                region = MKCoordinateRegion(
+                    center: userLocation,
+                    span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+                )
+            }
+        }
+    }
+    
+    func zoomIn() {
+        withAnimation {
+            region.span = MKCoordinateSpan(
+                latitudeDelta: region.span.latitudeDelta * 0.5,
+                longitudeDelta: region.span.longitudeDelta * 0.5
+            )
+        }
+    }
+    
+    func zoomOut() {
+        withAnimation {
+            region.span = MKCoordinateSpan(
+                latitudeDelta: region.span.latitudeDelta * 2.0,
+                longitudeDelta: region.span.longitudeDelta * 2.0
+            )
         }
     }
     

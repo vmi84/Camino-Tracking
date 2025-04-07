@@ -19,6 +19,20 @@ struct CaminoDestination: Identifiable {
     let coordinate: CLLocationCoordinate2D
     let content: String
     let date: Date
+    let elevationProfile: [(distance: Double, elevation: Double)]
+    
+    var dailyDistance: Double {
+        if day == 0 { return 0 }
+        guard let lastPoint = elevationProfile.last else { return 0 }
+        return lastPoint.distance
+    }
+    
+    var cumulativeDistance: Double {
+        if day == 0 { return 0 }
+        let allDestinations = Self.allDestinations
+        let currentIndex = allDestinations.firstIndex { $0.id == self.id } ?? 0
+        return allDestinations[0...currentIndex].reduce(0) { $0 + $1.dailyDistance }
+    }
     
     private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -46,7 +60,10 @@ struct CaminoDestination: Identifiable {
             Lodging:
             Villa Goxoki - Comfortable guesthouse in the heart of the old town
             """,
-            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 1))!
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 1))!,
+            elevationProfile: [
+                (0, 180), (1, 200), (2, 220), (3, 250), (4, 280), (5, 300)
+            ]
         ),
         CaminoDestination(
             day: 1,
@@ -64,7 +81,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hotel Roncesvalles - Standard double room with breakfast included
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 2))!,
+            elevationProfile: [
+                (0, 180), (5, 400), (10, 800), (15, 1200), (20, 1400), (23.9, 950)
+            ]
         ),
         CaminoDestination(
             day: 2,
@@ -81,7 +102,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hosteria de Zubiri - Traditional guesthouse with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 3))!,
+            elevationProfile: [
+                (0, 950), (5, 800), (10, 600), (15, 400), (20, 350), (21.5, 320)
+            ]
         ),
         CaminoDestination(
             day: 3,
@@ -98,7 +123,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hotel A Pamplona - Modern hotel in the city center
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 4))!,
+            elevationProfile: [
+                (0, 320), (5, 300), (10, 280), (15, 260), (20, 250), (21.8, 240)
+            ]
         ),
         CaminoDestination(
             day: 4,
@@ -115,7 +144,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hotel Jakue - Comfortable hotel with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 5))!,
+            elevationProfile: [
+                (0, 240), (4.9, 300), (11, 400), (13.3, 500)
+            ]
         ),
         CaminoDestination(
             day: 5,
@@ -132,7 +165,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hotel Tximista - Modern hotel with spa facilities
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 6))!,
+            elevationProfile: [
+                (0, 272), (4.4, 300), (11, 400), (13.2, 500)
+            ]
         ),
         CaminoDestination(
             day: 6,
@@ -148,7 +185,9 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Alda Estella Hostal - Comfortable accommodation in the town center
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 7))!,
+            elevationProfile: []
         ),
         CaminoDestination(
             day: 7,
@@ -165,7 +204,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Pensión Los Arcos - Traditional guesthouse with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 8))!,
+            elevationProfile: [
+                (0, 150), (5.5, 200)
+            ]
         ),
         CaminoDestination(
             day: 8,
@@ -182,7 +225,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hotel Ciudad de Logroño - Modern hotel in the city center
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 9))!,
+            elevationProfile: [
+                (0, 200), (8.5, 250)
+            ]
         ),
         CaminoDestination(
             day: 9,
@@ -199,7 +246,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hotel Duques de Nájera - Comfortable hotel with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 10))!,
+            elevationProfile: [
+                (0, 300), (8, 350)
+            ]
         ),
         CaminoDestination(
             day: 10,
@@ -216,7 +267,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             El Molino de Floren - Converted mill with modern amenities
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 11))!,
+            elevationProfile: [
+                (0, 150), (6.5, 200)
+            ]
         ),
         CaminoDestination(
             day: 11,
@@ -233,7 +288,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hostel Punto B - Modern hostel with shared facilities
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 12))!,
+            elevationProfile: [
+                (0, 200), (5.5, 250)
+            ]
         ),
         CaminoDestination(
             day: 12,
@@ -250,7 +309,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hotel Rural la Iglesia - Rural hotel with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 13))!,
+            elevationProfile: [
+                (0, 300), (8, 350)
+            ]
         ),
         CaminoDestination(
             day: 13,
@@ -267,7 +330,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hotel Cordón - Historic hotel in the city center
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 14))!,
+            elevationProfile: [
+                (0, 250), (10, 300)
+            ]
         ),
         CaminoDestination(
             day: 14,
@@ -284,7 +351,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             De Sol A Sol - Traditional guesthouse with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 15))!,
+            elevationProfile: [
+                (0, 150), (5, 200)
+            ]
         ),
         CaminoDestination(
             day: 15,
@@ -301,7 +372,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             A Cien Leguas - Comfortable guesthouse with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 16))!,
+            elevationProfile: [
+                (0, 100), (10, 150)
+            ]
         ),
         CaminoDestination(
             day: 16,
@@ -318,7 +393,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Eco Hotel Doña Mayor - Eco-friendly hotel with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 17))!,
+            elevationProfile: [
+                (0, 200), (12, 250)
+            ]
         ),
         CaminoDestination(
             day: 17,
@@ -335,7 +414,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hostal La Corte - Traditional guesthouse with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 18))!,
+            elevationProfile: [
+                (0, 100), (6, 150)
+            ]
         ),
         CaminoDestination(
             day: 18,
@@ -352,7 +435,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hostal Camino Real - Traditional guesthouse with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 19))!,
+            elevationProfile: [
+                (0, 50), (10, 100)
+            ]
         ),
         CaminoDestination(
             day: 19,
@@ -369,7 +456,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hostal Domus Viatoris - Comfortable guesthouse with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 20))!,
+            elevationProfile: [
+                (0, 100), (8, 150)
+            ]
         ),
         CaminoDestination(
             day: 20,
@@ -386,7 +477,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hotel Castillo El Burgo - Comfortable hotel with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 21))!,
+            elevationProfile: [
+                (0, 50), (10, 100)
+            ]
         ),
         CaminoDestination(
             day: 21,
@@ -403,7 +498,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Alberguería del Camino - Traditional guesthouse with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 22))!,
+            elevationProfile: [
+                (0, 50), (12, 100)
+            ]
         ),
         CaminoDestination(
             day: 22,
@@ -420,7 +519,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hotel Alda Vía León - Modern hotel in the city center
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 23))!,
+            elevationProfile: [
+                (0, 50), (8, 100)
+            ]
         ),
         CaminoDestination(
             day: 23,
@@ -437,7 +540,9 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             To be determined
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 24))!,
+            elevationProfile: []
         ),
         CaminoDestination(
             day: 24,
@@ -454,7 +559,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Albergue San Antonio - Traditional guesthouse with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 25))!,
+            elevationProfile: [
+                (0, 50), (8, 100)
+            ]
         ),
         CaminoDestination(
             day: 25,
@@ -471,7 +580,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hotel Astur Plaza - Comfortable hotel in the city center
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 26))!,
+            elevationProfile: [
+                (0, 100), (8, 150)
+            ]
         ),
         CaminoDestination(
             day: 26,
@@ -488,7 +601,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hotel Rural Casa Indie - Rural hotel with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 27))!,
+            elevationProfile: [
+                (0, 300), (10, 350)
+            ]
         ),
         CaminoDestination(
             day: 27,
@@ -505,7 +622,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hotel El Castillo - Comfortable hotel near the castle
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 28))!,
+            elevationProfile: [
+                (0, 400), (8, 450)
+            ]
         ),
         CaminoDestination(
             day: 28,
@@ -522,7 +643,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Hostal Tres Campanas - Traditional guesthouse with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 29))!,
+            elevationProfile: [
+                (0, 300), (8, 350)
+            ]
         ),
         CaminoDestination(
             day: 29,
@@ -539,7 +664,11 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Casa Navarro - Traditional guesthouse with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 30))!,
+            elevationProfile: [
+                (0, 800), (8, 850)
+            ]
         ),
         CaminoDestination(
             day: 30,
@@ -556,17 +685,148 @@ struct CaminoDestination: Identifiable {
             
             Lodging:
             Complexo Xacobeo - Modern hotel with restaurant
-            """
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 31))!,
+            elevationProfile: [
+                (0, 200), (8, 250)
+            ]
+        ),
+        CaminoDestination(
+            day: 31,
+            locationName: "Sarria",
+            hotelName: "Hotel Alfonso IX",
+            coordinate: CLLocationCoordinate2D(latitude: 42.7770, longitude: -7.4140),
+            content: """
+            Route Information:
+            • Distance: 18.5 km
+            • Elevation: ↑ 150m ↓ 200m
+            • Popular starting point for pilgrims
+            • Key stops: Samos (8.0 km, bar/store)
+            • Highlights: Monastery of Samos
+            
+            Lodging:
+            Hotel Alfonso IX - Comfortable hotel in the town center
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 6, day: 1))!,
+            elevationProfile: [
+                (0, 150), (8, 200)
+            ]
+        ),
+        CaminoDestination(
+            day: 32,
+            locationName: "Portomarín",
+            hotelName: "Hotel Pousada de Portomarín",
+            coordinate: CLLocationCoordinate2D(latitude: 42.8070, longitude: -7.6160),
+            content: """
+            Route Information:
+            • Distance: 22.2 km
+            • Elevation: ↑ 200m ↓ 250m
+            • Cross the Miño River
+            • Key stops: Mercadoiro (12.0 km, bar/store)
+            • Highlights: Church of San Juan
+            
+            Lodging:
+            Hotel Pousada de Portomarín - Modern hotel with river views
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 6, day: 2))!,
+            elevationProfile: [
+                (0, 200), (12, 250)
+            ]
+        ),
+        CaminoDestination(
+            day: 33,
+            locationName: "Palas de Rei",
+            hotelName: "Hotel Casa Benilde",
+            coordinate: CLLocationCoordinate2D(latitude: 42.8740, longitude: -7.8680),
+            content: """
+            Route Information:
+            • Distance: 24.8 km
+            • Elevation: ↑ 250m ↓ 300m
+            • Cross the Serra de Ligonde
+            • Key stops: Gonzar (8.0 km, bar/store)
+            • Highlights: Church of San Tirso
+            
+            Lodging:
+            Hotel Casa Benilde - Traditional guesthouse with restaurant
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 6, day: 3))!,
+            elevationProfile: [
+                (0, 250), (8, 300)
+            ]
+        ),
+        CaminoDestination(
+            day: 34,
+            locationName: "Arzúa",
+            hotelName: "Hotel Arzúa",
+            coordinate: CLLocationCoordinate2D(latitude: 42.9270, longitude: -8.1930),
+            content: """
+            Route Information:
+            • Distance: 28.5 km
+            • Elevation: ↑ 300m ↓ 350m
+            • Enter the province of A Coruña
+            • Key stops: Melide (14.0 km, all services)
+            • Highlights: Church of Santiago
+            
+            Lodging:
+            Hotel Arzúa - Comfortable hotel in the town center
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 6, day: 4))!,
+            elevationProfile: [
+                (0, 300), (14, 350)
+            ]
+        ),
+        CaminoDestination(
+            day: 35,
+            locationName: "Pedrouzo",
+            hotelName: "Hotel O Acivro",
+            coordinate: CLLocationCoordinate2D(latitude: 42.9090, longitude: -8.3730),
+            content: """
+            Route Information:
+            • Distance: 19.3 km
+            • Elevation: ↑ 150m ↓ 200m
+            • Final stage before Santiago
+            • Key stops: Santa Irene (10.0 km, bar/store)
+            • Highlights: Church of Santa Eulalia
+            
+            Lodging:
+            Hotel O Acivro - Modern hotel with restaurant
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 6, day: 5))!,
+            elevationProfile: [
+                (0, 150), (10, 200)
+            ]
+        ),
+        CaminoDestination(
+            day: 36,
+            locationName: "Santiago de Compostela",
+            hotelName: "Hotel Compostela",
+            coordinate: CLLocationCoordinate2D(latitude: 42.8800, longitude: -8.5450),
+            content: """
+            Route Information:
+            • Distance: 20.2 km
+            • Elevation: ↑ 200m ↓ 250m
+            • Final destination of the Camino
+            • Key stops: Monte do Gozo (5.0 km, bar/store)
+            • Highlights: Cathedral of Santiago, Old Town
+            
+            Lodging:
+            Hotel Compostela - Historic hotel near the cathedral
+            """,
+            date: Calendar.current.date(from: DateComponents(year: 2025, month: 6, day: 6))!,
+            elevationProfile: [
+                (0, 200), (5, 250)
+            ]
         )
     ]
     
-    init(day: Int, locationName: String, hotelName: String, coordinate: CLLocationCoordinate2D, content: String, date: Date) {
+    init(day: Int, locationName: String, hotelName: String, coordinate: CLLocationCoordinate2D, content: String, date: Date, elevationProfile: [(distance: Double, elevation: Double)]) {
         self.day = day
         self.locationName = locationName
         self.hotelName = hotelName
         self.coordinate = coordinate
         self.content = content
         self.date = date
+        self.elevationProfile = elevationProfile
     }
 }
 
