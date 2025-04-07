@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.5] - 2025-04-07
+
+### Added
+- Total distance calculation for the Camino Frances route
+- Complete trip planning with all days and locations resolved
+
+### Changed
+- Positioned Start Journey button at top of image without white space
+- Improved text wrapping with increased horizontal padding (80pt)
+- Increased description text size to .body
+- Added MapView and DestinationsView integration
+- Fixed map navigation and destination tracking
+
 ## [0.2.4] - 2025-04-07
 
 ### Added
