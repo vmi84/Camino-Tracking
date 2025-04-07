@@ -1,20 +1,52 @@
 import SwiftUI
 import MapKit
+import CoreLocation
 
-// MARK: - Views
+// MARK: - ContentView
 struct ContentView: View {
     @State private var isShowingMap = false
+    @State private var selectedTab = 0
     
     var body: some View {
         if isShowingMap {
-            MapView()
-                .ignoresSafeArea()
+            TabView(selection: $selectedTab) {
+                MapView()
+                    .ignoresSafeArea()
+                    .tabItem {
+                        Image(systemName: "map")
+                        Text("Map")
+                    }
+                    .tag(0)
+                
+                Text("Weather")
+                    .tabItem {
+                        Image(systemName: "cloud.sun")
+                        Text("Weather")
+                    }
+                    .tag(1)
+                
+                Text("Profile")
+                    .tabItem {
+                        Image(systemName: "person")
+                        Text("Profile")
+                    }
+                    .tag(2)
+                
+                Text("Settings")
+                    .tabItem {
+                        Image(systemName: "gear")
+                        Text("Settings")
+                    }
+                    .tag(3)
+            }
+            .tint(.blue)
         } else {
             WelcomeView(isShowingMap: $isShowingMap)
         }
     }
 }
 
+// MARK: - WelcomeView
 struct WelcomeView: View {
     @Binding var isShowingMap: Bool
     
@@ -61,11 +93,5 @@ struct WelcomeView: View {
 }
 
 #Preview {
-    Group {
-        ContentView()
-            .environment(\.colorScheme, .light)
-        
-        ContentView()
-            .environment(\.colorScheme, .dark)
-    }
+    ContentView()
 } 

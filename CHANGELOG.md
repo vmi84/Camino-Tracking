@@ -16,11 +16,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Project restructuring with CaminoContents directory
 - Added Podfile for dependency management
 - New MapViewModel for handling map state and user location
+- Bottom navigation bar with Map, Weather, Profile, and Settings tabs
+- Destination detail sheet with location and hotel information
 
 ### Changed
 - Reorganized project structure for better modularity
 - Moved Views into dedicated directory
 - Updated Xcode schemes for iPhone 15 and 16 simulators
+- Integrated MapView with TabView navigation
 
 ## [0.2.1] - 2024-04-06
 
