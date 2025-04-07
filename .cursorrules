@@ -1,0 +1,45 @@
+# TypeScript Rules
+1. Always use explicit TypeScript types, never 'any'. Suggest interfaces for props and state in React components.
+
+# Modern Syntax
+2. Use async/await instead of .then() for promises. Avoid callbacks unless required by a library.
+
+# Error Handling
+3. For every API call, include try/catch blocks and log errors with console.error(). Return a structured error object { success: false, error: string }.
+
+# React Guidelines
+4. For React components, use functional components with hooks. Define props with an interface at the top. Export default at the bottom.
+   Example:
+   interface Props { name: string }
+   const MyComponent = ({ name }: Props) => <div>{name}</div>
+   export default MyComponent
+
+# Styling Standards
+5. Use Tailwind CSS classes for styling. Group related classes (e.g., layout, typography) on the same line. Avoid inline styles.
+   @file ../tailwind.config.js
+
+# Deprecation Prevention
+6. Do not use class components or Redux with connect(). Use Redux Toolkit instead if state management is needed.
+
+# Testing Automation
+7. When writing a function, suggest a Jest test case with at least one happy path and one edge case. Place tests in __tests__ folder.
+   Example: For add(a, b), test add(2, 3) === 5 and add(-1, 0) === -1.
+
+# Next.js Routing
+8. For page components, use App Router syntax. Place them in app/ directory with proper file naming (e.g., page.tsx, layout.tsx).
+
+# Edge Case Handling
+9. For form inputs, always check for null/undefined values and provide default fallbacks (e.g., empty string). Suggest validation with zod if applicable.
+
+# Verification
+10. After generating code, validate it against @file ../tsconfig.json and run 'npm test' if tests exist. Warn if rules are violated.
+
+# Agent Chat Logging
+11. For every interaction in Agent mode, append a summary of the chat (prompt and response) to a markdown file named 'agent_chat_history.md' in the project root. Format it with a timestamp, the prompt, and the response. Suggest this as a code block I can apply after each interaction.
+    Example:
+    ## 2025-04-06 03:53 AM PDT
+    **Prompt**: Write a function to sum an array
+    **Response**: ```typescript
+    function sumArray(arr: number[]): number {
+      return arr.reduce((sum, num) => sum + num, 0);
+    }

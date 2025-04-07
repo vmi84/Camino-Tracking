@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - New `MapView` component for displaying the Camino route using MapKit
 - Weather tab in the main navigation with cloud.sun icon
+- Destination model with all 29 Camino Frances locations
+- Map annotations for each destination with day numbers
+- Route overlay showing the path between destinations
+- Real-time location tracking with off-route detection
+- Location permissions configuration in Info.plist
 
 ### Changed
 - Moved Start button to the top of the Welcome screen
