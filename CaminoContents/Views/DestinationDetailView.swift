@@ -24,8 +24,13 @@ struct DestinationDetailView: View {
                 .cornerRadius(12)
                 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Day \(destination.day)")
-                        .font(.headline)
+                    HStack {
+                        Text("Day \(destination.day)")
+                            .font(.headline)
+                        Text("(\(destination.formattedDate))")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                    }
                     
                     Text(destination.locationName)
                         .font(.title)
@@ -48,8 +53,13 @@ struct DestinationDetailView: View {
                 }
                 .padding(.horizontal)
                 
+                Text(destination.content)
+                    .font(.body)
+                    .padding(.horizontal)
+                
                 Spacer()
             }
+            .padding(.vertical)
         }
         .navigationTitle("Destination Details")
     }
