@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.4] - 2025-04-07
+
+### Added
+- Calendar dates for each destination (e.g., "01 May 2025")
+- Date display in both destination list and detail views
+- Date formatter for consistent date formatting
+
+### Changed
+- Updated CaminoDestination model to include date information
+- Enhanced destination views with date display
+- Improved destination list item layout
+
+## [0.2.3] - 2025-04-07
+
+### Added
+- Implemented map view with destination tracking
+- Added location services integration
+- Created destination detail view with map and information
+
+### Changed
+- Updated project structure for better organization
+- Improved map view performance and accuracy
+
 ## [0.2.2] - 2025-04-07
 
 ### Added
