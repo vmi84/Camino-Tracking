@@ -1,0 +1,4 @@
+module CaminoModelsPackageTests {
+    header "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/CaminoModelsPackageTests.build/CaminoModelsPackageTests-Swift.h"
+    requires objc
+}

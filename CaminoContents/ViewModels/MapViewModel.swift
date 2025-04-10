@@ -8,7 +8,8 @@
 import SwiftUI
 import MapKit
 import CoreLocation
-import Models
+import Foundation
+import CaminoModels
 
 class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var region = MKCoordinateRegion(

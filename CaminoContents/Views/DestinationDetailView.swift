@@ -2,7 +2,7 @@ import SwiftUI
 import Charts
 import MapKit
 import CoreLocation
-import Models
+import CaminoModels
 
 struct StageProfileView: View {
     let elevationData: [(distance: Double, elevation: Double)]
@@ -84,22 +84,40 @@ struct DestinationDetailView: View {
                         Text("• Total: \(String(format: "%.1f", destination.cumulativeDistance)) km")
                     }
                     
-                    HStack {
-                        Text("Coordinates:")
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Location Coordinates:")
                             .font(.caption)
                             .foregroundColor(.secondary)
-                        Text(String(format: "%.4f, %.4f",
+                        Text(String(format: "%.4f° N, %.4f° W",
                                   destination.coordinate.latitude,
-                                  destination.coordinate.longitude))
+                                  abs(destination.coordinate.longitude)))
+                            .font(.caption)
+                            .monospaced()
+                        
+                        Text("Hotel: \(destination.hotelName) Coordinates:")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Text(String(format: "%.4f° N, %.4f° W",
+                                  destination.coordinate.latitude,
+                                  abs(destination.coordinate.longitude)))
                             .font(.caption)
                             .monospaced()
                     }
                 }
                 .padding(.horizontal)
                 
-                Text(destination.content)
-                    .font(.body)
-                    .padding(.horizontal)
+                if !destination.content.isEmpty {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Directions:")
+                            .font(.headline)
+                            .padding(.horizontal)
+                        
+                        Text(destination.content)
+                            .font(.body)
+                            .padding(.horizontal)
+                            .lineSpacing(4)
+                    }
+                }
                 
                 Spacer()
             }

@@ -1,0 +1,23 @@
+{
+  "": {
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/CaminoModelsTests.build/master.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoModels/Tests/CaminoModelsTests/CaminoDestinationTests.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/CaminoModelsTests.build/CaminoDestinationTests.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/CaminoModelsTests.build/CaminoDestinationTests.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/CaminoModelsTests.build/CaminoDestinationTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/CaminoModelsTests.build/CaminoDestinationTests.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoModels/Tests/CaminoModelsTests/CaminoModuleTests.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/CaminoModelsTests.build/CaminoModuleTests.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/CaminoModelsTests.build/CaminoModuleTests.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/CaminoModelsTests.build/CaminoModuleTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/CaminoModelsTests.build/CaminoModuleTests.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoModels/Tests/CaminoModelsTests/CaminoViewTests.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/CaminoModelsTests.build/CaminoViewTests.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/CaminoModelsTests.build/CaminoViewTests.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/CaminoModelsTests.build/CaminoViewTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/CaminoModelsTests.build/CaminoViewTests.swiftdeps"
+  }
+}

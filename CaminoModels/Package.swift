@@ -4,21 +4,21 @@ import PackageDescription
 let package = Package(
     name: "CaminoModels",
     platforms: [
-        .iOS(.v17),
-        .macOS(.v14)
+        .iOS(.v15),
+        .macOS(.v12)
     ],
     products: [
         .library(
-            name: "Models",
-            targets: ["Models"]),
+            name: "CaminoModels",
+            targets: ["CaminoModels"]),
     ],
     targets: [
         .target(
-            name: "Models",
+            name: "CaminoModels",
             dependencies: [],
-            path: "Sources/Models"),
+            path: "Sources/CaminoModels"),
         .testTarget(
-            name: "ModelsTests",
-            dependencies: ["Models"]),
+            name: "CaminoModelsTests",
+            dependencies: ["CaminoModels"]),
     ]
 ) 

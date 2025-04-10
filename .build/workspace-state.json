@@ -1,0 +1,27 @@
+{
+  "object" : {
+    "artifacts" : [
+
+    ],
+    "dependencies" : [
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "caminomodels",
+          "kind" : "fileSystem",
+          "location" : "/Users/jeffwhite/Desktop/Camino/CaminoModels",
+          "name" : "CaminoModels"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Users/jeffwhite/Desktop/Camino/CaminoModels"
+        },
+        "subpath" : "caminomodels"
+      }
+    ],
+    "prebuilts" : [
+
+    ]
+  },
+  "version" : 7
+}

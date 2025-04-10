@@ -8,60 +8,72 @@
 import SwiftUI
 import MapKit
 import CoreLocation
-import Models
+import CaminoModels
 
 // MARK: - MapView
 struct MapView: View {
-    @StateObject private var viewModel = MapViewModel()
+    @EnvironmentObject private var locationManager: LocationManager
+    @State private var camera: MapCameraPosition = .region(MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 43.1630, longitude: -1.2380), // St. Jean Pied de Port
+        span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
+    ))
     @State private var selectedDestination: CaminoDestination?
     @State private var showingDestinationDetail = false
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            Map(coordinateRegion: $viewModel.region,
-                showsUserLocation: true,
-                userTrackingMode: .constant(.none),
-                annotationItems: CaminoDestination.allDestinations) { destination in
-                MapAnnotation(coordinate: destination.coordinate) {
-                    VStack {
-                        Image(systemName: "mappin.circle.fill")
-                            .font(.title)
-                            .foregroundColor(.red)
-                        Text("\(destination.day)")
-                            .font(.caption)
-                            .bold()
-                    }
-                    .onTapGesture {
-                        selectedDestination = destination
-                        showingDestinationDetail = true
-                    }
+            Map(position: $camera) {
+                // User location
+                if let userLocation = locationManager.location {
+                    Marker("My Location", coordinate: userLocation.coordinate)
+                        .tint(.blue)
                 }
-            }
-            .overlay(
-                Path { path in
-                    guard let firstCoordinate = CaminoDestination.allDestinations.first?.coordinate else { return }
-                    
-                    let points = CaminoDestination.allDestinations.map { destination -> CGPoint in
-                        let latitude = (destination.coordinate.latitude - firstCoordinate.latitude)
-                        let longitude = (destination.coordinate.longitude - firstCoordinate.longitude)
-                        return CGPoint(x: longitude, y: latitude)
-                    }
-                    
-                    if let firstPoint = points.first {
-                        path.move(to: firstPoint)
-                        for point in points.dropFirst() {
-                            path.addLine(to: point)
+                
+                // Destination markers
+                ForEach(CaminoDestination.allDestinations) { destination in
+                    Annotation(
+                        "\(destination.day)",
+                        coordinate: destination.coordinate,
+                        anchor: .bottom
+                    ) {
+                        VStack {
+                            Image(systemName: "mappin.circle.fill")
+                                .font(.title)
+                                .foregroundColor(.red)
+                            Text("\(destination.day)")
+                                .font(.caption)
+                                .bold()
+                        }
+                        .onTapGesture {
+                            selectedDestination = destination
+                            showingDestinationDetail = true
                         }
                     }
                 }
-                .stroke(Color.blue, lineWidth: 3)
-            )
+                
+                // Hotel markers
+                ForEach(CaminoDestination.allDestinations) { destination in
+                    Marker(
+                        destination.hotelName,
+                        coordinate: destination.coordinate
+                    )
+                    .tint(.orange)
+                }
+                
+                // Draw route line using native MapKit polyline
+                let coordinates = CaminoDestination.allDestinations.map { $0.coordinate }
+                if coordinates.count >= 2 {
+                    let polyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
+                    MapKit.MapPolyline(polyline)
+                        .stroke(.blue, lineWidth: 3)
+                }
+            }
+            .mapStyle(.standard)
             
-            // Location and Zoom controls
+            // Map control buttons
             VStack(spacing: 8) {
-                // Location button
                 Button(action: {
-                    viewModel.centerOnUserLocation()
+                    centerOnUserLocation()
                 }) {
                     Image(systemName: "location.circle.fill")
                         .font(.title2)
@@ -70,23 +82,12 @@ struct MapView: View {
                         .clipShape(Circle())
                 }
                 
-                // Zoom controls
                 Button(action: {
-                    viewModel.zoomIn()
+                    centerOnStartingPoint()
                 }) {
-                    Image(systemName: "plus.circle.fill")
+                    Image(systemName: "house.circle.fill")
                         .font(.title2)
-                        .foregroundColor(.blue)
-                        .background(Color.white)
-                        .clipShape(Circle())
-                }
-                
-                Button(action: {
-                    viewModel.zoomOut()
-                }) {
-                    Image(systemName: "minus.circle.fill")
-                        .font(.title2)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.green)
                         .background(Color.white)
                         .clipShape(Circle())
                 }
@@ -99,12 +100,28 @@ struct MapView: View {
                 DestinationDetailView(destination: destination)
             }
         }
-        .alert(isPresented: .constant(viewModel.isOffRoute)) {
-            Alert(
-                title: Text("Off Route"),
-                message: Text("You appear to be more than 500m from the Camino route."),
-                dismissButton: .default(Text("OK"))
-            )
+        .onAppear {
+            locationManager.requestAuthorization()
+        }
+    }
+    
+    // Center on user location
+    private func centerOnUserLocation() {
+        if let location = locationManager.location {
+            camera = .region(MKCoordinateRegion(
+                center: location.coordinate,
+                span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            ))
+        }
+    }
+    
+    // Center on St. Jean Pied de Port (starting point)
+    private func centerOnStartingPoint() {
+        if let firstDestination = CaminoDestination.allDestinations.first {
+            camera = .region(MKCoordinateRegion(
+                center: firstDestination.coordinate,
+                span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
+            ))
         }
     }
 }
