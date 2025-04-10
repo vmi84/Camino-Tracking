@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.7] - 2025-04-18
+
+### Added
+- New church icon displayed on the welcome screen
+- Enhanced visual appeal with cathedral artwork
+
+### Changed
+- Improved welcome screen layout with oval-shaped information panel
+- Enhanced transparency effects on the welcome panel
+- Better positioning of UI elements for visual hierarchy
+- Ensured Start Journey button is clearly visible
+- Refined gradient background for the welcome panel
+
 ## [0.5.5] - 2025-04-17
 
 ### Added

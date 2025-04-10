@@ -72,77 +72,93 @@ struct WelcomeView: View {
     @EnvironmentObject private var appState: CaminoAppState
     
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                // Background image
-                Image("CaminoWelcome")
+        ZStack {
+            // Background image
+            Image("CaminoWelcome")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea()
+            
+            // Content overlay
+            VStack(spacing: 0) {
+                // Church icon at top
+                Image("CaminoChurch")
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                    .ignoresSafeArea()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 150, height: 150)
+                    .padding(.top, 40)
                 
-                VStack(spacing: 0) {
-                    // Start button at top
-                    startButton
-                        .padding(.top, geometry.safeAreaInsets.top)
+                // Welcome panel - oval shape at top
+                VStack(spacing: 4) {
+                    Text("Welcome to Camino")
+                        .font(.title3)
+                        .bold()
+                        .foregroundColor(.primary)
                     
-                    Spacer()
-                    
-                    // Info card at bottom
-                    welcomeInfoCard
-                        .padding(.bottom, 40)
+                    Text("Your journey along the Camino de Santiago begins here. Explore the route, track your progress, and discover the rich history of this ancient pilgrimage.")
+                        .font(.body)
+                        .lineSpacing(2)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.primary)
                 }
-                .padding(.horizontal)
+                .padding(.vertical, 16)
+                .padding(.horizontal, 20)
+                .background(
+                    Capsule()
+                        .fill(
+                            RadialGradient(
+                                gradient: Gradient(
+                                    colors: [
+                                        Color.white.opacity(0.85),
+                                        Color.white.opacity(0.7),
+                                        Color.white.opacity(0.3),
+                                        Color.white.opacity(0.1)
+                                    ]
+                                ),
+                                center: .center,
+                                startRadius: 50,
+                                endRadius: 150
+                            )
+                        )
+                )
+                .padding(.horizontal, 20)
+                .padding(.top, 20)
+                
+                Spacer()
             }
+            
+            // Start button at bottom - explicitly positioned and brought to front
+            VStack {
+                Spacer()
+                
+                Button(action: { 
+                    appState.toggleMap() 
+                }) {
+                    Text("Start Your Journey")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            LinearGradient(
+                                gradient: Gradient(colors: [Color.blue.opacity(0.8), Color.blue]),
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                        )
+                        .cornerRadius(25)
+                        .shadow(radius: 4)
+                }
+                .padding(.horizontal, 40)
+                .padding(.bottom, 40)
+                .accessibilityHint("Tap to begin your Camino journey")
+            }
+            .zIndex(1) // Bring button to front
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Welcome to Camino")
         .statusBar(hidden: true) // Hide status bar for immersive experience
-    }
-    
-    private var startButton: some View {
-        Button(action: { appState.toggleMap() }) {
-            Text("Start Your Journey")
-                .font(.headline)
-                .foregroundColor(.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(
-                    LinearGradient(
-                        gradient: Gradient(colors: [Color.blue.opacity(0.8), Color.blue]),
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                )
-                .cornerRadius(10)
-                .shadow(radius: 3)
-        }
-        .padding(.horizontal)
-        .accessibilityHint("Tap to begin your Camino journey")
-    }
-    
-    private var welcomeInfoCard: some View {
-        VStack(spacing: 4) {
-            Text("Welcome to Camino")
-                .font(.title3)
-                .bold()
-                .foregroundColor(.primary)
-            
-            Text("Your journey along the Camino de Santiago begins here. Explore the route, track your progress, and discover the rich history of this ancient pilgrimage.")
-                .font(.body)
-                .lineSpacing(2)
-                .multilineTextAlignment(.center)
-                .foregroundColor(.primary)
-                .fixedSize(horizontal: false, vertical: true)
-                .frame(maxWidth: .infinity)
-        }
-        .padding(.vertical, 12)
-        .padding(.horizontal, 16)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color.white.opacity(0.98))
-        )
-        .padding(.horizontal)
     }
 }
 
