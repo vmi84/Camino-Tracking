@@ -19,6 +19,7 @@ struct MapView: View {
     ))
     @State private var selectedDestination: CaminoDestination?
     @State private var showingDestinationDetail = false
+    @State private var zoomLevel: Double = 0.5 // Track zoom level
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -72,6 +73,31 @@ struct MapView: View {
             
             // Map control buttons
             VStack(spacing: 8) {
+                // Zoom in button
+                Button(action: {
+                    zoomIn()
+                }) {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.title2)
+                        .foregroundColor(.blue)
+                        .background(Color.white)
+                        .clipShape(Circle())
+                        .shadow(radius: 2)
+                }
+                
+                // Zoom out button
+                Button(action: {
+                    zoomOut()
+                }) {
+                    Image(systemName: "minus.circle.fill")
+                        .font(.title2)
+                        .foregroundColor(.blue)
+                        .background(Color.white)
+                        .clipShape(Circle())
+                        .shadow(radius: 2)
+                }
+                
+                // My location button
                 Button(action: {
                     centerOnUserLocation()
                 }) {
@@ -80,8 +106,10 @@ struct MapView: View {
                         .foregroundColor(.blue)
                         .background(Color.white)
                         .clipShape(Circle())
+                        .shadow(radius: 2)
                 }
                 
+                // Home button
                 Button(action: {
                     centerOnStartingPoint()
                 }) {
@@ -90,6 +118,7 @@ struct MapView: View {
                         .foregroundColor(.green)
                         .background(Color.white)
                         .clipShape(Circle())
+                        .shadow(radius: 2)
                 }
             }
             .padding(.top, 60)
@@ -105,6 +134,30 @@ struct MapView: View {
         }
     }
     
+    // Zoom in function
+    private func zoomIn() {
+        if let region = camera.region {
+            let newDelta = max(region.span.latitudeDelta * 0.5, 0.005)
+            camera = .region(MKCoordinateRegion(
+                center: region.center,
+                span: MKCoordinateSpan(latitudeDelta: newDelta, longitudeDelta: newDelta)
+            ))
+            zoomLevel = newDelta
+        }
+    }
+    
+    // Zoom out function
+    private func zoomOut() {
+        if let region = camera.region {
+            let newDelta = min(region.span.latitudeDelta * 2.0, 20.0)
+            camera = .region(MKCoordinateRegion(
+                center: region.center,
+                span: MKCoordinateSpan(latitudeDelta: newDelta, longitudeDelta: newDelta)
+            ))
+            zoomLevel = newDelta
+        }
+    }
+    
     // Center on user location
     private func centerOnUserLocation() {
         if let location = locationManager.location {
@@ -112,6 +165,7 @@ struct MapView: View {
                 center: location.coordinate,
                 span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
             ))
+            zoomLevel = 0.01
         }
     }
     
@@ -122,6 +176,7 @@ struct MapView: View {
                 center: firstDestination.coordinate,
                 span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
             ))
+            zoomLevel = 0.5
         }
     }
 }
