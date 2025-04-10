@@ -28,6 +28,7 @@ struct SettingsView: View {
     // General Settings
     @AppStorage("useMetricUnits") private var useMetricUnits = true
     @AppStorage("language") private var language = "English"
+    @AppStorage("appTheme") private var appTheme = "System"
     
     // Map Settings
     @AppStorage("offlineMode") private var offlineMode = false
@@ -51,6 +52,7 @@ struct SettingsView: View {
     private let mapStyles = ["Standard", "Satellite", "Hybrid"]
     private let gpsIntervals = ["5 seconds", "10 seconds", "30 seconds", "1 minute"]
     private let weatherUpdateIntervals = ["15 minutes", "30 minutes", "1 hour", "3 hours"]
+    private let themeOptions = ["Light", "Dark", "System"]
     
     // Translation language options
     private let translationLanguages = [
@@ -75,7 +77,8 @@ struct SettingsView: View {
                 description: "Configure basic app preferences including unit system and language options for your Camino journey.",
                 items: [
                 SettingsItem(title: "Distance (km)", icon: "ruler", type: .toggle($useMetricUnits)),
-                SettingsItem(title: "Language", icon: "globe", type: .picker(languages, $language))
+                SettingsItem(title: "Language", icon: "globe", type: .picker(languages, $language)),
+                SettingsItem(title: "Appearance", icon: "paintbrush", type: .picker(themeOptions, $appTheme))
             ]),
             
             SettingsSection(title: "Map", 
