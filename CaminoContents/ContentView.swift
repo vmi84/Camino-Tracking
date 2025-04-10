@@ -44,7 +44,7 @@ struct MainTabView: View {
                 }
                 .tag(1)
             
-            Text("Weather")
+            WeatherView()
                 .tabItem {
                     Label("Weather", systemImage: "cloud.sun")
                 }
@@ -71,23 +71,32 @@ struct WelcomeView: View {
     @EnvironmentObject private var appState: CaminoAppState
     
     var body: some View {
-        ZStack {
-            Image("CaminoWelcome")
-                .resizable()
-                .aspectRatio(1.2, contentMode: .fill)
-                .scaleEffect(0.6)
-                .frame(maxHeight: .infinity)
-                .ignoresSafeArea()
-                .opacity(0.8)
-            
-            VStack(spacing: 0) {
-                startButton
-                Spacer()
-                welcomeInfoCard
+        GeometryReader { geometry in
+            ZStack {
+                // Background image
+                Image("CaminoWelcome")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .ignoresSafeArea()
+                
+                VStack(spacing: 0) {
+                    // Start button at top
+                    startButton
+                        .padding(.top, geometry.safeAreaInsets.top)
+                    
+                    Spacer()
+                    
+                    // Info card at bottom
+                    welcomeInfoCard
+                        .padding(.bottom, 40)
+                }
+                .padding(.horizontal)
             }
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Welcome to Camino")
+        .statusBar(hidden: true) // Hide status bar for immersive experience
     }
     
     private var startButton: some View {
@@ -97,8 +106,15 @@ struct WelcomeView: View {
                 .foregroundColor(.white)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color.blue)
+                .background(
+                    LinearGradient(
+                        gradient: Gradient(colors: [Color.blue.opacity(0.8), Color.blue]),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
                 .cornerRadius(10)
+                .shadow(radius: 3)
         }
         .padding(.horizontal)
         .accessibilityHint("Tap to begin your Camino journey")
@@ -120,13 +136,12 @@ struct WelcomeView: View {
                 .frame(maxWidth: .infinity)
         }
         .padding(.vertical, 12)
-        .padding(.horizontal, 80)
+        .padding(.horizontal, 16)
         .background(
             RoundedRectangle(cornerRadius: 12)
                 .fill(Color.white.opacity(0.98))
         )
-        .padding(.horizontal, 80)
-        .padding(.bottom, 40)
+        .padding(.horizontal)
     }
 }
 

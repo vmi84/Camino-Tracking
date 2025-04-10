@@ -5,6 +5,36 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2025-04-10
+
+### Added
+- Weather tab with current conditions and forecasts for all destinations
+- Current weather display with temperature, conditions, and weather icons
+- Detailed weather view with hourly forecast for the next 24 hours
+- 10-day forecast for longer trip planning
+- Current condition details (feels like temperature, humidity, wind, UV index)
+- Loading indicators and placeholders for weather data
+- Offline weather caching with 15-minute refresh intervals
+- Last updated timestamp display
+- WeatherKit integration with fallback to simulated weather data
+- Proper attributions for weather data sources
+
+### Changed
+- Main tab view now includes fully functional weather tab
+- Improved weather data presentation with appropriate icons and formatting
+- Added detailed weather information for each destination
+- Enhanced Welcome screen with proper iPhone 13 Mini support
+- Repositioned Start Journey button at the top of the Welcome screen
+- Improved button styling with gradient background and shadow
+- Optimized image sizing for different device dimensions
+- Added status bar hiding for more immersive welcome experience
+
+### Fixed
+- Resolved duplicate WeatherStore class definition
+- Fixed UIKit color compatibility issues across platforms
+- Properly configured GeometryReader for adaptive layouts
+- Fixed welcome screen image scaling and positioning
+
 ## [0.3.3] - 2025-04-08
 
 ### Fixed
@@ -113,22 +143,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Resolved crash when selecting the Map tab by implementing proper MapView 
-
-## [0.3.2] - 2025-04-07
-
-### Added
-- Hotel markers displayed on the map with orange pins
-- Home button to center the map on St. Jean Pied de Port (starting point)
-- Improved coordinates display in destination detail view
-- Added hotel coordinates to MapView
-- Zoom in/out buttons at top right corner of the map
-- Added rest day in León (day 23, May 24)
-- Updated all subsequent days and dates in the itinerary
-
-### Changed
-- Map now starts centered on St. Jean Pied de Port
-- Enhanced hotel coordinates display with proper degree symbols and directional indicators
-- Improved UI for destination detail view
-- Added shadow effect to map control buttons for better visibility
-- Adjusted itinerary to reflect an extra day spent in León
-- Updated arrival date in Santiago de Compostela to June 6 

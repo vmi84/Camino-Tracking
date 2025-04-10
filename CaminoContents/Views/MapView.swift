@@ -130,7 +130,7 @@ struct MapView: View {
             }
         }
         .onAppear {
-            locationManager.requestAuthorization()
+            locationManager.requestLocationPermission()
         }
     }
     

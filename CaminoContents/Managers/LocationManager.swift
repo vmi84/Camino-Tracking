@@ -1,34 +1,22 @@
 import CoreLocation
 import SwiftUI
 
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    public static let shared = LocationManager()
-    
-    @Published var location: CLLocation?
-    @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
-    @Published var lastError: Error?
+class LocationManager: NSObject, ObservableObject {
+    static let shared = LocationManager()
     
     private let locationManager = CLLocationManager()
     
-    override init() {
+    @Published var location: CLLocation?
+    @Published var isAuthorized: Bool = false
+    
+    private override init() {
         super.init()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 10 // Update location every 10 meters
-        
-        // Only enable background updates if we have proper entitlements
-        #if !targetEnvironment(simulator)
-        if Bundle.main.object(forInfoDictionaryKey: "UIBackgroundModes") != nil {
-            let backgroundModes = Bundle.main.object(forInfoDictionaryKey: "UIBackgroundModes") as? [String] ?? []
-            if backgroundModes.contains("location") {
-                locationManager.allowsBackgroundLocationUpdates = true
-                locationManager.pausesLocationUpdatesAutomatically = false
-            }
-        }
-        #endif
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.checkLocationAuthorization()
     }
     
-    func requestAuthorization() {
+    func requestLocationPermission() {
         locationManager.requestWhenInUseAuthorization()
     }
     
@@ -40,22 +28,33 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
     
-    // MARK: - CLLocationManagerDelegate
-    
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        authorizationStatus = manager.authorizationStatus
-        
-        if manager.authorizationStatus == .authorizedWhenInUse ||
-           manager.authorizationStatus == .authorizedAlways {
-            startUpdatingLocation()
+    private func checkLocationAuthorization() {
+        switch locationManager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            isAuthorized = true
+            locationManager.startUpdatingLocation()
+        case .denied, .restricted:
+            isAuthorized = false
+        case .notDetermined:
+            isAuthorized = false
+            locationManager.requestWhenInUseAuthorization()
+        @unknown default:
+            isAuthorized = false
         }
+    }
+}
+
+extension LocationManager: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationAuthorization()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        location = locations.last
+        guard let location = locations.last else { return }
+        self.location = location
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        lastError = error
+        print("LocationManager error: \(error.localizedDescription)")
     }
 }
