@@ -4,6 +4,7 @@ import SwiftUI
 struct SettingsSection: Identifiable {
     let id = UUID()
     let title: String
+    let description: String
     let items: [SettingsItem]
 }
 
@@ -27,7 +28,6 @@ struct SettingsView: View {
     // General Settings
     @AppStorage("useMetricUnits") private var useMetricUnits = true
     @AppStorage("language") private var language = "English"
-    @AppStorage("appTheme") private var appTheme = "System"
     
     // Map Settings
     @AppStorage("offlineMode") private var offlineMode = false
@@ -47,7 +47,6 @@ struct SettingsView: View {
     private let mapStyles = ["Standard", "Satellite", "Hybrid"]
     private let gpsIntervals = ["5 seconds", "10 seconds", "30 seconds", "1 minute"]
     private let weatherUpdateIntervals = ["15 minutes", "30 minutes", "1 hour", "3 hours"]
-    private let themeOptions = ["Light", "Dark", "System"]
     
     @State private var showingBackupOptions = false
     @State private var showingClearCacheOptions = false
@@ -55,42 +54,54 @@ struct SettingsView: View {
     
     private let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
     
-    @Environment(\.colorScheme) private var colorScheme
-    
     private var sections: [SettingsSection] {
         [
-            SettingsSection(title: "General", items: [
-                SettingsItem(title: "Distance (kilometers)", icon: "ruler", type: .toggle($useMetricUnits)),
-                SettingsItem(title: "Language", icon: "globe", type: .picker(languages, $language)),
-                SettingsItem(title: "Appearance", icon: "circle.lefthalf.filled", type: .picker(themeOptions, $appTheme))
+            SettingsSection(title: "General", 
+                description: "Configure basic app preferences including unit system and language options for your Camino journey.",
+                items: [
+                SettingsItem(title: "Distance (km)", icon: "ruler", type: .toggle($useMetricUnits)),
+                SettingsItem(title: "Language", icon: "globe", type: .picker(languages, $language))
             ]),
             
-            SettingsSection(title: "Map", items: [
+            SettingsSection(title: "Map", 
+                description: "Customize your map experience with different display styles and offline capabilities for areas with limited connectivity.",
+                items: [
                 SettingsItem(title: "Offline Mode", icon: "wifi.slash", type: .toggle($offlineMode)),
                 SettingsItem(title: "Map Style", icon: "map", type: .picker(mapStyles, $mapStyle))
             ]),
             
-            SettingsSection(title: "Tracking", items: [
+            SettingsSection(title: "Tracking", 
+                description: "Control how frequently your location updates and receive notifications about route changes and weather conditions.",
+                items: [
                 SettingsItem(title: "GPS Update Frequency", icon: "location", type: .picker(gpsIntervals, $gpsUpdateInterval)),
                 SettingsItem(title: "Off-Route Notifications", icon: "exclamationmark.triangle", type: .toggle($offRouteNotifications)),
                 SettingsItem(title: "Weather Alerts", icon: "cloud.bolt.rain", type: .toggle($weatherNotifications))
             ]),
             
-            SettingsSection(title: "Weather", items: [
+            SettingsSection(title: "Weather", 
+                description: "Configure weather information display preferences and update frequency to stay prepared for changing conditions.",
+                items: [
                 SettingsItem(title: "Update Frequency", icon: "clock.arrow.circlepath", type: .picker(weatherUpdateIntervals, $weatherUpdateFrequency)),
-                SettingsItem(title: "Temperature (celsius)", icon: "thermometer", type: .toggle($useCelsius))
+                SettingsItem(title: "Use Celsius (°C)", icon: "thermometer", type: .toggle($useCelsius))
             ]),
             
-            SettingsSection(title: "Data Management", items: [
-                SettingsItem(title: "Backup & Restore", icon: "arrow.clockwise.icloud", type: .button({
-                    showingBackupOptions = true
-                })),
-                SettingsItem(title: "Clear Cache", icon: "trash", type: .button({
-                    showingClearCacheOptions = true
-                }))
-            ]),
+            SettingsSection(
+                title: "Data Management", 
+                description: "Tools for backing up your journey data, restoring from previous backups, and clearing cached information to free up storage space.",
+                items: [
+                    SettingsItem(title: "Backup & Restore", icon: "arrow.clockwise.icloud", type: .button({
+                        showingBackupOptions = true
+                    })),
+                    SettingsItem(title: "Clear Cache", icon: "trash", type: .button({
+                        showingClearCacheOptions = true
+                    })),
+                    SettingsItem(title: "How to Backup", icon: "doc.text.magnifyingglass", type: .navigationLink(destination: AnyView(BackupHowToView())))
+                ]
+            ),
             
-            SettingsSection(title: "About", items: [
+            SettingsSection(title: "About", 
+                description: "Information about the app, useful Camino resources, and developer details.",
+                items: [
                 SettingsItem(title: "Version", icon: "info.circle", type: .info(appVersion)),
                 SettingsItem(title: "Camino Resources", icon: "link", type: .button({
                     showingAboutInfo = true
@@ -104,7 +115,7 @@ struct SettingsView: View {
         NavigationView {
             List {
                 ForEach(sections) { section in
-                    Section(header: Text(section.title)) {
+                    Section(header: Text(section.title), footer: Text(section.description)) {
                         ForEach(section.items) { item in
                             settingsRow(for: item)
                         }
@@ -112,7 +123,6 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Settings")
-            .preferredColorScheme(selectedColorScheme)
             .confirmationDialog("Backup & Restore", isPresented: $showingBackupOptions, titleVisibility: .visible) {
                 Button("Backup to Cloud") { performBackup() }
                 Button("Restore from Cloud") { performRestore() }
@@ -132,20 +142,7 @@ struct SettingsView: View {
             }
             .sheet(isPresented: $showingAboutInfo) {
                 AboutView()
-                    .preferredColorScheme(selectedColorScheme)
             }
-        }
-    }
-    
-    // Compute the preferred color scheme based on the user's selection
-    private var selectedColorScheme: ColorScheme? {
-        switch appTheme {
-        case "Light":
-            return .light
-        case "Dark":
-            return .dark
-        default:
-            return nil // System default
         }
     }
     
@@ -243,7 +240,6 @@ struct SettingsView: View {
             }
         }
         .navigationTitle(title)
-        .preferredColorScheme(selectedColorScheme)
     }
     
     // MARK: - Action Methods
@@ -331,6 +327,161 @@ struct AboutView: View {
                 }
             }
         }
+    }
+}
+
+// MARK: - Backup How-To View
+struct BackupHowToView: View {
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                // Title and introduction
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        Image(systemName: "arrow.clockwise.icloud")
+                            .font(.largeTitle)
+                            .foregroundColor(.blue)
+                        
+                        Text("How to Backup Your Data")
+                            .font(.title)
+                            .fontWeight(.bold)
+                    }
+                    
+                    Text("This guide will walk you through the process of backing up your Camino journey data to ensure you never lose your tracking information, settings, or saved routes.")
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                }
+                .padding(.bottom, 8)
+                
+                // Step 1
+                BackupStepView(
+                    number: 1,
+                    title: "Access Backup Options",
+                    instructions: "Navigate to Settings > Data Management > Backup & Restore and tap to open the backup options dialog.",
+                    icon: "gearshape"
+                )
+                
+                // Step 2
+                BackupStepView(
+                    number: 2,
+                    title: "Choose Backup Method",
+                    instructions: "Select \"Backup to Cloud\" to store your data securely in iCloud, which allows restoration on any device with your Apple ID.",
+                    icon: "icloud.and.arrow.up"
+                )
+                
+                // Step 3
+                BackupStepView(
+                    number: 3,
+                    title: "Confirm Backup",
+                    instructions: "Review the backup details showing what will be saved, including your journey progress, settings, waypoint notes, and saved photos.",
+                    icon: "checkmark.circle"
+                )
+                
+                // Step 4
+                BackupStepView(
+                    number: 4,
+                    title: "Wait for Completion",
+                    instructions: "The backup process may take a minute or two. A progress indicator will show the backup status. Do not leave the app during this process.",
+                    icon: "hourglass"
+                )
+                
+                // Step 5
+                BackupStepView(
+                    number: 5,
+                    title: "Verify Backup",
+                    instructions: "Once complete, you'll see a confirmation message with the date and time of the backup. This information is stored in Settings > Data Management.",
+                    icon: "checkmark.seal"
+                )
+                
+                // Alternative Export Option
+                GroupBox {
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Alternative: Export Your Data")
+                            .font(.headline)
+                        
+                        Text("If you prefer a local backup that you can share or store elsewhere:")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                        
+                        HStack(alignment: .top, spacing: 15) {
+                            Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(.blue)
+                                .frame(width: 24)
+                            
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("1. Select \"Export Data\" from the backup options")
+                                Text("2. Choose a format (PDF or CSV)")
+                                Text("3. Select a sharing method (AirDrop, Email, Files, etc.)")
+                                Text("4. Send or save the exported file")
+                            }
+                            .font(.callout)
+                        }
+                    }
+                    .padding()
+                }
+                
+                // Automatic Backups Info
+                GroupBox {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Automatic Backups")
+                            .font(.headline)
+                        
+                        Text("The app automatically creates daily backups when you have cloud backup enabled. You can access the last 7 days of automatic backups from the Restore options.")
+                            .font(.callout)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding()
+                }
+                
+                Spacer(minLength: 40)
+            }
+            .padding()
+        }
+        .navigationTitle("Backup Guide")
+    }
+}
+
+// Helper view for backup steps
+struct BackupStepView: View {
+    let number: Int
+    let title: String
+    let instructions: String
+    let icon: String
+    
+    var body: some View {
+        HStack(alignment: .top, spacing: 16) {
+            // Step number in circle
+            ZStack {
+                Circle()
+                    .fill(Color.blue)
+                    .frame(width: 36, height: 36)
+                
+                Text("\(number)")
+                    .font(.headline)
+                    .foregroundColor(.white)
+            }
+            
+            VStack(alignment: .leading, spacing: 8) {
+                // Step title
+                HStack {
+                    Image(systemName: icon)
+                        .foregroundColor(.blue)
+                    
+                    Text(title)
+                        .font(.headline)
+                }
+                
+                // Step instructions
+                Text(instructions)
+                    .font(.body)
+                    .foregroundColor(.secondary)
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.primary.opacity(0.05))
+        )
     }
 }
 

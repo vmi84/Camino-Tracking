@@ -4,6 +4,7 @@ import CaminoModels
 
 struct DestinationsView: View {
     @State private var searchText = ""
+    @AppStorage("useMetricUnits") private var useMetricUnits = true
     
     var filteredDestinations: [CaminoDestination] {
         if searchText.isEmpty {
@@ -14,6 +15,16 @@ struct DestinationsView: View {
                 destination.hotelName.localizedCaseInsensitiveContains(searchText) ||
                 "\(destination.day)".contains(searchText)
             }
+        }
+    }
+    
+    // Helper method to format distances with proper units
+    private func formatDistance(_ kilometers: Double) -> String {
+        if useMetricUnits {
+            return String(format: "%.1f km", kilometers)
+        } else {
+            let miles = kilometers * 0.621371
+            return String(format: "%.1f mi", miles)
         }
     }
     
@@ -31,7 +42,7 @@ struct DestinationsView: View {
                         
                         Spacer()
                         
-                        Text(String(format: "%.1f km", destination.actualRouteDistance))
+                        Text(formatDistance(destination.actualRouteDistance))
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }

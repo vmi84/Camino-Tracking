@@ -7,6 +7,7 @@ struct WeatherView: View {
     @EnvironmentObject private var locationManager: LocationManager
     @State private var isLoading = true
     @State private var lastUpdated: Date?
+    @AppStorage("useCelsius") private var useCelsius = true
     
     var body: some View {
         NavigationStack {
@@ -114,13 +115,13 @@ struct WeatherView: View {
                     .font(.headline)
                 
                 if let weather = weatherViewModel.weatherData[destination] {
-                    Text(weather.currentWeather.temperature.formatted())
+                    Text(formatTemperature(weather.currentWeather.temperature))
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 } else {
                     // Mock weather for current temperature (varies based on day number)
-                    let mockTemp = (15 + (destination.day % 10)).description + "°C"
-                    Text(mockTemp)
+                    let mockTemp = (15 + (destination.day % 10))
+                    Text(formatTemperature(Measurement(value: Double(mockTemp), unit: UnitTemperature.celsius)))
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
@@ -153,6 +154,18 @@ struct WeatherView: View {
         }
     }
     
+    // Add a helper method to format temperature respecting the user setting
+    private func formatTemperature(_ temperature: Measurement<UnitTemperature>) -> String {
+        if useCelsius {
+            // Keep celsius
+            return "\(Int(temperature.value.rounded()))°C"
+        } else {
+            // Convert to Fahrenheit
+            let fahrenheit = temperature.converted(to: .fahrenheit)
+            return "\(Int(fahrenheit.value.rounded()))°F"
+        }
+    }
+    
     private func refreshWeather() async {
         isLoading = true
         await weatherViewModel.refreshWeather()
@@ -171,6 +184,7 @@ struct WeatherView: View {
 struct WeatherDetailView: View {
     let destination: CaminoDestination
     let weather: Weather?
+    @AppStorage("useCelsius") private var useCelsius = true
     
     var body: some View {
         ScrollView {
@@ -208,7 +222,7 @@ struct WeatherDetailView: View {
                                 .symbolRenderingMode(.multicolor)
                                 .font(.system(size: 56))
                             
-                            Text(weather.currentWeather.temperature.formatted())
+                            Text(formatTemperature(weather.currentWeather.temperature))
                                 .font(.system(size: 32, weight: .bold))
                         }
                     } else {
@@ -221,7 +235,7 @@ struct WeatherDetailView: View {
                                 .font(.system(size: 56))
                             
                             let temp = (15 + (destination.day % 10))
-                            Text("\(temp)°C")
+                            Text(formatTemperature(Measurement(value: Double(temp), unit: UnitTemperature.celsius)))
                                 .font(.system(size: 32, weight: .bold))
                         }
                     }
@@ -239,7 +253,7 @@ struct WeatherDetailView: View {
                             HStack {
                                 WeatherDataCard(
                                     title: "Feels Like",
-                                    value: weather.currentWeather.apparentTemperature.formatted(),
+                                    value: formatTemperature(weather.currentWeather.apparentTemperature),
                                     icon: "thermometer"
                                 )
                                 
@@ -285,7 +299,7 @@ struct WeatherDetailView: View {
                                             .symbolRenderingMode(.multicolor)
                                             .font(.title3)
                                         
-                                        Text(hourly.temperature.formatted())
+                                        Text(formatTemperature(hourly.temperature))
                                             .font(.caption)
                                             .bold()
                                         
@@ -322,7 +336,7 @@ struct WeatherDetailView: View {
                                 
                                 Spacer()
                                 
-                                Text("\(Int(daily.lowTemperature.value))°")
+                                Text(formatTemperature(daily.lowTemperature, showUnit: false))
                                     .foregroundColor(.secondary)
                                     .frame(width: 40, alignment: .trailing)
                                 
@@ -336,7 +350,7 @@ struct WeatherDetailView: View {
                                         .frame(width: 100, height: 6)
                                 }
                                 
-                                Text("\(Int(daily.highTemperature.value))°")
+                                Text(formatTemperature(daily.highTemperature, showUnit: false))
                                     .frame(width: 40, alignment: .trailing)
                                 
                                 if daily.precipitationChance > 0 {
@@ -381,7 +395,7 @@ struct WeatherDetailView: View {
                                 let feelsLike = (14 + (destination.day % 10))
                                 WeatherDataCard(
                                     title: "Feels Like",
-                                    value: "\(feelsLike)°C",
+                                    value: formatTemperature(Measurement(value: Double(feelsLike), unit: UnitTemperature.celsius)),
                                     icon: "thermometer"
                                 )
                                 
@@ -446,7 +460,7 @@ struct WeatherDetailView: View {
                                             .symbolRenderingMode(.multicolor)
                                             .font(.title3)
                                         
-                                        Text("\(hourTemp)°")
+                                        Text(formatTemperature(Measurement(value: Double(hourTemp), unit: UnitTemperature.celsius)))
                                             .font(.caption)
                                             .bold()
                                         
@@ -499,7 +513,7 @@ struct WeatherDetailView: View {
                                 
                                 Spacer()
                                 
-                                Text("\(lowTemp)°")
+                                Text(formatTemperature(Measurement(value: Double(lowTemp), unit: UnitTemperature.celsius), showUnit: false))
                                     .foregroundColor(.secondary)
                                     .frame(width: 40, alignment: .trailing)
                                 
@@ -513,7 +527,7 @@ struct WeatherDetailView: View {
                                         .frame(width: 100, height: 6)
                                 }
                                 
-                                Text("\(highTemp)°")
+                                Text(formatTemperature(Measurement(value: Double(highTemp), unit: UnitTemperature.celsius), showUnit: false))
                                     .frame(width: 40, alignment: .trailing)
                                 
                                 if rainChance > 0 {
@@ -554,6 +568,16 @@ struct WeatherDetailView: View {
         }
         .navigationTitle("Weather Details")
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    // Helper method to format temperature respecting the user setting
+    private func formatTemperature(_ temperature: Measurement<UnitTemperature>, showUnit: Bool = true) -> String {
+        if useCelsius {
+            return showUnit ? "\(Int(temperature.value.rounded()))°C" : "\(Int(temperature.value.rounded()))°"
+        } else {
+            let fahrenheit = temperature.converted(to: .fahrenheit)
+            return showUnit ? "\(Int(fahrenheit.value.rounded()))°F" : "\(Int(fahrenheit.value.rounded()))°"
+        }
     }
     
     private var hourFormatter: DateFormatter {

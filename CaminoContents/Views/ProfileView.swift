@@ -132,7 +132,7 @@ struct ProfileView: View {
                 .padding(.bottom, 4)
             
             VStack(spacing: 16) {
-                Toggle("Distance (kilometers)", isOn: $useMetricUnits)
+                Toggle("Distance (km)", isOn: $useMetricUnits)
                 
                 Picker("Language", selection: $language) {
                     Text("English").tag("English")

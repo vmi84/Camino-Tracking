@@ -58,6 +58,7 @@ struct StageProfileView: View {
 
 struct RouteDetailView: View {
     let destinationDay: Int
+    @AppStorage("useMetricUnits") private var useMetricUnits = true
     
     // Convert destination day to route day, accounting for the rest day in Leon
     private var routeDay: Int {
@@ -71,6 +72,18 @@ struct RouteDetailView: View {
     
     private var routeDetails: RouteDetail? {
         return RouteDetailProvider.getRouteDetail(for: routeDay)
+    }
+    
+    // Helper method to format distances with proper units
+    private func formatDistance(_ kilometers: Double?) -> String {
+        guard let km = kilometers else { return "" }
+        
+        if useMetricUnits {
+            return "(\(km) km)"
+        } else {
+            let miles = km * 0.621371
+            return "(\(String(format: "%.1f", miles)) mi)"
+        }
     }
     
     var body: some View {
@@ -108,7 +121,7 @@ struct RouteDetailView: View {
                         Label {
                             Text("Starting Point: ") +
                             Text(start.name).bold() +
-                            Text(start.distance != nil ? " (0.0 km)" : "")
+                            Text(start.distance != nil ? " (0.0 \(useMetricUnits ? "km" : "mi"))" : "")
                         } icon: {
                             Image(systemName: "flag.fill")
                                 .foregroundColor(.green)
@@ -137,7 +150,7 @@ struct RouteDetailView: View {
                             VStack(alignment: .leading, spacing: 2) {
                                 Label {
                                     Text(waypoint.name).bold() +
-                                    Text(waypoint.distance != nil ? " (\(waypoint.distance!) km)" : "")
+                                    Text(waypoint.distance != nil ? " " + formatDistance(waypoint.distance) : "")
                                 } icon: {
                                     Image(systemName: "mappin")
                                         .foregroundColor(.red)
@@ -178,7 +191,7 @@ struct RouteDetailView: View {
                         Label {
                             Text("End Point: ") +
                             Text(end.name).bold() +
-                            Text(end.distance != nil ? " (\(end.distance!) km)" : "")
+                            Text(end.distance != nil ? " " + formatDistance(end.distance) : "")
                         } icon: {
                             Image(systemName: "flag.checkered")
                                 .foregroundColor(.blue)
@@ -226,6 +239,7 @@ struct RouteDetailView: View {
 struct DestinationDetailView: View {
     let destination: CaminoDestination
     @State private var region: MKCoordinateRegion
+    @AppStorage("useMetricUnits") private var useMetricUnits = true
     
     init(destination: CaminoDestination) {
         self.destination = destination
@@ -233,6 +247,16 @@ struct DestinationDetailView: View {
             center: destination.coordinate,
             span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         ))
+    }
+    
+    // Helper method to format distances with proper units
+    private func formatDistance(_ kilometers: Double) -> String {
+        if useMetricUnits {
+            return String(format: "%.1f km", kilometers)
+        } else {
+            let miles = kilometers * 0.621371
+            return String(format: "%.1f mi", miles)
+        }
     }
     
     var body: some View {
@@ -264,8 +288,8 @@ struct DestinationDetailView: View {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Route Information:")
                             .font(.headline)
-                        Text("• Distance: \(String(format: "%.1f", destination.actualRouteDistance)) km")
-                        Text("• Total: \(String(format: "%.1f", destination.cumulativeDistance)) km")
+                        Text("• Distance: \(formatDistance(destination.actualRouteDistance))")
+                        Text("• Total: \(formatDistance(destination.cumulativeDistance))")
                     }
                     
                     VStack(alignment: .leading, spacing: 4) {
