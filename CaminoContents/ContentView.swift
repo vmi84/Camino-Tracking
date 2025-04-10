@@ -50,9 +50,9 @@ struct MainTabView: View {
                 }
                 .tag(2)
             
-            ProfileView()
+            TranslationView()
                 .tabItem {
-                    Label("Profile", systemImage: "person")
+                    Label("Translator", systemImage: "character.bubble")
                 }
                 .tag(3)
             

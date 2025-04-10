@@ -20,6 +20,7 @@ class WeatherViewModel: ObservableObject {
     func refreshWeather() async {
         if weatherStore.shouldRefreshWeather() {
             var hasLoadedAnyRealData = false
+            var weatherKitAuthError = false
             
             for destination in destinations {
                 do {
@@ -31,6 +32,13 @@ class WeatherViewModel: ObservableObject {
                     print("Loaded real weather data for \(destination.locationName)")
                 } catch {
                     print("Error fetching weather for \(destination.locationName): \(error.localizedDescription)")
+                    
+                    // Check specifically for JWT authenticator errors
+                    if error.localizedDescription.contains("WDSJWTAuthenticator") || 
+                       error.localizedDescription.contains("JWT") {
+                        weatherKitAuthError = true
+                    }
+                    
                     // If we fail to load real data, create mock data
                     if weatherData[destination] == nil {
                         weatherData[destination] = createMockWeather(for: destination)
@@ -39,7 +47,11 @@ class WeatherViewModel: ObservableObject {
             }
             
             if !hasLoadedAnyRealData {
-                errorMessage = "Using sample weather data. To get live data, configure WeatherKit in your Apple Developer account."
+                if weatherKitAuthError {
+                    errorMessage = "WeatherKit authorization failed. To get live weather data, you need to configure WeatherKit in your Apple Developer account and add the capability to this app."
+                } else {
+                    errorMessage = "Using sample weather data. To get live data, check your internet connection and WeatherKit configuration."
+                }
             } else {
                 errorMessage = nil
             }
@@ -52,7 +64,14 @@ class WeatherViewModel: ObservableObject {
     }
     
     private func loadCachedWeatherData() {
-        guard let cachedData = weatherStore.loadWeatherData() else { return }
+        guard let cachedData = weatherStore.loadWeatherData() else { 
+            // If no cached data exists, create mock data for all destinations
+            for destination in destinations {
+                weatherData[destination] = createMockWeather(for: destination)
+            }
+            errorMessage = "Using sample weather data. No cached data available."
+            return
+        }
         
         var hasLoadedAnyCachedData = false
         
