@@ -27,11 +27,29 @@ struct CaminoDestination: Identifiable {
         return lastPoint.distance
     }
     
+    // Extract the actual distance from the content string
+    var actualRouteDistance: Double {
+        // Use regex to extract the distance value from the content
+        let pattern = "Distance: (\\d+\\.?\\d*)"
+        if let regex = try? NSRegularExpression(pattern: pattern, options: []) {
+            let nsString = content as NSString
+            let matches = regex.matches(in: content, options: [], range: NSRange(location: 0, length: nsString.length))
+            
+            if let match = matches.first, match.numberOfRanges > 1 {
+                let range = match.range(at: 1)
+                let distanceString = nsString.substring(with: range)
+                return Double(distanceString) ?? dailyDistance
+            }
+        }
+        return dailyDistance // Fallback to the elevation profile distance
+    }
+    
     var cumulativeDistance: Double {
         if day == 0 { return 0 }
         let allDestinations = Self.allDestinations
         let currentIndex = allDestinations.firstIndex { $0.id == self.id } ?? 0
-        return allDestinations[0...currentIndex].reduce(0) { $0 + $1.dailyDistance }
+        // Use actualRouteDistance instead of dailyDistance for cumulative calculation
+        return allDestinations[0...currentIndex].reduce(0) { $0 + $1.actualRouteDistance }
     }
     
     private static let dateFormatter: DateFormatter = {

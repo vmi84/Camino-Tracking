@@ -31,7 +31,7 @@ struct DestinationsView: View {
                         
                         Spacer()
                         
-                        Text(String(format: "%.1f km", destination.dailyDistance))
+                        Text(String(format: "%.1f km", destination.actualRouteDistance))
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
