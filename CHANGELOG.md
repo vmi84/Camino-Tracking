@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.1] - 2025-04-16
+
+### Added
+- Comprehensive route details for all 33 days of the Camino journey
+- Detailed waypoint information for each day including distances and services
+- Starting and ending point details with specific directions
+- Complete elevation information (ascent/descent) for each stage
+- Service availability information at waypoints (bars, fountains, stores, etc.)
+- Specific route directions and path guidance
+- Integration of route details in the destination detail view
+- Support for route day mapping with León rest day adjustment
+
+### Changed
+- Enhanced destination detail view with organized route information
+- Improved user experience with expandable route sections
+- Better visual separation between waypoints
+- Fixed waypoint comparison with Equatable conformance
+- Made LocationPoint conform to Equatable for proper comparisons
+
 ## [0.5.0] - 2025-04-15
 
 ### Added
