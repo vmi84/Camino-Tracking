@@ -17,9 +17,9 @@ struct TranslationView: View {
     @State private var isDetectingLanguage = false
     @State private var isSpeaking = false
     
-    // Language selection
-    @State private var sourceLanguage = "en"
-    @State private var targetLanguage = "es"
+    // Language selection from settings
+    @AppStorage("sourceLanguageCode") private var sourceLanguage = "en"
+    @AppStorage("targetLanguageCode") private var targetLanguage = "es"
     
     // Speech recognition
     @StateObject private var speechManager = SpeechManager()
@@ -56,9 +56,9 @@ struct TranslationView: View {
                 // Main content area
                 ScrollView {
                     VStack(spacing: 16) {
-                        // Language selection (only show in translate mode)
+                        // Language display section (replaces interactive selection)
                         if mode == .translate {
-                            languageSelectionSection
+                            languageDisplaySection
                                 .padding(.horizontal)
                         }
                         
@@ -144,13 +144,6 @@ struct TranslationView: View {
             .onChange(of: mode) { oldValue, _ in
                 // Clear results when switching modes
                 translatedText = ""
-                // Update the UI to reflect the new mode
-                if mode == .translate {
-                    // If switching to translate mode, make sure we have a different target language
-                    if sourceLanguage == targetLanguage {
-                        targetLanguage = sourceLanguage == "en" ? "es" : "en"
-                    }
-                }
             }
             
             // Description of current mode's behavior
@@ -162,57 +155,36 @@ struct TranslationView: View {
         }
     }
     
-    private var languageSelectionSection: some View {
+    // NEW: Language display section (non-interactive, shows current selection)
+    private var languageDisplaySection: some View {
         VStack(spacing: 12) {
             HStack(spacing: 20) {
-                // Source language picker with auto-detect
+                // Source language display
                 VStack(alignment: .leading, spacing: 4) {
                     Text("From")
                         .font(.caption)
                         .foregroundColor(.secondary)
                     
-                    Menu {
-                        Button(action: {
-                            isDetectingLanguage = true
-                            detectLanguage(inputText)
-                        }) {
-                            Label("Detect Language", systemImage: "wand.and.stars")
-                        }
-                        
-                        Divider()
-                        
-                        ForEach(availableLanguages, id: \.0) { lang in
-                            Button(lang.1) {
-                                sourceLanguage = lang.0
-                                isDetectingLanguage = false
-                            }
-                        }
-                    } label: {
-                        HStack {
-                            if isDetectingLanguage {
-                                Image(systemName: "wand.and.stars")
-                                    .font(.caption)
-                                    .foregroundColor(.blue)
-                                Text("Detect")
-                                    .font(.headline)
-                            } else {
-                                Text(languageName(for: sourceLanguage))
-                                    .font(.headline)
-                            }
-                            
-                            Spacer()
-                            
-                            Image(systemName: "chevron.down")
+                    HStack {
+                        if isDetectingLanguage {
+                            Image(systemName: "wand.and.stars")
                                 .font(.caption)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(.blue)
+                            Text("Detecting")
+                                .font(.headline)
+                        } else {
+                            Text(languageName(for: sourceLanguage))
+                                .font(.headline)
                         }
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 8)
-                        .background(
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(Color.secondary.opacity(0.1))
-                        )
+                        
+                        Spacer()
                     }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color.secondary.opacity(0.1))
+                    )
                 }
                 
                 // Swap button
@@ -235,38 +207,32 @@ struct TranslationView: View {
                         .foregroundColor(.white)
                 }
                 
-                // Target language picker
+                // Target language display
                 VStack(alignment: .leading, spacing: 4) {
                     Text("To")
                         .font(.caption)
                         .foregroundColor(.secondary)
                     
-                    Menu {
-                        ForEach(availableLanguages, id: \.0) { lang in
-                            Button(lang.1) {
-                                targetLanguage = lang.0
-                            }
-                        }
-                    } label: {
-                        HStack {
-                            Text(languageName(for: targetLanguage))
-                                .font(.headline)
-                            
-                            Spacer()
-                            
-                            Image(systemName: "chevron.down")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 8)
-                        .background(
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(Color.secondary.opacity(0.1))
-                        )
+                    HStack {
+                        Text(languageName(for: targetLanguage))
+                            .font(.headline)
+                        Spacer()
                     }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color.secondary.opacity(0.1))
+                    )
                 }
             }
+            
+            // Add instruction to change languages
+            Text("Change languages in Settings")
+                .font(.caption)
+                .foregroundColor(.secondary)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.top, 4)
         }
     }
     
@@ -315,6 +281,19 @@ struct TranslationView: View {
                     Spacer()
                     
                     HStack {
+                        // Detect language button (translation mode only)
+                        if mode == .translate && !inputText.isEmpty && !speechManager.isRecording {
+                            Button(action: {
+                                isDetectingLanguage = true
+                                detectLanguage(inputText)
+                            }) {
+                                Label("Detect", systemImage: "wand.and.stars")
+                                    .font(.caption)
+                                    .foregroundColor(.blue)
+                            }
+                            .padding(8)
+                        }
+                        
                         Spacer()
                         
                         // Microphone button
@@ -563,7 +542,7 @@ struct TranslationView: View {
         
         // Simple scoring: check if words from the text exist in our dictionaries
         for word in words {
-            for lang in ["es", "fr", "de", "it", "pt", "ja", "ko", "zh", "ru"] {
+            for lang in ["es", "fr", "de", "it", "pt", "ru"] {
                 if dictionaryContains(word: word, forLanguage: lang) {
                     scores[lang, default: 0] += 1
                 }

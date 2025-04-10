@@ -42,11 +42,26 @@ struct SettingsView: View {
     @AppStorage("weatherUpdateFrequency") private var weatherUpdateFrequency = "15 minutes"
     @AppStorage("useCelsius") private var useCelsius = true
     
+    // Translation Settings
+    @AppStorage("sourceLanguageCode") private var sourceLanguageCode = "en"
+    @AppStorage("targetLanguageCode") private var targetLanguageCode = "es"
+    
     // Options arrays
     private let languages = ["English", "Spanish"]
     private let mapStyles = ["Standard", "Satellite", "Hybrid"]
     private let gpsIntervals = ["5 seconds", "10 seconds", "30 seconds", "1 minute"]
     private let weatherUpdateIntervals = ["15 minutes", "30 minutes", "1 hour", "3 hours"]
+    
+    // Translation language options
+    private let translationLanguages = [
+        ("en", "English"),
+        ("es", "Spanish"),
+        ("fr", "French"),
+        ("it", "Italian"),
+        ("de", "German"),
+        ("pt", "Portuguese"),
+        ("ru", "Russian")
+    ]
     
     @State private var showingBackupOptions = false
     @State private var showingClearCacheOptions = false
@@ -68,6 +83,17 @@ struct SettingsView: View {
                 items: [
                 SettingsItem(title: "Offline Mode", icon: "wifi.slash", type: .toggle($offlineMode)),
                 SettingsItem(title: "Map Style", icon: "map", type: .picker(mapStyles, $mapStyle))
+            ]),
+            
+            SettingsSection(title: "Translation", 
+                description: "Set your preferred source and target languages for the translation feature.",
+                items: [
+                SettingsItem(title: "From Language", icon: "arrow.up.forward.circle", type: .navigationLink(
+                    destination: AnyView(languagePickerView(title: "From Language", languageCodes: translationLanguages, selection: $sourceLanguageCode))
+                )),
+                SettingsItem(title: "To Language", icon: "arrow.down.forward.circle", type: .navigationLink(
+                    destination: AnyView(languagePickerView(title: "To Language", languageCodes: translationLanguages, selection: $targetLanguageCode))
+                ))
             ]),
             
             SettingsSection(title: "Tracking", 
@@ -190,14 +216,44 @@ struct SettingsView: View {
             }
             
         case .navigationLink(let destination):
-            NavigationLink(destination: destination) {
-                HStack {
-                    if let icon = item.icon {
-                        Image(systemName: icon)
-                            .foregroundColor(.blue)
-                            .frame(width: 25)
+            if item.title == "From Language" {
+                NavigationLink(destination: destination) {
+                    HStack {
+                        if let icon = item.icon {
+                            Image(systemName: icon)
+                                .foregroundColor(.blue)
+                                .frame(width: 25)
+                        }
+                        Text(item.title)
+                        Spacer()
+                        Text(languageNameFor(code: sourceLanguageCode))
+                            .foregroundColor(.gray)
                     }
-                    Text(item.title)
+                }
+            } else if item.title == "To Language" {
+                NavigationLink(destination: destination) {
+                    HStack {
+                        if let icon = item.icon {
+                            Image(systemName: icon)
+                                .foregroundColor(.blue)
+                                .frame(width: 25)
+                        }
+                        Text(item.title)
+                        Spacer()
+                        Text(languageNameFor(code: targetLanguageCode))
+                            .foregroundColor(.gray)
+                    }
+                }
+            } else {
+                NavigationLink(destination: destination) {
+                    HStack {
+                        if let icon = item.icon {
+                            Image(systemName: icon)
+                                .foregroundColor(.blue)
+                                .frame(width: 25)
+                        }
+                        Text(item.title)
+                    }
                 }
             }
             
@@ -279,6 +335,35 @@ struct SettingsView: View {
         clearWeatherData()
         clearPhotoCache()
         print("All cache cleared.")
+    }
+    
+    // Helper function to translate language code to language name
+    private func languageNameFor(code: String) -> String {
+        translationLanguages.first { $0.0 == code }?.1 ?? code
+    }
+    
+    // Custom picker for language selection
+    private func languagePickerView(title: String, languageCodes: [(String, String)], selection: Binding<String>) -> some View {
+        List {
+            Section(header: Text(title)) {
+                ForEach(languageCodes, id: \.0) { code, name in
+                    Button(action: {
+                        selection.wrappedValue = code
+                    }) {
+                        HStack {
+                            Text(name)
+                            Spacer()
+                            if selection.wrappedValue == code {
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                    }
+                    .foregroundColor(.primary)
+                }
+            }
+        }
+        .navigationTitle(title)
     }
 }
 

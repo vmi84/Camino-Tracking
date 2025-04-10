@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.5] - 2025-04-17
+
+### Added
+- Moved language selection from Translation screen to Settings for better user experience
+- Added detailed language preferences section in Settings
+- Support for multiple languages including English, Spanish, French, German, Italian, Portuguese, and Russian
+
+### Changed
+- Simplified Translation UI with non-interactive language display
+- Added "Change languages in Settings" instruction for better discoverability
+- Improved language detection with "Detect" button in translation input
+- Enhanced translation experience with persistent language preferences across app sessions
+
 ## [0.5.1] - 2025-04-16
 
 ### Added
