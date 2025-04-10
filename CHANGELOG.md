@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2025-04-07
+
+### Added
+- Hotel markers displayed on the map with orange pins
+- Home button to center the map on St. Jean Pied de Port (starting point)
+- Improved coordinates display in destination detail view
+- Added hotel coordinates to MapView
+
+### Changed
+- Map now starts centered on St. Jean Pied de Port
+- Enhanced hotel coordinates display with proper degree symbols and directional indicators
+- Improved UI for destination detail view
+
 ## [0.2.5] - 2025-04-07
 
 ### Added
