@@ -12,11 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Home button to center the map on St. Jean Pied de Port (starting point)
 - Improved coordinates display in destination detail view
 - Added hotel coordinates to MapView
+- Zoom in/out buttons at top right corner of the map
 
 ### Changed
 - Map now starts centered on St. Jean Pied de Port
 - Enhanced hotel coordinates display with proper degree symbols and directional indicators
 - Improved UI for destination detail view
+- Added shadow effect to map control buttons for better visibility
 
 ## [0.2.5] - 2025-04-07
 
