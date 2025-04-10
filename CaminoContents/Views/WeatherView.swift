@@ -1,15 +1,6 @@
 import SwiftUI
 import WeatherKit
 import CoreLocation
-import UIKit
-
-// Color compatibility for macOS and iOS
-#if os(macOS)
-import AppKit
-typealias PlatformColor = NSColor
-#else
-typealias PlatformColor = UIColor
-#endif
 
 struct WeatherView: View {
     @StateObject private var weatherViewModel = WeatherViewModel()
@@ -36,7 +27,7 @@ struct WeatherView: View {
                                     .foregroundColor(.secondary)
                             }
                             .padding(.vertical, 8)
-                            .listRowBackground(Color(PlatformColor.systemGray6))
+                            .listRowBackground(Color.gray.opacity(0.2))
                         }
                         
                         // Weather destinations
@@ -50,7 +41,7 @@ struct WeatherView: View {
                 if isLoading && weatherViewModel.weatherData.isEmpty {
                     ProgressView("Loading weather data...")
                         .padding()
-                        .background(Color(PlatformColor.systemBackground).opacity(0.8))
+                        .background(Color.primary.opacity(0.05).opacity(0.8))
                         .cornerRadius(8)
                 }
             }
@@ -365,7 +356,7 @@ struct WeatherDetailView: View {
                             }
                             .padding(.horizontal)
                             .padding(.vertical, 8)
-                            .background(Color(PlatformColor.systemBackground))
+                            .background(Color.primary.opacity(0.05))
                         }
                     }
                     
@@ -542,7 +533,7 @@ struct WeatherDetailView: View {
                             }
                             .padding(.horizontal)
                             .padding(.vertical, 8)
-                            .background(Color(PlatformColor.systemBackground))
+                            .background(Color.primary.opacity(0.05))
                         }
                     }
                     
@@ -598,7 +589,7 @@ struct WeatherDataCard: View {
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(PlatformColor.systemGray6))
+        .background(Color.primary.opacity(0.05))
         .cornerRadius(12)
     }
 }

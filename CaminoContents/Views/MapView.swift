@@ -13,6 +13,7 @@ import CaminoModels
 // MARK: - MapView
 struct MapView: View {
     @EnvironmentObject private var locationManager: LocationManager
+    @AppStorage("mapStyle") private var mapStyleSetting = "Standard"
     @State private var camera: MapCameraPosition = .region(MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 43.1630, longitude: -1.2380), // St. Jean Pied de Port
         span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
@@ -20,6 +21,18 @@ struct MapView: View {
     @State private var selectedDestination: CaminoDestination?
     @State private var showingDestinationDetail = false
     @State private var zoomLevel: Double = 0.5 // Track zoom level
+    
+    // Convert string map style to SwiftUI mapStyle
+    private var mapStyle: MapStyle {
+        switch mapStyleSetting {
+        case "Satellite":
+            return .imagery
+        case "Hybrid":
+            return .hybrid
+        default:
+            return .standard
+        }
+    }
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -69,7 +82,7 @@ struct MapView: View {
                         .stroke(.blue, lineWidth: 3)
                 }
             }
-            .mapStyle(.standard)
+            .mapStyle(mapStyle)
             
             // Map control buttons
             VStack(spacing: 8) {

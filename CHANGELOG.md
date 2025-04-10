@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2025-04-15
+
+### Added
+- Comprehensive Settings screen with configuration options
+- Theme selection feature (Light, Dark, System) in Settings
+- Distance unit toggle (kilometers/miles) in Settings
+- Language selection (English/Spanish) in Settings
+- GPS update frequency configuration
+- Weather update frequency settings
+- Map style configuration options (Standard, Satellite, Hybrid)
+- Temperature unit toggle (Celsius/Fahrenheit)
+- Data management options (backup/restore, cache clearing)
+- About section with resources and app information
+
+### Fixed
+- Map style selection now correctly changes map appearance
+- Fixed cross-platform color compatibility issues
+- Resolved duplicate type declaration errors
+- Applied consistent styling across all screens
+- Fixed theme switching implementation to work system-wide
+
+### Changed
+- Improved Settings UI with organized sections and icons
+- Enhanced Settings navigation with proper section headers
+- Moved appearance settings to General section for better discoverability
+- Applied theme changes app-wide using SwiftUI's preferredColorScheme
+- Used AppStorage for persistent settings
+
 ## [0.4.0] - 2025-04-10
 
 ### Added

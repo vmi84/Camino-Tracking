@@ -50,14 +50,15 @@ struct MainTabView: View {
                 }
                 .tag(2)
             
-            Text("Profile")
+            ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person")
                 }
                 .tag(3)
             
-            Text("Settings")
+            SettingsView()
                 .tabItem {
+
                     Label("Settings", systemImage: "gear")
                 }
                 .tag(4)

@@ -28,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE1CF07C2DA81041003415BF /* Camino-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Camino-Info.plist"; sourceTree = "<group>"; };
 		EE6A229F2DA0B6B20013F9FD /* Camino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Camino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE6A22AD2DA0B6B30013F9FD /* CaminoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaminoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE6A22B72DA0B6B30013F9FD /* CaminoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaminoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +88,7 @@
 		EE6A22962DA0B6B20013F9FD = {
 			isa = PBXGroup;
 			children = (
+				EE1CF07C2DA81041003415BF /* Camino-Info.plist */,
 				EE6A22A12DA0B6B20013F9FD /* CaminoContents */,
 				EE6A22B02DA0B6B30013F9FD /* CaminoTests */,
 				EE6A22BA2DA0B6B30013F9FD /* CaminoUITests */,
@@ -412,6 +414,7 @@
 				DEVELOPMENT_TEAM = D4KW6R627K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Camino-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Camino;
 				INFOPLIST_KEY_CFBundlePackageType = APPL;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
@@ -446,6 +449,7 @@
 				DEVELOPMENT_TEAM = D4KW6R627K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Camino-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Camino;
 				INFOPLIST_KEY_CFBundlePackageType = APPL;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
