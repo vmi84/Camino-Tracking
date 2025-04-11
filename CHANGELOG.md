@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2025-04-20
+
+### Fixed
+- Fixed route schedule to properly represent the Camino Frances journey
+- Corrected day numbering to include Day 0 at Saint Jean Pied de Port
+- Ensured Destinations and Destination Details views properly reflect route schedules
+- Updated CaminoModels module imports across the application
+- Fixed Weather view to display accurate destination information
+
+### Added
+- Module imports in all view files for proper dependency management
+- Enhanced route detail information with accurate elevation profiles
+
+## [0.5.9] - 2025-04-18
+
+### Added
+- Added Day 0 for Saint Jean Pied de Port on May 1st, 2025
+- Expanded the description for the arrival day to include more details
+
+### Changed
+- Shifted all subsequent day numbers up by 1 while maintaining correct dates
+- Adjusted all daily distances and cumulative distances to reflect the proper journey
+
+## [0.5.8] - 2025-04-18
+
+### Fixed
+- Corrected all destination dates to match the official itinerary
+- Updated destination names and locations based on actual accommodation bookings
+- Fixed the León rest day (day 23) timing
+- Ensured all subsequent dates are properly adjusted for the rest day
+
 ## [0.5.7] - 2025-04-18
 
 ### Added
