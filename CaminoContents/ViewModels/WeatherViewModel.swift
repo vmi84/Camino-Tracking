@@ -14,6 +14,7 @@ class WeatherViewModel: ObservableObject {
     @Published var shouldShowWeatherAppPrompt: Bool = true
     @Published var isTabSelected: Bool = false
     @Published var hasRedirected: Bool = false
+    @Published var hasAttemptedRedirect: Bool = false
     
     private let caminoWeatherViewModel: CaminoWeatherViewModel
     private var locationManager: LocationManager {
@@ -36,7 +37,10 @@ class WeatherViewModel: ObservableObject {
                 if error.contains("WeatherKit authorization failed") || 
                    error.contains("To get live weather data, you need to configure WeatherKit") {
                     shouldShowWeatherAppPrompt = true
-                    openWeatherForCurrentLocation()
+                    if !hasAttemptedRedirect {
+                        hasAttemptedRedirect = true
+                        openWeatherForCurrentLocation()
+                    }
                 }
             }
             
@@ -45,7 +49,10 @@ class WeatherViewModel: ObservableObject {
             }
         } else {
             // Default behavior is to open Apple Weather
-            openWeatherForCurrentLocation()
+            if !hasAttemptedRedirect {
+                hasAttemptedRedirect = true
+                openWeatherForCurrentLocation()
+            }
         }
     }
     
@@ -103,7 +110,10 @@ class WeatherViewModel: ObservableObject {
     // Track when tab is selected
     func tabWasSelected() {
         isTabSelected = true
-        // Always try to open Apple Weather when tab is selected
-        openWeatherForCurrentLocation()
+        // Only try to open Apple Weather if we haven't already attempted a redirect
+        if !hasAttemptedRedirect {
+            hasAttemptedRedirect = true
+            openWeatherForCurrentLocation()
+        }
     }
 } 

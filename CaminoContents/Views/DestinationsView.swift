@@ -42,7 +42,7 @@ struct DestinationsView: View {
                         
                         Spacer()
                         
-                        Text(formatDistance(destination.dailyDistance))
+                        Text(formatDistance(destination.actualRouteDistance))
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }

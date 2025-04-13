@@ -6,6 +6,7 @@ import CaminoModels
 struct WeatherView: View {
     @StateObject private var viewModel = WeatherViewModel()
     @State private var isLoading = false
+    @State private var hasAttemptedRedirect = false
     
     var body: some View {
         NavigationView {
@@ -15,7 +16,7 @@ struct WeatherView: View {
                         ProgressView()
                             .padding()
                         
-                        Text("Opening Weather...")
+                        Text("Loading Weather...")
                             .font(.headline)
                     }
                 } else {
@@ -30,7 +31,7 @@ struct WeatherView: View {
                             .bold()
                             .multilineTextAlignment(.center)
                         
-                        Text("Redirecting to Apple Weather for the most accurate forecasts.")
+                        Text("Get accurate weather forecasts for your Camino journey.")
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)
                         
@@ -79,8 +80,11 @@ struct WeatherView: View {
             }
             .navigationTitle("Weather")
             .task {
-                // Immediately open Apple Weather when view appears
-                redirectToAppleWeather()
+                // Try to open Apple Weather when view appears, but only once
+                if !hasAttemptedRedirect {
+                    hasAttemptedRedirect = true
+                    redirectToAppleWeather()
+                }
             }
             .onAppear {
                 // Signal that the tab was selected

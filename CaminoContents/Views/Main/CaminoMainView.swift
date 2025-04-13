@@ -31,7 +31,7 @@ struct CaminoMainView: View {
                 }
                 .tag(1)
             
-            EmptyView() // Use EmptyView instead of WeatherView to prevent loading it
+            WeatherView()
                 .tabItem {
                     Label("Weather", systemImage: "cloud.sun")
                 }
@@ -50,24 +50,9 @@ struct CaminoMainView: View {
                 .tag(4)
         }
         .onChange(of: appState.selectedTab) { oldValue, newValue in
-            // Handle the Weather tab deep-linking
+            // Handle the Weather tab selection
             if newValue == 2 {
-                Task {
-                    // Immediately try to open Apple Weather
-                    await weatherViewModel.openWeatherForCurrentLocation()
-                    
-                    // Always switch back to the previous tab after a very short delay
-                    try? await Task.sleep(nanoseconds: 300_000_000) // 300ms
-                    
-                    // Return to previous tab or Map tab if already on Weather
-                    DispatchQueue.main.async {
-                        if oldValue != 2 {
-                            appState.selectedTab = oldValue
-                        } else {
-                            appState.selectedTab = 0 // Default to Map
-                        }
-                    }
-                }
+                weatherViewModel.tabWasSelected()
             }
             
             // Handle the Translate tab deep-linking
