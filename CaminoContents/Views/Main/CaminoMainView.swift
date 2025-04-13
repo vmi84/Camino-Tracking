@@ -55,22 +55,8 @@ struct CaminoMainView: View {
                 weatherViewModel.tabWasSelected()
             }
             
-            // Handle the Translate tab deep-linking
-            if newValue == 3 && !translateTabWasTapped {
-                translateTabWasTapped = true
-                Task {
-                    // Open Google Translate directly via URL using saved language settings
-                    let translationService = TranslationService.shared
-                    translationService.openGoogleTranslate(
-                        text: "",
-                        sourceLanguage: sourceLanguageCode,
-                        targetLanguage: targetLanguageCode
-                    )
-                    // Reset the flag after a small delay
-                    try? await Task.sleep(nanoseconds: 1_000_000_000) // 1 second
-                    translateTabWasTapped = false
-                }
-            }
+            // We're no longer auto-deep-linking to Google Translate
+            // Let the GoogleTranslateView handle this internally
         }
         .tint(.blue)
     }

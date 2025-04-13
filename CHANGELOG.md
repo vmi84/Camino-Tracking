@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.5] - 2025-04-29
+
+### Fixed
+- Fixed current location button functionality in MapView
+- Added visual feedback for location availability status
+- Improved location authorization handling
+- Added user alerts when location services are unavailable
+- Enhanced location updates to start automatically when permissions are granted
+
 ## [0.6.3] - 2025-04-21
 
 ### Added
