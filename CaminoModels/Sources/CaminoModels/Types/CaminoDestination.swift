@@ -30,6 +30,10 @@ public struct CaminoDestination: Identifiable, Hashable {
         allDestinations.last?.cumulativeDistance ?? 0.0
     }
     
+    public var actualRouteDistance: Double {
+        return dailyDistance
+    }
+    
     public static let allDestinations: [CaminoDestination] = [
         CaminoDestination(day: 1, date: Self.dateFormatter.date(from: "2025-05-01")!, locationName: "Saint Jean Pied de Port", hotelName: "Villa Goxoki", 
             coordinate: CLLocationCoordinate2D(latitude: 43.1630, longitude: -1.2380),

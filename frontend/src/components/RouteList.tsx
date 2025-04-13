@@ -1,25 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Route } from '../types';
 
-interface Route {
-  id: string;
-  day: number;
-  startLocation: string;
-  endLocation: string;
-  distance: number;
-  directions: string[];
-  hotel: {
-    name: string;
-    coordinates: {
-      latitude: number;
-      longitude: number;
-    };
-    directions: string;
-  };
+interface RouteListProps {
+  routes: Route[];
+  onRouteSelect: (route: Route) => void;
 }
 
-const RouteList: React.FC = () => {
-  const [routes, setRoutes] = useState<Route[]>([]);
+const RouteList: React.FC<RouteListProps> = ({ routes, onRouteSelect }) => {
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

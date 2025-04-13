@@ -6,6 +6,8 @@ import CaminoModels
 // MARK: - CaminoMainView
 struct CaminoMainView: View {
     @EnvironmentObject private var appState: CaminoAppState
+    @StateObject private var weatherViewModel = WeatherViewModel()
+    @State private var weatherTabWasTapped = false
     
     var body: some View {
         if !appState.isShowingMap {
@@ -24,17 +26,38 @@ struct CaminoMainView: View {
                     }
                     .tag(1)
                 
-                Text("Weather")
+                WeatherView()
                     .tabItem {
                         Label("Weather", systemImage: "cloud.sun")
                     }
                     .tag(2)
+                    .onChange(of: appState.selectedTab) { _, newValue in
+                        if newValue == 2 {
+                            // When Weather tab is selected, immediately open Apple Weather
+                            // Use immediate execution and a flag to prevent multiple taps
+                            if !weatherTabWasTapped {
+                                weatherTabWasTapped = true
+                                Task { @MainActor in
+                                    weatherViewModel.openWeatherForCurrentLocation()
+                                    // Reset the flag after a small delay to allow for future taps
+                                    try? await Task.sleep(nanoseconds: 1_000_000_000) // 1 second
+                                    weatherTabWasTapped = false
+                                }
+                            }
+                        }
+                    }
                 
-                Text("Settings")
+                SettingsView()
                     .tabItem {
                         Label("Settings", systemImage: "gear")
                     }
                     .tag(3)
+
+                GoogleTranslateView()
+                    .tabItem {
+                        Label("Translate", systemImage: "globe")
+                    }
+                    .tag(4)
             }
             .tint(.blue)
         }

@@ -1,7 +1,9 @@
-// This file exists to support legacy imports
-// The actual model definitions have been moved to Types/CaminoDestination.swift
-
 import Foundation
+import CoreLocation
 
-// Just a marker file to satisfy build requirements
-// The actual types are defined in the Types/ directory
+// Export Foundation types for public use
+@_exported import struct Foundation.Date
+@_exported import class CoreLocation.CLLocation
+
+// Note: All types in the Types/ and Managers/ directories are automatically available
+// within this module and to importers of this module since they are marked as public

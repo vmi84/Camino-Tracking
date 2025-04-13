@@ -1,4 +1,5 @@
 import SwiftUI
+import CaminoModels
 
 @main
 struct CaminoApp: App {

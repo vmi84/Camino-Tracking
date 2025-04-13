@@ -4,6 +4,7 @@ import Speech
 #if os(iOS)
 import UIKit
 #endif
+import CaminoModels
 
 struct TranslationView: View {
     // Translation state
@@ -70,6 +71,12 @@ struct TranslationView: View {
                         resultSection
                             .padding(.horizontal)
                         
+                        // Destinations section (only in translate mode)
+                        if mode == .translate {
+                            destinationsForTranslation
+                                .padding(.horizontal)
+                        }
+                        
                         // Recent translations (only in translate mode)
                         if mode == .translate && !recentTranslations.isEmpty {
                             recentTranslationsSection
@@ -107,7 +114,7 @@ struct TranslationView: View {
             .onAppear {
                 requestSpeechAuthorization()
             }
-            .onChange(of: speechManager.transcribedText) { oldValue, newText in
+            .onChange(of: speechManager.transcribedText) { _, newText in
                 // Update input text with transcription
                 inputText = newText
                 
@@ -123,7 +130,7 @@ struct TranslationView: View {
                     translateText(newText)
                 }
             }
-            .onChange(of: speechManager.isFinal) { oldValue, isFinal in
+            .onChange(of: speechManager.isFinal) { _, isFinal in
                 if isFinal && mode == .translate && !speechManager.transcribedText.isEmpty {
                     // Once speech is final, do the full translation
                     translateText(speechManager.transcribedText)
@@ -141,7 +148,7 @@ struct TranslationView: View {
                 Text("Transcribe").tag(TranslationMode.transcribe)
             }
             .pickerStyle(SegmentedPickerStyle())
-            .onChange(of: mode) { oldValue, _ in
+            .onChange(of: mode) { _, _ in
                 // Clear results when switching modes
                 translatedText = ""
             }
@@ -268,7 +275,7 @@ struct TranslationView: View {
                         .scrollContentBackground(.hidden)
                         .background(Color.clear)
                         .padding(8)
-                        .onChange(of: inputText) { newText in
+                        .onChange(of: inputText) { _, newText in
                             // Auto-translate after a short delay while typing
                             if mode == .translate && !newText.isEmpty {
                                 debounceTranslate(newText)
@@ -395,6 +402,20 @@ struct TranslationView: View {
                                 .foregroundColor(.blue)
                         }
                         
+                        // Google Translate button
+                        Button(action: {
+                            let service = TranslationService.shared
+                            service.openGoogleTranslate(
+                                text: inputText, 
+                                sourceLanguage: sourceLanguage,
+                                targetLanguage: targetLanguage
+                            )
+                        }) {
+                            Label("Open in Google", systemImage: "globe")
+                                .font(.caption)
+                                .foregroundColor(.blue)
+                        }
+                        
                         // Share button
                         Button(action: {
                             // Set up share sheet
@@ -462,6 +483,83 @@ struct TranslationView: View {
                     }
                 }
             }
+        }
+    }
+    
+    private var destinationsForTranslation: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Camino Destinations")
+                .font(.headline)
+                .foregroundColor(.secondary)
+            
+            destinationsList
+        }
+    }
+    
+    // Extract the complex ForEach into a separate view property
+    private var destinationsList: some View {
+        VStack(spacing: 8) {
+            ForEach(CaminoDestination.allDestinations) { destination in
+                DestinationTranslationRow(
+                    destination: destination,
+                    onSelect: {
+                        // Set source text to destination name
+                        inputText = destination.locationName
+                        if !destination.hotelName.isEmpty {
+                            inputText += " - " + destination.hotelName
+                        }
+                        
+                        // Translate the destination name
+                        translateText(inputText)
+                    },
+                    targetLanguage: targetLanguage
+                )
+            }
+        }
+    }
+    
+    // Extract the row into a separate view struct
+    private struct DestinationTranslationRow: View {
+        let destination: CaminoDestination
+        let onSelect: () -> Void
+        let targetLanguage: String
+        
+        var body: some View {
+            Button(action: onSelect) {
+                HStack {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Day \(destination.day): \(destination.locationName)")
+                            .font(.subheadline)
+                            .foregroundColor(.primary)
+                        
+                        if !destination.hotelName.isEmpty {
+                            Text(destination.hotelName)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    Button {
+                        // Open directly in Google Translate
+                        TranslationService.shared.openGoogleTranslate(
+                            text: "\(destination.locationName) - \(destination.hotelName)",
+                            targetLanguage: targetLanguage
+                        )
+                    } label: {
+                        Image(systemName: "globe")
+                            .foregroundColor(.blue)
+                    }
+                    .buttonStyle(.plain)
+                }
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.secondary.opacity(0.05))
+                )
+            }
+            .buttonStyle(.plain)
         }
     }
     
