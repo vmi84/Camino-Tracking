@@ -13,7 +13,8 @@ let package = Package(
             targets: ["CaminoContents"]),
     ],
     dependencies: [
-        .package(name: "CaminoModels", path: "CaminoModels")
+        .package(name: "CaminoModels", path: "CaminoModels"),
+        .package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", from: "5.0.0")
     ],
     targets: [
         .target(
@@ -24,9 +25,10 @@ let package = Package(
         .target(
             name: "CaminoContents",
             dependencies: [
-                .product(name: "CaminoModels", package: "CaminoModels")
+                .product(name: "CaminoModels", package: "CaminoModels"),
+                "SwiftyJSON"
             ],
-            path: "CaminoContents/Sources"),
+            path: "CaminoContents"),
         .testTarget(
             name: "CaminoTests",
             dependencies: ["Camino"])

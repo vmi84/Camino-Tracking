@@ -48,7 +48,7 @@ struct SettingsView: View {
     @AppStorage("targetLanguageCode") private var targetLanguageCode = "es"
     
     // Options arrays
-    private let languages = ["English", "Spanish"]
+    private let languages = ["English", "Spanish (Castilian)", "French", "Galician", "Basque"]
     private let mapStyles = ["Standard", "Satellite", "Hybrid"]
     private let gpsIntervals = ["5 seconds", "10 seconds", "30 seconds", "1 minute"]
     private let weatherUpdateIntervals = ["15 minutes", "30 minutes", "1 hour", "3 hours"]
@@ -57,8 +57,10 @@ struct SettingsView: View {
     // Translation language options
     private let translationLanguages = [
         ("en", "English"),
-        ("es", "Spanish"),
+        ("es", "Spanish (Castilian)"),
         ("fr", "French"),
+        ("gl", "Galician"),
+        ("eu", "Basque"),
         ("it", "Italian"),
         ("de", "German"),
         ("pt", "Portuguese"),

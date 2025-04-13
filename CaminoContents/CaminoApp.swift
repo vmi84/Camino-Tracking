@@ -1,4 +1,5 @@
 import SwiftUI
+import CaminoModels
 
 @main
 struct CaminoApp: App {
@@ -34,9 +35,22 @@ class CaminoAppState: ObservableObject {
     @Published var userSettings = UserSettings()
     @Published var routeProgress: Double = 0.0
     
+    // This method is deprecated - use direct state changes instead
     func toggleMap() {
         withAnimation {
             isShowingMap.toggle()
+            // Always set to Map tab when toggling from welcome screen
+            if isShowingMap {
+                selectedTab = 0
+            }
+        }
+    }
+    
+    // Helper method to show the map screen with the Map tab selected
+    func showMap() {
+        withAnimation {
+            isShowingMap = true
+            selectedTab = 0 // Explicitly set to Map tab
         }
     }
 }

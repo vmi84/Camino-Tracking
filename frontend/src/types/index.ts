@@ -1,14 +1,22 @@
 export interface Route {
+  id: string;
   day: number;
   startLocation: string;
   endLocation: string;
   distance: number;
-  hotel: string;
+  directions: string[];
+  hotel: {
+    name: string;
+    coordinates: {
+      latitude: number;
+      longitude: number;
+    };
+    directions: string;
+  };
   coordinates: {
     latitude: number;
     longitude: number;
   };
-  directions: string[];
 }
 
 export interface Weather {

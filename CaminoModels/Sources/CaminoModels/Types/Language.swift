@@ -7,6 +7,8 @@ public enum Language: String, CaseIterable {
     case german = "de"
     case italian = "it"
     case portuguese = "pt"
+    case basque = "eu"
+    case galician = "gl"
     
     public var displayName: String {
         switch self {
@@ -16,6 +18,8 @@ public enum Language: String, CaseIterable {
         case .german: return "Deutsch"
         case .italian: return "Italiano"
         case .portuguese: return "Português"
+        case .basque: return "Euskara"
+        case .galician: return "Galego"
         }
     }
     

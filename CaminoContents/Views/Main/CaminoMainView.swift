@@ -6,42 +6,93 @@ import CaminoModels
 // MARK: - CaminoMainView
 struct CaminoMainView: View {
     @EnvironmentObject private var appState: CaminoAppState
+    @StateObject private var weatherViewModel = WeatherViewModel()
+    @State private var weatherTabWasTapped = false
+    @State private var translateTabWasTapped = false
+    @State private var selectedTabIndex: Int = 0
+    
+    // Add AppStorage for language settings
+    @AppStorage("sourceLanguageCode") private var sourceLanguageCode = "en"
+    @AppStorage("targetLanguageCode") private var targetLanguageCode = "es"
     
     var body: some View {
-        if !appState.isShowingMap {
-            CaminoWelcomeView()
-        } else {
-            TabView(selection: $appState.selectedTab) {
-                MapView()
-                    .tabItem {
-                        Label("Map", systemImage: "map")
-                    }
-                    .tag(0)
-                
-                DestinationsView()
-                    .tabItem {
-                        Label("Destinations", systemImage: "list.bullet")
-                    }
-                    .tag(1)
-                
-                Text("Weather")
-                    .tabItem {
-                        Label("Weather", systemImage: "cloud.sun")
-                    }
-                    .tag(2)
-                
-                Text("Settings")
-                    .tabItem {
-                        Label("Settings", systemImage: "gear")
-                    }
-                    .tag(3)
-            }
-            .tint(.blue)
+        // Always show the TabView with tabs - we don't need the conditional check here
+        // since ContentView already handles showing WelcomeView vs. CaminoMainView
+        TabView(selection: $appState.selectedTab) {
+            MapView()
+                .tabItem {
+                    Label("Map", systemImage: "map")
+                }
+                .tag(0)
+            
+            DestinationsView()
+                .tabItem {
+                    Label("Destinations", systemImage: "list.bullet")
+                }
+                .tag(1)
+            
+            EmptyView() // Use EmptyView instead of WeatherView to prevent loading it
+                .tabItem {
+                    Label("Weather", systemImage: "cloud.sun")
+                }
+                .tag(2)
+            
+            GoogleTranslateView()
+                .tabItem {
+                    Label("Translate", systemImage: "globe")
+                }
+                .tag(3)
+
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gear")
+                }
+                .tag(4)
         }
+        .onChange(of: appState.selectedTab) { oldValue, newValue in
+            // Handle the Weather tab deep-linking
+            if newValue == 2 {
+                Task {
+                    // Immediately try to open Apple Weather
+                    await weatherViewModel.openWeatherForCurrentLocation()
+                    
+                    // Always switch back to the previous tab after a very short delay
+                    try? await Task.sleep(nanoseconds: 300_000_000) // 300ms
+                    
+                    // Return to previous tab or Map tab if already on Weather
+                    DispatchQueue.main.async {
+                        if oldValue != 2 {
+                            appState.selectedTab = oldValue
+                        } else {
+                            appState.selectedTab = 0 // Default to Map
+                        }
+                    }
+                }
+            }
+            
+            // Handle the Translate tab deep-linking
+            if newValue == 3 && !translateTabWasTapped {
+                translateTabWasTapped = true
+                Task {
+                    // Open Google Translate directly via URL using saved language settings
+                    let translationService = TranslationService.shared
+                    translationService.openGoogleTranslate(
+                        text: "",
+                        sourceLanguage: sourceLanguageCode,
+                        targetLanguage: targetLanguageCode
+                    )
+                    // Reset the flag after a small delay
+                    try? await Task.sleep(nanoseconds: 1_000_000_000) // 1 second
+                    translateTabWasTapped = false
+                }
+            }
+        }
+        .tint(.blue)
     }
 }
 
-// MARK: - CaminoWelcomeView
+// Keep CaminoWelcomeView as a backup but it's not used in the main flow anymore
+// We'll leave it here in case it's referenced elsewhere in the codebase
 struct CaminoWelcomeView: View {
     @EnvironmentObject private var appState: CaminoAppState
     
@@ -66,7 +117,10 @@ struct CaminoWelcomeView: View {
     }
     
     private var startButton: some View {
-        Button(action: { appState.toggleMap() }) {
+        Button(action: { 
+            // Use the dedicated method for consistency
+            appState.showMap()
+        }) {
             Text("Start Your Journey")
                 .font(.headline)
                 .foregroundColor(.white)

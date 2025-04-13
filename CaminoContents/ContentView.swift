@@ -11,59 +11,11 @@ struct ContentView: View {
     var body: some View {
         Group {
             if appState.isShowingMap {
-                MainTabView()
+                CaminoMainView()
             } else {
                 WelcomeView()
             }
         }
-    }
-}
-
-// MARK: - MainTabView
-struct MainTabView: View {
-    @EnvironmentObject private var appState: CaminoAppState
-    
-    var body: some View {
-        TabView(selection: $appState.selectedTab) {
-            ZStack {
-                MapView()
-                    .edgesIgnoringSafeArea(.top)
-                VStack {
-                    Spacer()
-                    Color.clear.frame(height: 0)
-                }
-            }
-            .tabItem {
-                Label("Map", systemImage: "map")
-            }
-            .tag(0)
-            
-            DestinationsView()
-                .tabItem {
-                    Label("Destinations", systemImage: "list.bullet")
-                }
-                .tag(1)
-            
-            WeatherView()
-                .tabItem {
-                    Label("Weather", systemImage: "cloud.sun")
-                }
-                .tag(2)
-            
-            TranslationView()
-                .tabItem {
-                    Label("Translator", systemImage: "character.bubble")
-                }
-                .tag(3)
-            
-            SettingsView()
-                .tabItem {
-
-                    Label("Settings", systemImage: "gear")
-                }
-                .tag(4)
-        }
-        .tint(.blue)
     }
 }
 
@@ -133,7 +85,8 @@ struct WelcomeView: View {
                 Spacer()
                 
                 Button(action: { 
-                    appState.toggleMap() 
+                    // Use the dedicated method to show map and set tab
+                    appState.showMap()
                 }) {
                     Text("Start Your Journey")
                         .font(.headline)

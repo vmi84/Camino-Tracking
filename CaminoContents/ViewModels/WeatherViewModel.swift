@@ -1,126 +1,109 @@
 import Foundation
 import WeatherKit
+import CaminoModels
 import CoreLocation
-import SwiftUI
+import SwiftyJSON
+import UIKit
+import MapKit
 
-@available(iOS 16.0, macOS 13.0, *)
 @MainActor
 class WeatherViewModel: ObservableObject {
     @Published var weatherData: [CaminoDestination: Weather] = [:]
     @Published var destinations: [CaminoDestination] = []
     @Published var errorMessage: String?
+    @Published var shouldShowWeatherAppPrompt: Bool = true
+    @Published var isTabSelected: Bool = false
+    @Published var hasRedirected: Bool = false
     
-    private let weatherService = WeatherService.shared
-    private let weatherStore = WeatherStore.shared
+    private let caminoWeatherViewModel: CaminoWeatherViewModel
+    private var locationManager: LocationManager {
+        return LocationManager.shared
+    }
     
     init() {
-        destinations = CaminoDestination.allDestinations
+        self.caminoWeatherViewModel = CaminoWeatherViewModel()
+        self.destinations = CaminoDestination.allDestinations
     }
     
     func refreshWeather() async {
-        if weatherStore.shouldRefreshWeather() {
-            var hasLoadedAnyRealData = false
-            var weatherKitAuthError = false
+        // Only fetch weather data if explicitly asked to use CaminoWeather
+        if !shouldShowWeatherAppPrompt {
+            await caminoWeatherViewModel.refreshWeather()
             
-            for destination in destinations {
-                do {
-                    let location = CLLocation(latitude: destination.coordinate.latitude, 
-                                            longitude: destination.coordinate.longitude)
-                    let weather = try await weatherService.weather(for: location)
-                    weatherData[destination] = weather
-                    hasLoadedAnyRealData = true
-                    print("Loaded real weather data for \(destination.locationName)")
-                } catch {
-                    print("Error fetching weather for \(destination.locationName): \(error.localizedDescription)")
-                    
-                    // Check specifically for JWT authenticator errors
-                    if error.localizedDescription.contains("WDSJWTAuthenticator") || 
-                       error.localizedDescription.contains("JWT") {
-                        weatherKitAuthError = true
-                    }
-                    
-                    // If we fail to load real data, create mock data
-                    if weatherData[destination] == nil {
-                        weatherData[destination] = createMockWeather(for: destination)
-                    }
+            if let error = caminoWeatherViewModel.errorMessage {
+                self.errorMessage = error
+                // If WeatherKit fails, default back to Apple Weather
+                if error.contains("WeatherKit authorization failed") || 
+                   error.contains("To get live weather data, you need to configure WeatherKit") {
+                    shouldShowWeatherAppPrompt = true
+                    openWeatherForCurrentLocation()
                 }
             }
             
-            if !hasLoadedAnyRealData {
-                if weatherKitAuthError {
-                    errorMessage = "WeatherKit authorization failed. To get live weather data, you need to configure WeatherKit in your Apple Developer account and add the capability to this app."
-                } else {
-                    errorMessage = "Using sample weather data. To get live data, check your internet connection and WeatherKit configuration."
-                }
-            } else {
-                errorMessage = nil
+            if !caminoWeatherViewModel.weatherData.isEmpty {
+                self.weatherData = caminoWeatherViewModel.weatherData
             }
-            
-            cacheCurrentWeatherData()
         } else {
-            print("Using cached weather data (less than 15 minutes old)")
-            loadCachedWeatherData()
+            // Default behavior is to open Apple Weather
+            openWeatherForCurrentLocation()
         }
     }
     
-    private func loadCachedWeatherData() {
-        guard let cachedData = weatherStore.loadWeatherData() else { 
-            // If no cached data exists, create mock data for all destinations
-            for destination in destinations {
-                weatherData[destination] = createMockWeather(for: destination)
-            }
-            errorMessage = "Using sample weather data. No cached data available."
-            return
-        }
+    func openNativeWeatherApp(for destination: CaminoDestination) {
+        // Weather app URL scheme for specific location
+        let weatherURL = URL(string: "weather:///?lat=\(destination.coordinate.latitude)&lon=\(destination.coordinate.longitude)")
         
-        var hasLoadedAnyCachedData = false
-        
-        for destination in destinations {
-            let key = "\(destination.id)"
-            if cachedData[key] != nil {
-                // In a real app, we would deserialize the Weather data here
-                hasLoadedAnyCachedData = true
-                print("Loaded cached weather for \(destination.locationName)")
-                
-                // If no weather data exists for this destination yet, use mock data
-                if weatherData[destination] == nil {
-                    weatherData[destination] = createMockWeather(for: destination)
-                }
-            }
-        }
-        
-        if !hasLoadedAnyCachedData {
-            // If no cached data was loaded, create mock data for all destinations
-            for destination in destinations {
-                if weatherData[destination] == nil {
-                    weatherData[destination] = createMockWeather(for: destination)
-                }
-            }
-            errorMessage = "Using sample weather data. To get live data, configure WeatherKit in your Apple Developer account."
+        if let url = weatherURL, UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            // Fallback to Apple Maps with weather enabled
+            let coordinate = CLLocationCoordinate2D(
+                latitude: destination.coordinate.latitude,
+                longitude: destination.coordinate.longitude
+            )
+            let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
+            mapItem.name = destination.locationName
+            mapItem.openInMaps(launchOptions: [MKLaunchOptionsShowsTrafficKey: true])
         }
     }
     
-    private func cacheCurrentWeatherData() {
-        // Simplified caching implementation
-        var cachedData: [String: Data] = [:]
+    func openWeatherForCurrentLocation() {
+        hasRedirected = true
         
-        for (destination, _) in weatherData {
-            let key = "\(destination.id)"
+        // Try to open Weather with current location coordinates
+        if let currentLocation = locationManager.location {
+            let weatherURL = URL(string: "weather:///?lat=\(currentLocation.coordinate.latitude)&lon=\(currentLocation.coordinate.longitude)")
             
-            // In a real app, we would serialize the Weather data here
-            let dummyData = "cached".data(using: .utf8)!
-            cachedData[key] = dummyData
+            if let url = weatherURL, UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                return
+            }
         }
         
-        weatherStore.saveWeatherData(cachedData)
+        // Fallback to just opening the Weather app
+        if let baseURL = URL(string: "weather:///"), UIApplication.shared.canOpenURL(baseURL) {
+            UIApplication.shared.open(baseURL, options: [:], completionHandler: nil)
+        } else {
+            // Final fallback to Apple Maps
+            if let currentLocation = locationManager.location {
+                let coordinate = currentLocation.coordinate
+                let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
+                mapItem.name = "Current Location"
+                mapItem.openInMaps(launchOptions: [MKLaunchOptionsShowsTrafficKey: true])
+            }
+        }
     }
     
-    // Create mock weather data for a destination
-    private func createMockWeather(for destination: CaminoDestination) -> Weather? {
-        // This is a simplified approach - in a real implementation, you'd create a full Weather object
-        // We're returning nil for now since Weather cannot be mocked easily
-        // Instead, we'll handle this in the View layer
-        print("Creating mock weather for \(destination.locationName)")
-        return nil
+    // Add method to switch to CaminoWeather
+    func useCaminoWeather() async {
+        shouldShowWeatherAppPrompt = false
+        await refreshWeather()
+    }
+    
+    // Track when tab is selected
+    func tabWasSelected() {
+        isTabSelected = true
+        // Always try to open Apple Weather when tab is selected
+        openWeatherForCurrentLocation()
     }
 } 

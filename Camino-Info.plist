@@ -16,5 +16,11 @@
 	<string>The microphone is used to capture your speech for the translator feature.</string>
 	<key>WeatherKitEntitlementMessage</key>
 	<string>To enable live weather data, configure WeatherKit in your Apple Developer account and add the WeatherKit capability to this app.</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>comgoogletranslate</string>
+		<string>googletranslate</string>
+		<string>comgoogletranslate-x-callback</string>
+	</array>
 </dict>
 </plist>

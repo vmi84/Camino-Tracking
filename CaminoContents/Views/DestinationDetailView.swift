@@ -288,7 +288,7 @@ struct DestinationDetailView: View {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Route Information:")
                             .font(.headline)
-                        Text("• Distance: \(formatDistance(destination.actualRouteDistance))")
+                        Text("• Distance: \(formatDistance(destination.dailyDistance))")
                         Text("• Total: \(formatDistance(destination.cumulativeDistance))")
                     }
                     

@@ -12,11 +12,15 @@ let package = Package(
             name: "CaminoModels",
             targets: ["CaminoModels"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", from: "5.0.0")
+    ],
     targets: [
         .target(
             name: "CaminoModels",
-            dependencies: [],
-            path: "Sources/CaminoModels"),
+            dependencies: ["SwiftyJSON"],
+            path: "Sources/CaminoModels",
+            publicHeadersPath: "include"),
         .testTarget(
             name: "CaminoModelsTests",
             dependencies: ["CaminoModels"]),
