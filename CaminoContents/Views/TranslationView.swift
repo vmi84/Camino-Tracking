@@ -28,7 +28,7 @@ struct TranslationView: View {
         ("ko", "Korean"),
         ("zh", "Chinese"),
         ("ru", "Russian"),
-        ("pt", "Portuguese"),
+        ("pt-PT", "Portuguese"),
         ("eu", "Basque"),
         ("gl", "Galician")
     ]
@@ -441,7 +441,8 @@ class SpeechManager: ObservableObject {
         case "ko": return "ko-KR"
         case "zh": return "zh-CN"
         case "ru": return "ru-RU"
-        case "pt": return "pt-BR"
+        case "pt-PT": return "pt-PT"
+        case "pt": return "pt-PT" // Fallback for legacy code
         case "eu": return "eu-ES" // Basque - primarily spoken in northern Spain
         case "gl": return "gl-ES" // Galician - primarily spoken in northwestern Spain
         default: return "en-US"

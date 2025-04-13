@@ -3,137 +3,124 @@ import WebKit
 import CaminoModels
 
 struct GoogleTranslateView: View {
-    @State private var isShowingTranslate = true
-    @State private var sourceLanguage = "auto"
-    @State private var targetLanguage = "en"
-    @State private var inputText = ""
     @State private var isLoading = true
+    @State private var inputText = ""
     
     // Get the saved language settings
-    @AppStorage("sourceLanguageCode") private var savedSourceLanguage = "en"
-    @AppStorage("targetLanguageCode") private var savedTargetLanguage = "es"
+    @AppStorage("sourceLanguageCode") private var sourceLanguage = "en"
+    @AppStorage("targetLanguageCode") private var targetLanguage = "es"
     
     @EnvironmentObject private var appState: CaminoAppState
     
     var body: some View {
         NavigationView {
             VStack {
-                if isShowingTranslate {
-                    if isLoading {
-                        VStack(spacing: 20) {
-                            ProgressView()
-                                .scaleEffect(1.5)
-                            Text("Opening Google Translate...")
-                                .font(.headline)
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .onAppear {
-                            // Update source and target languages from settings
-                            sourceLanguage = savedSourceLanguage
-                            targetLanguage = savedTargetLanguage
-                            
-                            // Automatically open Google Translate when view appears
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                TranslationService.shared.openGoogleTranslate(
-                                    text: inputText,
-                                    sourceLanguage: sourceLanguage,
-                                    targetLanguage: targetLanguage
-                                )
-                                isLoading = false
-                            }
-                        }
-                    } else {
-                        TranslateWebView(url: constructTranslateURL())
-                            .navigationTitle("Google Translate")
-                            .navigationBarTitleDisplayMode(.inline)
-                            .navigationBarItems(
-                                trailing: Button(action: {
-                                    // Use the current language settings
-                                    TranslationService.shared.openGoogleTranslate(
-                                        text: inputText,
-                                        sourceLanguage: sourceLanguage,
-                                        targetLanguage: targetLanguage
-                                    )
-                                }) {
-                                    Image(systemName: "arrow.up.forward.app")
-                                        .foregroundColor(.blue)
-                                }
-                            )
-                    }
-                } else {
+                if isLoading {
                     VStack(spacing: 20) {
-                        TextField("Text to translate", text: $inputText)
-                            .textFieldStyle(.roundedBorder)
-                            .padding(.horizontal)
-                        
-                        HStack {
-                            Text("From:")
-                                .foregroundColor(.secondary)
-                            Picker("Source language", selection: $sourceLanguage) {
-                                Text("Auto detect").tag("auto")
-                                Text("English").tag("en")
-                                Text("Spanish").tag("es")
-                                Text("French").tag("fr")
-                            }
-                            .pickerStyle(.menu)
-                            
-                            Spacer()
-                            
-                            Text("To:")
-                                .foregroundColor(.secondary)
-                            Picker("Target language", selection: $targetLanguage) {
-                                Text("English").tag("en")
-                                Text("Spanish").tag("es")
-                                Text("French").tag("fr")
-                                Text("German").tag("de")
-                            }
-                            .pickerStyle(.menu)
-                        }
-                        .padding(.horizontal)
-                        
-                        Button("Translate") {
-                            isShowingTranslate = true
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .padding()
-                        
-                        Spacer()
+                        ProgressView()
+                            .scaleEffect(1.5)
+                        Text("Loading Translator...")
+                            .font(.headline)
                     }
-                    .navigationTitle("Google Translate")
-                    .navigationBarTitleDisplayMode(.inline)
-                    .onAppear {
-                        // Initialize language selections from saved settings
-                        sourceLanguage = savedSourceLanguage
-                        targetLanguage = savedTargetLanguage
-                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    TranslateWebView(url: constructTranslateURL())
+                        .edgesIgnoringSafeArea(.bottom)
                 }
             }
+            .navigationTitle("Translator")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(
+                leading: HStack {
+                    Picker("From", selection: $sourceLanguage) {
+                        Text("Auto").tag("auto")
+                        Text("English").tag("en")
+                        Text("Spanish").tag("es")
+                        Text("French").tag("fr")
+                        Text("German").tag("de")
+                        Text("Italian").tag("it")
+                        Text("Portuguese").tag("pt-PT")
+                        Text("Galician").tag("gl")
+                        Text("Basque").tag("eu")
+                    }
+                    .pickerStyle(.menu)
+                    
+                    Text("→")
+                    
+                    Picker("To", selection: $targetLanguage) {
+                        Text("English").tag("en")
+                        Text("Spanish").tag("es")
+                        Text("French").tag("fr")
+                        Text("German").tag("de")
+                        Text("Italian").tag("it")
+                        Text("Portuguese").tag("pt-PT")
+                        Text("Galician").tag("gl")
+                        Text("Basque").tag("eu")
+                    }
+                    .pickerStyle(.menu)
+                },
+                trailing: Button(action: {
+                    // Option to open in external app
+                    TranslationService.shared.openGoogleTranslate(
+                        text: inputText,
+                        sourceLanguage: sourceLanguage,
+                        targetLanguage: targetLanguage
+                    )
+                }) {
+                    Image(systemName: "arrow.up.forward.app")
+                        .foregroundColor(.blue)
+                }
+            )
             .onAppear {
-                // Update source and target languages from settings
-                sourceLanguage = savedSourceLanguage
-                targetLanguage = savedTargetLanguage
+                // Handle migration from old "pt" code to new "pt-PT" code
+                if sourceLanguage == "pt" {
+                    sourceLanguage = "pt-PT"
+                }
+                if targetLanguage == "pt" {
+                    targetLanguage = "pt-PT"
+                }
                 
-                // This ensures we always open Google Translate directly when viewing this tab
-                if !isShowingTranslate {
-                    isShowingTranslate = true
+                // Handle migration from "pt-BR" (removed) to "pt-PT"
+                if sourceLanguage == "pt-BR" {
+                    sourceLanguage = "pt-PT"
+                }
+                if targetLanguage == "pt-BR" {
+                    targetLanguage = "pt-PT"
+                }
+                
+                // Show loading indicator briefly, then load webview
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    isLoading = false
                 }
             }
-            // Add onChange handlers to update settings when user changes languages
-            .onChange(of: sourceLanguage) { _, newValue in
-                if newValue != "auto" { // Only save non-auto values
-                    savedSourceLanguage = newValue
+            // Reload the web view when language selections change
+            .onChange(of: sourceLanguage) { _, _ in
+                // Brief loading state when changing languages
+                isLoading = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    isLoading = false
                 }
             }
-            .onChange(of: targetLanguage) { _, newValue in
-                savedTargetLanguage = newValue
+            .onChange(of: targetLanguage) { _, _ in
+                // Brief loading state when changing languages
+                isLoading = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    isLoading = false
+                }
             }
         }
     }
     
     private func constructTranslateURL() -> URL {
         let baseURL = "https://translate.google.com/"
-        let query = "?sl=\(sourceLanguage)&tl=\(targetLanguage)&text=\(inputText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
-        return URL(string: baseURL + query) ?? URL(string: baseURL)!
+        let query = "?sl=\(sourceLanguage)&tl=\(targetLanguage)&op=translate"
+        
+        // Add text parameter if we have input
+        let textParam = !inputText.isEmpty 
+            ? "&text=\(inputText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")" 
+            : ""
+            
+        return URL(string: baseURL + query + textParam) ?? URL(string: baseURL)!
     }
 }
 
@@ -141,7 +128,10 @@ struct TranslateWebView: UIViewRepresentable {
     var url: URL
     
     func makeUIView(context: Context) -> WKWebView {
-        let webView = WKWebView()
+        let configuration = WKWebViewConfiguration()
+        configuration.applicationNameForUserAgent = "CaminoApp/Mobile"
+        
+        let webView = WKWebView(frame: .zero, configuration: configuration)
         webView.navigationDelegate = context.coordinator
         
         // Load Google Translate
@@ -151,7 +141,7 @@ struct TranslateWebView: UIViewRepresentable {
     }
     
     func updateUIView(_ webView: WKWebView, context: Context) {
-        // Reload if language changes
+        // Reload when URL changes (language change)
         loadTranslate(in: webView)
     }
     
@@ -166,15 +156,35 @@ struct TranslateWebView: UIViewRepresentable {
     
     class Coordinator: NSObject, WKNavigationDelegate {
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            // Hide any elements we don't want to show
+            // Mobile optimization for Google Translate - this script helps improve the UI in our embedded view
             let js = """
-            // Hide header elements if needed
+            // Hide unnecessary elements
             try {
-                const header = document.querySelector('header');
-                if (header) header.style.display = 'none';
-            } catch (e) { console.error(e); }
+                // Attempt to optimize the mobile view
+                const style = document.createElement('style');
+                style.textContent = `
+                    .frame { height: 100vh !important; }
+                    header, .gp-footer, .feedback-link { display: none !important; }
+                    .page { padding-top: 0 !important; }
+                    .homepage-content-wrap { padding-top: 10px !important; }
+                `;
+                document.head.appendChild(style);
+            } catch (e) { console.error("Failed to optimize UI:", e); }
             """
             webView.evaluateJavaScript(js, completionHandler: nil)
+        }
+        
+        // Ensure links open within our webview
+        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+            if navigationAction.targetFrame == nil {
+                // If the link would open in a new window, instead open it in our webview
+                webView.load(navigationAction.request)
+                decisionHandler(.cancel)
+                return
+            }
+            
+            // Otherwise allow the navigation within our webview
+            decisionHandler(.allow)
         }
     }
 }

@@ -15,7 +15,7 @@ struct LanguageSettingsView: View {
         ("ko", "Korean"),
         ("zh", "Chinese"),
         ("ru", "Russian"),
-        ("pt", "Portuguese"),
+        ("pt-PT", "Portuguese"),
         ("eu", "Basque"),
         ("gl", "Galician")
     ]

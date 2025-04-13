@@ -63,7 +63,7 @@ struct SettingsView: View {
         ("eu", "Basque"),
         ("it", "Italian"),
         ("de", "German"),
-        ("pt", "Portuguese"),
+        ("pt-PT", "Portuguese"),
         ("ru", "Russian")
     ]
     

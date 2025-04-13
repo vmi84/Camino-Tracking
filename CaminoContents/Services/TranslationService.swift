@@ -12,7 +12,7 @@ class TranslationService {
         case french = "fr"
         case german = "de"
         case italian = "it"
-        case portuguese = "pt"
+        case portuguese = "pt-PT"
         case japanese = "ja"
         case korean = "ko"
         case chinese = "zh"

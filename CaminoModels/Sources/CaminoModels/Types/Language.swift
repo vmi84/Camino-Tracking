@@ -6,7 +6,7 @@ public enum Language: String, CaseIterable {
     case french = "fr"
     case german = "de"
     case italian = "it"
-    case portuguese = "pt"
+    case portuguese = "pt-PT"
     case basque = "eu"
     case galician = "gl"
     
