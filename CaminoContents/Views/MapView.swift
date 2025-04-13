@@ -21,6 +21,7 @@ struct MapView: View {
     @State private var selectedDestination: CaminoDestination?
     @State private var showingDestinationDetail = false
     @State private var zoomLevel: Double = 0.5 // Track zoom level
+    @State private var showLocationAlert = false // For location error alerts
     
     // Convert string map style to SwiftUI mapStyle
     private var mapStyle: MapStyle {
@@ -116,7 +117,7 @@ struct MapView: View {
                 }) {
                     Image(systemName: "location.circle.fill")
                         .font(.title2)
-                        .foregroundColor(.blue)
+                        .foregroundColor(locationManager.location != nil ? .blue : .gray)
                         .background(Color.white)
                         .clipShape(Circle())
                         .shadow(radius: 2)
@@ -144,6 +145,12 @@ struct MapView: View {
         }
         .onAppear {
             locationManager.requestAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+        .alert("Location Unavailable", isPresented: $showLocationAlert) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("Your location is not available. Please ensure location services are enabled for this app in Settings.")
         }
     }
     
@@ -179,6 +186,9 @@ struct MapView: View {
                 span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
             ))
             zoomLevel = 0.01
+        } else {
+            // No location available, show alert
+            showLocationAlert = true
         }
     }
     

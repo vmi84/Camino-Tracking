@@ -21,6 +21,17 @@ public class LocationManager: NSObject, ObservableObject, CLLocationManagerDeleg
     
     public func requestAuthorization() {
         locationManager.requestWhenInUseAuthorization()
+        
+        // If we already have authorization, start updating location
+        #if os(iOS)
+        if authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways {
+            startUpdatingLocation()
+        }
+        #elseif os(macOS)
+        if authorizationStatus == .authorizedAlways {
+            startUpdatingLocation()
+        }
+        #endif
     }
     
     public func startUpdatingLocation() {
@@ -34,6 +45,17 @@ public class LocationManager: NSObject, ObservableObject, CLLocationManagerDeleg
     nonisolated public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         Task { @MainActor in
             authorizationStatus = manager.authorizationStatus
+            
+            // Start updating location if we have authorization
+            #if os(iOS)
+            if authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways {
+                startUpdatingLocation()
+            }
+            #elseif os(macOS)
+            if authorizationStatus == .authorizedAlways {
+                startUpdatingLocation()
+            }
+            #endif
         }
     }
     
