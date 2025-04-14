@@ -1,47 +1,41 @@
-# Dependencies
-node_modules/
-.pnp/
-.pnp.js
+# macOS
+.DS_Store
+*/.DS_Store
 
-# Testing
-coverage/
-.nyc_output/
+# Xcode
+## Build generated
+DerivedData/
+.build/ # Swift Package Manager build directory
 
-# Production
-build/
-dist/
-out/
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
 
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+## Other
+*.moved-aside
+*.xccheckout
+*.xcworkspace
 
-# Logs
-logs/
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Swift Package Manager
+.swiftpm/
+Packages/ # Usually fetched dependencies, managed by Package.resolved
 
-# IDE
+# IDE - Keep common ones
 .idea/
 .vscode/
 *.swp
 *.swo
 
-# OS
-.DS_Store
-Thumbs.db
+# Logs (Keep generic log patterns)
+logs/
+*.log
 
-# React Native
-.expo/
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
-*.orig.*
-web-build/ 
+# Removed Node.js/React Native/OS specific entries from previous version
+# Added standard Xcode/SwiftPM ignores. 
