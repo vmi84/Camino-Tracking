@@ -6,7 +6,6 @@ import CaminoModels
 // MARK: - CaminoMainView
 struct CaminoMainView: View {
     @EnvironmentObject private var appState: CaminoAppState
-    @StateObject private var weatherViewModel = WeatherViewModel()
     @State private var weatherTabWasTapped = false
     @State private var translateTabWasTapped = false
     @State private var selectedTabIndex: Int = 0
@@ -50,11 +49,6 @@ struct CaminoMainView: View {
                 .tag(4)
         }
         .onChange(of: appState.selectedTab) { oldValue, newValue in
-            // Handle the Weather tab selection
-            if newValue == 2 {
-                weatherViewModel.tabWasSelected()
-            }
-            
             // We're no longer auto-deep-linking to Google Translate
             // Let the GoogleTranslateView handle this internally
         }
