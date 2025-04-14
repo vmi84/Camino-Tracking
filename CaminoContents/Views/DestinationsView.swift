@@ -1,6 +1,10 @@
 import SwiftUI
-import MapKit
+#if canImport(CaminoModels)
+#if canImport(CaminoModels)
 import CaminoModels
+#endif
+#endif
+import MapKit
 
 struct DestinationsView: View {
     @State private var searchText = ""
@@ -12,7 +16,7 @@ struct DestinationsView: View {
         } else {
             return CaminoDestination.allDestinations.filter { destination in
                 destination.locationName.localizedCaseInsensitiveContains(searchText) ||
-                destination.hotelName.localizedCaseInsensitiveContains(searchText) ||
+                (destination.hotelName ?? "").localizedCaseInsensitiveContains(searchText) ||
                 "\(destination.day)".contains(searchText)
             }
         }
@@ -30,7 +34,7 @@ struct DestinationsView: View {
     
     var body: some View {
         NavigationStack {
-            List(filteredDestinations) { destination in
+            List(filteredDestinations, id: \.id) { destination in
                 NavigationLink(destination: DestinationDetailView(destination: destination)) {
                     HStack {
                         VStack(alignment: .leading) {

@@ -1,6 +1,30 @@
 import SwiftUI
 import WebKit
-import CaminoModels
+import UIKit
+
+// Temporary class to replace dependency
+class TempAppState: ObservableObject {
+    // Add any properties needed by GoogleTranslateView
+}
+
+// Temporary service to replace dependency
+class TempTranslationService {
+    static let shared = TempTranslationService()
+    
+    func openGoogleTranslate(text: String, sourceLanguage: String, targetLanguage: String) {
+        let baseURL = "https://translate.google.com/"
+        let query = "?sl=\(sourceLanguage)&tl=\(targetLanguage)&op=translate"
+        
+        // Add text parameter if we have input
+        let textParam = !text.isEmpty 
+            ? "&text=\(text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")" 
+            : ""
+        
+        if let url = URL(string: baseURL + query + textParam) {
+            UIApplication.shared.open(url)
+        }
+    }
+}
 
 struct GoogleTranslateView: View {
     @State private var isLoading = true
@@ -10,7 +34,7 @@ struct GoogleTranslateView: View {
     @AppStorage("sourceLanguageCode") private var sourceLanguage = "en"
     @AppStorage("targetLanguageCode") private var targetLanguage = "es"
     
-    @EnvironmentObject private var appState: CaminoAppState
+    @EnvironmentObject private var appState: TempAppState
     
     var body: some View {
         NavigationView {
@@ -30,47 +54,34 @@ struct GoogleTranslateView: View {
             }
             .navigationTitle("Translator")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(
-                leading: HStack {
-                    Picker("From", selection: $sourceLanguage) {
-                        Text("Auto").tag("auto")
-                        Text("English").tag("en")
-                        Text("Spanish").tag("es")
-                        Text("French").tag("fr")
-                        Text("German").tag("de")
-                        Text("Italian").tag("it")
-                        Text("Portuguese").tag("pt-PT")
-                        Text("Galician").tag("gl")
-                        Text("Basque").tag("eu")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    HStack {
+                        Picker("From", selection: $sourceLanguage) {
+                            Text("Auto").tag("auto")
+                            Text("English").tag("en")
+                            Text("Spanish").tag("es")
+                            Text("French").tag("fr")
+                            Text("German").tag("de")
+                            Text("Italian").tag("it")
+                            Text("Portuguese").tag("pt-PT")
+                        }
+                        .pickerStyle(.menu)
+                        
+                        Text("→")
+                        
+                        Picker("To", selection: $targetLanguage) {
+                            Text("English").tag("en")
+                            Text("Spanish").tag("es")
+                            Text("French").tag("fr")
+                            Text("German").tag("de")
+                            Text("Italian").tag("it")
+                            Text("Portuguese").tag("pt-PT")
+                        }
+                        .pickerStyle(.menu)
                     }
-                    .pickerStyle(.menu)
-                    
-                    Text("→")
-                    
-                    Picker("To", selection: $targetLanguage) {
-                        Text("English").tag("en")
-                        Text("Spanish").tag("es")
-                        Text("French").tag("fr")
-                        Text("German").tag("de")
-                        Text("Italian").tag("it")
-                        Text("Portuguese").tag("pt-PT")
-                        Text("Galician").tag("gl")
-                        Text("Basque").tag("eu")
-                    }
-                    .pickerStyle(.menu)
-                },
-                trailing: Button(action: {
-                    // Option to open in external app
-                    TranslationService.shared.openGoogleTranslate(
-                        text: inputText,
-                        sourceLanguage: sourceLanguage,
-                        targetLanguage: targetLanguage
-                    )
-                }) {
-                    Image(systemName: "arrow.up.forward.app")
-                        .foregroundColor(.blue)
                 }
-            )
+            }
             .onAppear {
                 // Handle migration from old "pt" code to new "pt-PT" code
                 if sourceLanguage == "pt" {
@@ -94,14 +105,14 @@ struct GoogleTranslateView: View {
                 }
             }
             // Reload the web view when language selections change
-            .onChange(of: sourceLanguage) { _, _ in
+            .onChange(of: sourceLanguage) { 
                 // Brief loading state when changing languages
                 isLoading = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                     isLoading = false
                 }
             }
-            .onChange(of: targetLanguage) { _, _ in
+            .onChange(of: targetLanguage) { 
                 // Brief loading state when changing languages
                 isLoading = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -191,5 +202,5 @@ struct TranslateWebView: UIViewRepresentable {
 
 #Preview {
     GoogleTranslateView()
-        .environmentObject(CaminoAppState())
+        .environmentObject(TempAppState())
 } 

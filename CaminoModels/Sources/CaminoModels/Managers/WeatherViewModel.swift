@@ -2,12 +2,11 @@ import Foundation
 import WeatherKit
 import CoreLocation
 import SwiftUI
-import CaminoModels
 
 // Import our local types
 @_exported import struct Foundation.Date
 
-@available(iOS 16.0, macOS 13.0, *)
+@available(iOS 16.0, *)
 @MainActor
 public class WeatherViewModel: ObservableObject {
     @Published public var weatherData: [CaminoDestination: Weather] = [:]

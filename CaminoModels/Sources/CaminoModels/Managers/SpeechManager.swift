@@ -3,7 +3,7 @@ import Speech
 import AVFoundation
 import NaturalLanguage
 
-#if os(iOS)
+@available(iOS 15.0, *)
 @MainActor
 public class SpeechManager: NSObject, ObservableObject {
     @Published public var isListening = false
@@ -90,25 +90,4 @@ public class SpeechManager: NSObject, ObservableObject {
         audioEngine.prepare()
         try audioEngine.start()
     }
-}
-#else
-@MainActor
-public class SpeechManager: NSObject, ObservableObject {
-    @Published public var isListening = false
-    @Published public var recognizedText = ""
-    @Published public var translatedText = ""
-    
-    public override init() {
-        super.init()
-        print("Speech recognition is not supported on macOS")
-    }
-    
-    public func startListening() {
-        print("Speech recognition is not supported on macOS")
-    }
-    
-    public func stopListening() {
-        print("Speech recognition is not supported on macOS")
-    }
-}
-#endif 
+} 

@@ -1,5 +1,4 @@
-framework module CaminoModels {
-  umbrella header "CaminoModels.h"
-  export *
-  module * { export * }
+module CaminoModels {
+    umbrella header "CaminoModels.h"
+    export *
 } 

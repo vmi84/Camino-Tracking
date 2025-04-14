@@ -1,7 +1,11 @@
 import MapKit
 import CoreLocation
 import SwiftUI
+#if canImport(CaminoModels)
+#if canImport(CaminoModels)
 import CaminoModels
+#endif
+#endif
 
 // MARK: - ContentView
 struct ContentView: View {
@@ -111,11 +115,22 @@ struct WelcomeView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Welcome to Camino")
+        #if os(iOS)
         .statusBar(hidden: true) // Hide status bar for immersive experience
+        #endif
     }
 }
 
-#Preview {
+// MARK: - Previews
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .environmentObject(CaminoAppState())
+            .environmentObject(LocationManager.shared)
+    }
+}
+
+#Preview("Welcome Screen") {
     ContentView()
         .environmentObject(CaminoAppState())
         .environmentObject(LocationManager.shared)

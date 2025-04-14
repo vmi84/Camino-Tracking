@@ -1,0 +1,17 @@
+{
+  "": {
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/SwiftyJSON.build/master.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/checkouts/SwiftyJSON/Source/SwiftyJSON/SwiftyJSON.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/SwiftyJSON.build/SwiftyJSON.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/SwiftyJSON.build/SwiftyJSON.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/SwiftyJSON.build/SwiftyJSON~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/SwiftyJSON.build/SwiftyJSON.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/SwiftyJSON.build/DerivedSources/resource_bundle_accessor.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/SwiftyJSON.build/resource_bundle_accessor.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/SwiftyJSON.build/resource_bundle_accessor.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/SwiftyJSON.build/resource_bundle_accessor~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/CaminoModels/.build/arm64-apple-macosx/debug/SwiftyJSON.build/resource_bundle_accessor.swiftdeps"
+  }
+}

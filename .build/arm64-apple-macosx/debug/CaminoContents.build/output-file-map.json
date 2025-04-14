@@ -1,0 +1,185 @@
+{
+  "": {
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/master.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/CaminoApp.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoApp.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoApp.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoApp.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/CaminoContents.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoContents.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoContents.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoContents~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoContents.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/ContentView.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ContentView.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ContentView.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ContentView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ContentView.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Examples/ExampleView.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ExampleView.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ExampleView.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ExampleView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ExampleView.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Examples/WeatherService.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherService.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherService.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherService~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherService.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Managers/AlertManager.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/AlertManager.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/AlertManager.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/AlertManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/AlertManager.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Models/ApiResponse.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ApiResponse.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ApiResponse.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ApiResponse~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ApiResponse.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Models/CaminoModelsShim.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoModelsShim.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoModelsShim.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoModelsShim~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoModelsShim.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Services/NetworkService.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/NetworkService.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/NetworkService.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/NetworkService~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/NetworkService.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Services/TranslationService.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/TranslationService.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/TranslationService.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/TranslationService~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/TranslationService.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Services/WeatherNetworkService.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherNetworkService.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherNetworkService.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherNetworkService~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherNetworkService.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Tests/CaminoViewTests.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoViewTests.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoViewTests.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoViewTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoViewTests.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Utilities/JSONHelper.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/JSONHelper.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/JSONHelper.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/JSONHelper~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/JSONHelper.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Utils/ViewExtensions.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ViewExtensions.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ViewExtensions.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ViewExtensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ViewExtensions.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/ViewModels/MapViewModel.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/MapViewModel.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/MapViewModel.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/MapViewModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/MapViewModel.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/ViewModels/WeatherViewModel.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherViewModel.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherViewModel.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherViewModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherViewModel.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/AppleWeatherView.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/AppleWeatherView.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/AppleWeatherView.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/AppleWeatherView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/AppleWeatherView.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Components/EmptyStateView.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/EmptyStateView.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/EmptyStateView.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/EmptyStateView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/EmptyStateView.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Components/ErrorView.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ErrorView.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ErrorView.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ErrorView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ErrorView.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Components/LoadingView.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/LoadingView.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/LoadingView.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/LoadingView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/LoadingView.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/DestinationDetailView.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/DestinationDetailView.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/DestinationDetailView.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/DestinationDetailView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/DestinationDetailView.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/DestinationsView.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/DestinationsView.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/DestinationsView.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/DestinationsView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/DestinationsView.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Examples/ErrorHandlingExampleView.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ErrorHandlingExampleView.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ErrorHandlingExampleView.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ErrorHandlingExampleView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ErrorHandlingExampleView.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/GoogleTranslateView.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/GoogleTranslateView.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/GoogleTranslateView.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/GoogleTranslateView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/GoogleTranslateView.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/LanguageSettingsView.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/LanguageSettingsView.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/LanguageSettingsView.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/LanguageSettingsView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/LanguageSettingsView.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Main/CaminoMainView.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoMainView.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoMainView.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoMainView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoMainView.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/MapView.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/MapView.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/MapView.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/MapView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/MapView.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Settings/SettingsView.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/SettingsView.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/SettingsView.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/SettingsView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/SettingsView.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/TranslationView.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/TranslationView.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/TranslationView.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/TranslationView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/TranslationView.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/WeatherView.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherView.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherView.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherView.swiftdeps"
+  }
+}

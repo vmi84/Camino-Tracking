@@ -1,5 +1,6 @@
 import Foundation
 
+@available(iOS 15.0, *)
 @MainActor
 public class CaminoWeatherStore {
     public static let shared = CaminoWeatherStore()

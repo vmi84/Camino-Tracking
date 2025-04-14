@@ -1,0 +1,4 @@
+// CaminoConfig.xcconfig
+SWIFT_INCLUDE_PATHS = $(SRCROOT)/CaminoModels/Sources
+SWIFT_MODULE_NAME = Camino
+OTHER_SWIFT_FLAGS = -Xcc -fmodule-map-file=$(SRCROOT)/CaminoModels/Sources/CaminoModels/include/module.modulemap 

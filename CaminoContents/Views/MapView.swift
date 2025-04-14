@@ -8,7 +8,9 @@
 import SwiftUI
 import MapKit
 import CoreLocation
+#if canImport(CaminoModels)
 import CaminoModels
+#endif
 
 // MARK: - MapView
 struct MapView: View {
@@ -69,7 +71,7 @@ struct MapView: View {
                 // Hotel markers
                 ForEach(CaminoDestination.allDestinations) { destination in
                     Marker(
-                        destination.hotelName,
+                        destination.hotelName ?? "Hotel",
                         coordinate: destination.coordinate
                     )
                     .tint(.orange)

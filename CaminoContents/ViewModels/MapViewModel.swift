@@ -9,7 +9,10 @@ import SwiftUI
 import MapKit
 import CoreLocation
 import Foundation
+// Import the shim which handles CaminoModels availability
+#if canImport(CaminoModels)
 import CaminoModels
+#endif
 
 class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var region = MKCoordinateRegion(

@@ -1,7 +1,9 @@
 #if DEBUG && canImport(XCTest) && false // Disable test for now
 import XCTest
 import SwiftUI
+#if canImport(CaminoModels)
 import CaminoModels
+#endif
 
 final class CaminoViewTests: XCTestCase {
     func testViewNamingConventions() {

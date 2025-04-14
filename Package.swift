@@ -4,8 +4,7 @@ import PackageDescription
 let package = Package(
     name: "Camino",
     platforms: [
-        .iOS(.v15),
-        .macOS(.v12)
+        .iOS(.v17)
     ],
     products: [
         .library(
@@ -17,20 +16,23 @@ let package = Package(
         .package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", from: "5.0.0")
     ],
     targets: [
-        .target(
-            name: "Camino",
-            dependencies: [
-                .product(name: "CaminoModels", package: "CaminoModels")
-            ]),
+        // Swift target for the main package code
         .target(
             name: "CaminoContents",
             dependencies: [
                 .product(name: "CaminoModels", package: "CaminoModels"),
-                "SwiftyJSON"
+                .product(name: "SwiftyJSON", package: "SwiftyJSON")
             ],
-            path: "CaminoContents"),
+            path: "./CaminoContents",
+            swiftSettings: [
+                .define("DEBUG", .when(configuration: .debug)),
+                .define("RELEASE", .when(configuration: .release)),
+                .enableUpcomingFeature("BareSlashRegexLiterals"),
+                .enableExperimentalFeature("StrictConcurrency")
+            ]),
         .testTarget(
             name: "CaminoTests",
-            dependencies: ["Camino"])
+            dependencies: ["CaminoContents"],
+            path: "./CaminoTests")
     ]
 ) 

@@ -1,5 +1,10 @@
 import Foundation
+#if canImport(UIKit)
 import UIKit
+#endif
+#if canImport(AppKit)
+import AppKit
+#endif
 import SwiftUI
 
 @MainActor
@@ -17,8 +22,6 @@ class TranslationService {
         case korean = "ko"
         case chinese = "zh"
         case russian = "ru"
-        case basque = "eu"
-        case galician = "gl"
         
         var displayName: String {
             switch self {
@@ -32,8 +35,6 @@ class TranslationService {
             case .korean: return "Korean"
             case .chinese: return "Chinese"
             case .russian: return "Russian"
-            case .basque: return "Basque"
-            case .galician: return "Galician"
             }
         }
     }
@@ -41,9 +42,12 @@ class TranslationService {
     private init() {
         // Force register all URL schemes right away
         // This improves the chances that canOpenURL will work
+        #if os(iOS)
         registerGoogleTranslateSchemes()
+        #endif
     }
     
+    #if os(iOS)
     private func registerGoogleTranslateSchemes() {
         // Register all possible Google Translate URL schemes
         let schemes = [
@@ -59,6 +63,7 @@ class TranslationService {
             }
         }
     }
+    #endif
     
     func openGoogleTranslate(text: String = "", sourceLanguage: String = "auto", targetLanguage: String = "en") {
         print("Attempting to open Google Translate with text: \(text)")
@@ -67,6 +72,7 @@ class TranslationService {
         let translationParams = "?source=\(sourceLanguage)&target=\(targetLanguage)"
         let textParam = !text.isEmpty ? "&text=\(text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")" : ""
         
+        #if os(iOS)
         let urlStrings = [
             // Standard format
             "comgoogletranslate://x-callback-url/translate\(translationParams)\(textParam)",
@@ -104,8 +110,14 @@ class TranslationService {
                 _ = await openURL(webURL)
             }
         }
+        #else
+        // macOS version - just use web URL
+        let webURL = createGoogleTranslateWebURL(text: text, sourceLanguage: sourceLanguage, targetLanguage: targetLanguage)
+        openWebURL(webURL)
+        #endif
     }
     
+    #if os(iOS)
     private func openURL(_ url: URL) async -> Bool {
         return await withCheckedContinuation { continuation in
             // We're already on the main actor, so this is safe
@@ -115,6 +127,13 @@ class TranslationService {
             }
         }
     }
+    #endif
+    
+    #if os(macOS)
+    private func openWebURL(_ url: URL) {
+        NSWorkspace.shared.open(url)
+    }
+    #endif
     
     private func createGoogleTranslateWebURL(text: String, sourceLanguage: String, targetLanguage: String) -> URL {
         print("Creating Google Translate web URL")

@@ -1,0 +1,1770 @@
+{
+  "builtTestProducts" : [
+    {
+      "binaryPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.xctest/Contents/MacOS/CaminoPackageTests",
+      "packagePath" : "/Users/jeffwhite/Desktop/Camino",
+      "productName" : "CaminoPackageTests"
+    }
+  ],
+  "copyCommands" : {
+    "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON_SwiftyJSON.bundle/PrivacyInfo.xcprivacy" : {
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/checkouts/SwiftyJSON/Source/SwiftyJSON/PrivacyInfo.xcprivacy"
+        }
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON_SwiftyJSON.bundle/PrivacyInfo.xcprivacy"
+        }
+      ]
+    }
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.CaminoContents-arm64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/sources",
+      "importPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/CaminoApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/CaminoContents.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/ContentView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Examples/ExampleView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Examples/WeatherService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Managers/AlertManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Models/ApiResponse.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Models/CaminoModelsShim.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Services/NetworkService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Services/TranslationService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Services/WeatherNetworkService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Tests/CaminoViewTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Utilities/JSONHelper.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Utils/ViewExtensions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/ViewModels/MapViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/ViewModels/WeatherViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/AppleWeatherView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Components/EmptyStateView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Components/ErrorView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Components/LoadingView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/DestinationDetailView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/DestinationsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Examples/ErrorHandlingExampleView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/GoogleTranslateView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/LanguageSettingsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Main/CaminoMainView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/MapView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Settings/SettingsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/TranslationView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/WeatherView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules/CaminoModels.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules/SwiftyJSON.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CaminoContents",
+      "moduleOutputPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules/CaminoContents.swiftmodule",
+      "objects" : [
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoApp.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoContents.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ContentView.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ExampleView.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherService.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/AlertManager.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ApiResponse.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoModelsShim.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/NetworkService.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/TranslationService.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherNetworkService.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoViewTests.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/JSONHelper.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ViewExtensions.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/MapViewModel.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherViewModel.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/AppleWeatherView.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/EmptyStateView.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ErrorView.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/LoadingView.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/DestinationDetailView.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/DestinationsView.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ErrorHandlingExampleView.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/GoogleTranslateView.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/LanguageSettingsView.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoMainView.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/MapView.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/SettingsView.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/TranslationView.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherView.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx10.13",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j14",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoContents-Swift.h",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-DDEBUG",
+        "-enable-upcoming-feature",
+        "BareSlashRegexLiterals",
+        "-enable-experimental-feature",
+        "StrictConcurrency",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-target",
+        "arm64-apple-ios17.0",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "camino"
+      ],
+      "outputFileMapPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoContents.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ContentView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ExampleView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/AlertManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ApiResponse.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoModelsShim.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/NetworkService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/TranslationService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherNetworkService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoViewTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/JSONHelper.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ViewExtensions.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/MapViewModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherViewModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/AppleWeatherView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/EmptyStateView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ErrorView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/LoadingView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/DestinationDetailView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/DestinationsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ErrorHandlingExampleView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/GoogleTranslateView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/LanguageSettingsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoMainView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/MapView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/SettingsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/TranslationView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules/CaminoContents.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/CaminoApp.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/CaminoContents.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/ContentView.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Examples/ExampleView.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Examples/WeatherService.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Managers/AlertManager.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Models/ApiResponse.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Models/CaminoModelsShim.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Services/NetworkService.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Services/TranslationService.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Services/WeatherNetworkService.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Tests/CaminoViewTests.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Utilities/JSONHelper.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Utils/ViewExtensions.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/ViewModels/MapViewModel.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/ViewModels/WeatherViewModel.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/AppleWeatherView.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Components/EmptyStateView.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Components/ErrorView.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Components/LoadingView.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/DestinationDetailView.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/DestinationsView.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Examples/ErrorHandlingExampleView.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/GoogleTranslateView.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/LanguageSettingsView.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Main/CaminoMainView.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/MapView.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Settings/SettingsView.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/TranslationView.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/WeatherView.swift"
+      ],
+      "tempsPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.CaminoModels-arm64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/sources",
+      "importPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/CaminoModels.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/CaminoWeatherStore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/CaminoWeatherViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/LocationManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/SpeechManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/WeatherStore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/WeatherViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Models.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Types/CaminoDestination.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Types/Language.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules/SwiftyJSON.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CaminoModels",
+      "moduleOutputPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules/CaminoModels.swiftmodule",
+      "objects" : [
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/CaminoModels.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/CaminoWeatherStore.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/CaminoWeatherViewModel.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/LocationManager.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/SpeechManager.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/WeatherStore.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/WeatherViewModel.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/Models.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/CaminoDestination.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/Language.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx10.13",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j14",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/CaminoModels-Swift.h",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-target",
+        "arm64-apple-ios17.0",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "caminomodels"
+      ],
+      "outputFileMapPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/CaminoModels.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/CaminoWeatherStore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/CaminoWeatherViewModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/LocationManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/SpeechManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/WeatherStore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/WeatherViewModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/Models.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/CaminoDestination.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/Language.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules/CaminoModels.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/CaminoModels.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/CaminoWeatherStore.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/CaminoWeatherViewModel.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/LocationManager.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/SpeechManager.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/WeatherStore.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/WeatherViewModel.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Models.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Types/CaminoDestination.swift",
+        "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Types/Language.swift"
+      ],
+      "tempsPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.CaminoPackageTests-arm64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.build/sources",
+      "importPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.derived/runner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules/CaminoTests.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CaminoPackageTests",
+      "moduleOutputPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules/CaminoPackageTests.swiftmodule",
+      "objects" : [
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.build/runner.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx10.13",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j14",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.build/CaminoPackageTests-Swift.h",
+        "-color-diagnostics",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-target",
+        "arm64-apple-ios17.0",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "camino"
+      ],
+      "outputFileMapPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules/CaminoPackageTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.derived/runner.swift"
+      ],
+      "tempsPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.CaminoTests-arm64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoTests.build/sources",
+      "importPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoTests/CaminoTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules/CaminoContents.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CaminoTests",
+      "moduleOutputPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules/CaminoTests.swiftmodule",
+      "objects" : [
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoTests.build/CaminoTests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j14",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-target",
+        "arm64-apple-ios17.0",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "camino"
+      ],
+      "outputFileMapPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoTests.build/CaminoTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules/CaminoTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/jeffwhite/Desktop/Camino/CaminoTests/CaminoTests.swift"
+      ],
+      "tempsPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.SwiftyJSON-arm64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/sources",
+      "importPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/checkouts/SwiftyJSON/Source/SwiftyJSON/SwiftyJSON.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/DerivedSources/resource_bundle_accessor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "virtual",
+          "name" : "<SwiftyJSON-arm64-apple-macosx15.0-debug.module-resources>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "SwiftyJSON",
+      "moduleOutputPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules/SwiftyJSON.swiftmodule",
+      "objects" : [
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/SwiftyJSON.swift.o",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/resource_bundle_accessor.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx10.13",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j14",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/SwiftyJSON-Swift.h",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-target",
+        "arm64-apple-ios17.0",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-suppress-warnings"
+      ],
+      "outputFileMapPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/SwiftyJSON.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/resource_bundle_accessor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules/SwiftyJSON.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/jeffwhite/Desktop/Camino/.build/checkouts/SwiftyJSON/Source/SwiftyJSON/SwiftyJSON.swift",
+        "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/DerivedSources/resource_bundle_accessor.swift"
+      ],
+      "tempsPath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "CaminoContents" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CaminoContents",
+      "-package-name",
+      "camino",
+      "-incremental",
+      "-c",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/CaminoApp.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/CaminoContents.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/ContentView.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Examples/ExampleView.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Examples/WeatherService.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Managers/AlertManager.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Models/ApiResponse.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Models/CaminoModelsShim.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Services/NetworkService.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Services/TranslationService.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Services/WeatherNetworkService.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Tests/CaminoViewTests.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Utilities/JSONHelper.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Utils/ViewExtensions.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/ViewModels/MapViewModel.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/ViewModels/WeatherViewModel.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/AppleWeatherView.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Components/EmptyStateView.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Components/ErrorView.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Components/LoadingView.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/DestinationDetailView.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/DestinationsView.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Examples/ErrorHandlingExampleView.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/GoogleTranslateView.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/LanguageSettingsView.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Main/CaminoMainView.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/MapView.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Settings/SettingsView.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/TranslationView.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/WeatherView.swift",
+      "-I",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx10.13",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j14",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoContents-Swift.h",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-DDEBUG",
+      "-enable-upcoming-feature",
+      "BareSlashRegexLiterals",
+      "-enable-experimental-feature",
+      "StrictConcurrency",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-target",
+      "arm64-apple-ios17.0",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "camino",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CaminoModels" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CaminoModels",
+      "-package-name",
+      "caminomodels",
+      "-incremental",
+      "-c",
+      "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/CaminoModels.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/CaminoWeatherStore.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/CaminoWeatherViewModel.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/LocationManager.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/SpeechManager.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/WeatherStore.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/WeatherViewModel.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Models.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Types/CaminoDestination.swift",
+      "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Types/Language.swift",
+      "-I",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx10.13",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j14",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/CaminoModels-Swift.h",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-target",
+      "arm64-apple-ios17.0",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "caminomodels",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CaminoPackageTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CaminoPackageTests",
+      "-package-name",
+      "camino",
+      "-incremental",
+      "-c",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.derived/runner.swift",
+      "-I",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx10.13",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j14",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.build/CaminoPackageTests-Swift.h",
+      "-color-diagnostics",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-target",
+      "arm64-apple-ios17.0",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "camino",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CaminoTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CaminoTests",
+      "-package-name",
+      "camino",
+      "-incremental",
+      "-c",
+      "/Users/jeffwhite/Desktop/Camino/CaminoTests/CaminoTests.swift",
+      "-I",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j14",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-target",
+      "arm64-apple-ios17.0",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "camino",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "SwiftyJSON" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "SwiftyJSON",
+      "-incremental",
+      "-c",
+      "/Users/jeffwhite/Desktop/Camino/.build/checkouts/SwiftyJSON/Source/SwiftyJSON/SwiftyJSON.swift",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/DerivedSources/resource_bundle_accessor.swift",
+      "-I",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx10.13",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j14",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/SwiftyJSON-Swift.h",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-target",
+      "arm64-apple-ios17.0",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-suppress-warnings",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "CaminoContents" : [
+      "CaminoModels",
+      "SwiftyJSON"
+    ],
+    "CaminoModels" : [
+      "SwiftyJSON"
+    ],
+    "CaminoPackageTests" : [
+      "CaminoTests",
+      "CaminoContents",
+      "CaminoModels",
+      "SwiftyJSON"
+    ],
+    "CaminoTests" : [
+      "CaminoContents",
+      "CaminoModels",
+      "SwiftyJSON"
+    ],
+    "SwiftyJSON" : [
+
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+    "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.derived/runner.swift" : {
+      "inputs" : [
+
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.derived/runner.swift"
+        }
+      ]
+    }
+  },
+  "traitConfiguration" : {
+    "enableAllTraits" : false
+  },
+  "writeCommands" : {
+    "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/CaminoApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/CaminoContents.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/ContentView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Examples/ExampleView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Examples/WeatherService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Managers/AlertManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Models/ApiResponse.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Models/CaminoModelsShim.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Services/NetworkService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Services/TranslationService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Services/WeatherNetworkService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Tests/CaminoViewTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Utilities/JSONHelper.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Utils/ViewExtensions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/ViewModels/MapViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/ViewModels/WeatherViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/AppleWeatherView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Components/EmptyStateView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Components/ErrorView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Components/LoadingView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/DestinationDetailView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/DestinationsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Examples/ErrorHandlingExampleView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/GoogleTranslateView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/LanguageSettingsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Main/CaminoMainView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/MapView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/Settings/SettingsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/TranslationView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoContents/Views/WeatherView.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/sources"
+    },
+    "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/CaminoModels.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/CaminoWeatherStore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/CaminoWeatherViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/LocationManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/SpeechManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/WeatherStore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Managers/WeatherViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Models.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Types/CaminoDestination.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoModels/Sources/CaminoModels/Types/Language.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/sources"
+    },
+    "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.derived/runner.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.build/sources"
+    },
+    "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/AlertManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ApiResponse.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/AppleWeatherView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoContents.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoMainView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoModelsShim.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/CaminoViewTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ContentView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/DestinationDetailView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/DestinationsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/EmptyStateView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ErrorHandlingExampleView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ErrorView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ExampleView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/GoogleTranslateView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/JSONHelper.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/LanguageSettingsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/LoadingView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/MapView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/MapViewModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/NetworkService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/SettingsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/TranslationService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/TranslationView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/ViewExtensions.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherNetworkService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoContents.build/WeatherViewModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/CaminoDestination.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/CaminoModels.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/CaminoWeatherStore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/CaminoWeatherViewModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/Language.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/LocationManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/Models.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/SpeechManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/WeatherStore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoModels.build/WeatherViewModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoTests.build/CaminoTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/SwiftyJSON.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/resource_bundle_accessor.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.product/Objects.LinkFileList"
+    },
+    "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/CaminoTests/CaminoTests.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoTests.build/sources"
+    },
+    "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/checkouts/SwiftyJSON/Source/SwiftyJSON/SwiftyJSON.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/DerivedSources/resource_bundle_accessor.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/SwiftyJSON.build/sources"
+    },
+    "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}

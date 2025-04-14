@@ -15,9 +15,7 @@ struct LanguageSettingsView: View {
         ("ko", "Korean"),
         ("zh", "Chinese"),
         ("ru", "Russian"),
-        ("pt-PT", "Portuguese"),
-        ("eu", "Basque"),
-        ("gl", "Galician")
+        ("pt-PT", "Portuguese")
     ]
     
     var body: some View {
@@ -59,19 +57,21 @@ struct LanguageSettingsView: View {
             }
         }
         .navigationTitle("Language Settings")
-        .navigationBarItems(trailing: Button("Done") {
-            dismiss()
-        })
+        .toolbar {
+            Button("Done") {
+                dismiss()
+            }
+        }
         .onChange(of: sourceLanguage) { oldValue, newValue in
             // If user selects the same language for both, swap them
             if newValue == targetLanguage {
-                targetLanguage = oldValue
+                targetLanguage = oldValue // Use oldValue to swap
             }
         }
         .onChange(of: targetLanguage) { oldValue, newValue in
             // If user selects the same language for both, swap them
             if newValue == sourceLanguage {
-                sourceLanguage = oldValue
+                sourceLanguage = oldValue // Use oldValue to swap
             }
         }
     }

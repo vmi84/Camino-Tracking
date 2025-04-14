@@ -1,5 +1,7 @@
-import SwiftUI
+#if canImport(CaminoModels)
 import CaminoModels
+#endif
+import SwiftUI
 
 @main
 struct CaminoApp: App {

@@ -1,0 +1,11 @@
+{
+  "": {
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.build/master.swiftdeps"
+  },
+  "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.derived/runner.swift": {
+    "dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.build/runner.d",
+    "object": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.build/runner.swift.o",
+    "swiftmodule": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.build/runner~partial.swiftmodule",
+    "swift-dependencies": "/Users/jeffwhite/Desktop/Camino/.build/arm64-apple-macosx/debug/CaminoPackageTests.build/runner.swiftdeps"
+  }
+}

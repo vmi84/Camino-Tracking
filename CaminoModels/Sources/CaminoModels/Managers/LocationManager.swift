@@ -1,6 +1,7 @@
 import CoreLocation
 import SwiftUI
 
+@available(iOS 15.0, *)
 @MainActor
 public class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     public static let shared = LocationManager()
@@ -23,15 +24,9 @@ public class LocationManager: NSObject, ObservableObject, CLLocationManagerDeleg
         locationManager.requestWhenInUseAuthorization()
         
         // If we already have authorization, start updating location
-        #if os(iOS)
         if authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways {
             startUpdatingLocation()
         }
-        #elseif os(macOS)
-        if authorizationStatus == .authorizedAlways {
-            startUpdatingLocation()
-        }
-        #endif
     }
     
     public func startUpdatingLocation() {
@@ -47,15 +42,9 @@ public class LocationManager: NSObject, ObservableObject, CLLocationManagerDeleg
             authorizationStatus = manager.authorizationStatus
             
             // Start updating location if we have authorization
-            #if os(iOS)
             if authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways {
                 startUpdatingLocation()
             }
-            #elseif os(macOS)
-            if authorizationStatus == .authorizedAlways {
-                startUpdatingLocation()
-            }
-            #endif
         }
     }
     

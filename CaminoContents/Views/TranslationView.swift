@@ -1,10 +1,15 @@
 import SwiftUI
 import AVFoundation
 import Speech
-#if os(iOS)
+import Combine
+#if canImport(UIKit)
 import UIKit
 #endif
+#if canImport(AppKit)
+import AppKit
+#endif
 
+@available(macOS 13.0, iOS 15.0, *)
 struct TranslationView: View {
     // Translation state
     @State private var inputText = ""
@@ -74,10 +79,16 @@ struct TranslationView: View {
             .onAppear {
                 requestSpeechAuthorization()
             }
-            .onChange(of: speechManager.transcribedText) { oldValue, newText in
+            #if swift(>=5.9)
+            .onChange(of: speechManager.transcribedText) { _, newText in
                 // Update input text with transcription
                 inputText = newText
             }
+            #else
+            .onReceive(speechManager.$transcribedText) { newText in
+                inputText = newText
+            }
+            #endif
         }
     }
     
@@ -90,10 +101,16 @@ struct TranslationView: View {
                 Text("Transcribe").tag(TranslationMode.transcribe)
             }
             .pickerStyle(SegmentedPickerStyle())
-            .onChange(of: mode) { oldValue, _ in
+            #if swift(>=5.9)
+            .onChange(of: mode) { _, _ in
                 // Clear input when switching modes
                 inputText = ""
             }
+            #else
+            .onReceive(Just(mode)) { _ in
+                inputText = ""
+            }
+            #endif
             
             // Description of current mode's behavior
             Text(mode == .translate 
@@ -197,7 +214,11 @@ struct TranslationView: View {
                     // Only allow manual text editing when not recording
                     TextEditor(text: $inputText)
                         .frame(minHeight: 120, maxHeight: 200)
-                        .scrollContentBackground(.hidden)
+                        #if os(macOS)
+                        .background(Color.clear)
+                        #else
+                        .compatScrollContentBackground(.hidden)
+                        #endif
                         .background(Color.clear)
                         .padding(8)
                 }

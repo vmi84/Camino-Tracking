@@ -1,71 +1,90 @@
 import SwiftUI
 import MapKit
-import CoreLocation
+#if canImport(CaminoModels)
 import CaminoModels
+#else
+// Use the shim types when CaminoModels can't be imported
+#endif
+import CoreLocation
 
 // MARK: - CaminoMainView
 struct CaminoMainView: View {
+    #if canImport(CaminoModels)
     @EnvironmentObject private var appState: CaminoAppState
-    @StateObject private var weatherViewModel = WeatherViewModel()
+    #else
+    @EnvironmentObject private var appState: ShimCaminoAppState
+    #endif
     @State private var weatherTabWasTapped = false
     @State private var translateTabWasTapped = false
     @State private var selectedTabIndex: Int = 0
+    @StateObject private var alertManager = AlertManager()
+    @StateObject private var weatherViewModel = WeatherViewModel()
     
     // Add AppStorage for language settings
     @AppStorage("sourceLanguageCode") private var sourceLanguageCode = "en"
     @AppStorage("targetLanguageCode") private var targetLanguageCode = "es"
     
     var body: some View {
-        // Always show the TabView with tabs - we don't need the conditional check here
-        // since ContentView already handles showing WelcomeView vs. CaminoMainView
-        TabView(selection: $appState.selectedTab) {
-            MapView()
-                .tabItem {
-                    Label("Map", systemImage: "map")
-                }
-                .tag(0)
-            
-            DestinationsView()
-                .tabItem {
-                    Label("Destinations", systemImage: "list.bullet")
-                }
-                .tag(1)
-            
-            WeatherView()
-                .tabItem {
-                    Label("Weather", systemImage: "cloud.sun")
-                }
-                .tag(2)
-            
-            GoogleTranslateView()
-                .tabItem {
-                    Label("Translate", systemImage: "globe")
-                }
-                .tag(3)
+        NavigationView {
+            // Always show the TabView with tabs - we don't need the conditional check here
+            // since ContentView already handles showing WelcomeView vs. CaminoMainView
+            TabView(selection: $appState.selectedTab) {
+                MapView()
+                    .tabItem {
+                        Label("Map", systemImage: "map")
+                    }
+                    .tag(0)
+                
+                DestinationsView()
+                    .tabItem {
+                        Label("Destinations", systemImage: "list.bullet")
+                    }
+                    .tag(1)
+                
+                AppleWeatherView()
+                    .tabItem {
+                        Label("Weather", systemImage: "cloud.sun")
+                    }
+                    .tag(2)
+                    .environmentObject(weatherViewModel)
+                
+                GoogleTranslateView()
+                    .tabItem {
+                        Label("Translate", systemImage: "globe")
+                    }
+                    .tag(3)
 
-            SettingsView()
-                .tabItem {
-                    Label("Settings", systemImage: "gear")
-                }
-                .tag(4)
-        }
-        .onChange(of: appState.selectedTab) { oldValue, newValue in
-            // Handle the Weather tab selection
-            if newValue == 2 {
-                weatherViewModel.tabWasSelected()
+                SettingsView()
+                    .tabItem {
+                        Label("Settings", systemImage: "gear")
+                    }
+                    .tag(4)
             }
-            
-            // We're no longer auto-deep-linking to Google Translate
-            // Let the GoogleTranslateView handle this internally
+            .onChange(of: appState.selectedTab) { oldValue, newValue in
+                // Handle Weather tab selection - open Weather app when tab is selected
+                if newValue == 2 {
+                    weatherViewModel.tabWasSelected()
+                }
+                
+                // We're no longer auto-deep-linking to Google Translate
+                // Let the GoogleTranslateView handle this internally
+            }
+            .tint(.blue)
         }
-        .tint(.blue)
+        .withErrorAlert(alertManager: alertManager)
+        .environmentObject(alertManager)
     }
 }
 
 // Keep CaminoWelcomeView as a backup but it's not used in the main flow anymore
 // We'll leave it here in case it's referenced elsewhere in the codebase
 struct CaminoWelcomeView: View {
+    #if canImport(CaminoModels)
     @EnvironmentObject private var appState: CaminoAppState
+    #else
+    @EnvironmentObject private var appState: ShimCaminoAppState
+    #endif
+    @EnvironmentObject private var alertManager: AlertManager
     
     var body: some View {
         ZStack {
@@ -131,7 +150,15 @@ struct CaminoWelcomeView: View {
 }
 
 #Preview {
+    #if canImport(CaminoModels)
     CaminoMainView()
         .environmentObject(CaminoAppState())
         .environmentObject(LocationManager.shared)
+        .environmentObject(AlertManager())
+    #else
+    CaminoMainView()
+        .environmentObject(ShimCaminoAppState())
+        .environmentObject(LocationManager.shared)
+        .environmentObject(AlertManager())
+    #endif
 } 
