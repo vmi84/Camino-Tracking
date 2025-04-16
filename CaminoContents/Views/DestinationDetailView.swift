@@ -230,6 +230,16 @@ struct DestinationDetailView: View {
         self.nextDestinationName = nextDestinationName
     }
     
+    // Helper function to format distance
+    private func formattedDistance(_ kilometers: Double) -> String {
+        if useMetricUnits {
+            return String(format: "%.1f km", kilometers)
+        } else {
+            let miles = kilometers * 0.621371
+            return String(format: "%.1f mi", miles)
+        }
+    }
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -241,6 +251,33 @@ struct DestinationDetailView: View {
                     StageProfileView(assetName: destination.elevationProfileAssetName)
                         .frame(maxWidth: .infinity)
                         .padding(.horizontal)
+                }
+
+                // MARK: - Distance Details
+                Section("Distance") {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Daily")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            Text(formattedDistance(destination.dailyDistance))
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                        }
+
+                        Spacer()
+
+                        VStack(alignment: .trailing) {
+                            Text("Total")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            Text(formattedDistance(destination.cumulativeDistance))
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                        }
+                    }
+                    .padding(.horizontal) // Add padding to match other sections
+                    .padding(.vertical, 8) // Add some vertical padding
                 }
 
                 // MARK: - Route Details
@@ -311,15 +348,6 @@ struct DestinationDetailView: View {
                     .fill(Color.primary.opacity(0.05))
                     .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
             )
-    }
-
-    private func formattedDistance(_ kilometers: Double) -> String {
-        if useMetricUnits {
-            return String(format: "%.1f km", kilometers)
-        } else {
-            let miles = kilometers * 0.621371
-            return String(format: "%.1f mi", miles)
-        }
     }
 }
 
