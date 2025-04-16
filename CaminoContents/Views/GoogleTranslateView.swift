@@ -30,47 +30,56 @@ struct GoogleTranslateView: View {
             }
             .navigationTitle("Translator")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(
-                leading: HStack {
-                    Picker("From", selection: $sourceLanguage) {
-                        Text("Auto").tag("auto")
-                        Text("English").tag("en")
-                        Text("Spanish").tag("es")
-                        Text("French").tag("fr")
-                        Text("German").tag("de")
-                        Text("Italian").tag("it")
-                        Text("Portuguese").tag("pt-PT")
-                        Text("Galician").tag("gl")
-                        Text("Basque").tag("eu")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    HStack(spacing: 2) {
+                        Picker("From", selection: $sourceLanguage) {
+                            Text("Auto").tag("auto")
+                            Text("English").tag("en")
+                            Text("Spanish").tag("es")
+                            Text("French").tag("fr")
+                            Text("German").tag("de")
+                            Text("Italian").tag("it")
+                            Text("Portuguese").tag("pt-PT")
+                            Text("Galician").tag("gl")
+                            Text("Basque").tag("eu")
+                        }
+                        .pickerStyle(.menu)
+                        .font(.caption)
+                        .fixedSize(horizontal: true, vertical: false)
+                        
+                        Text("→")
+                            .font(.caption)
+                        
+                        Picker("To", selection: $targetLanguage) {
+                            Text("English").tag("en")
+                            Text("Spanish").tag("es")
+                            Text("French").tag("fr")
+                            Text("German").tag("de")
+                            Text("Italian").tag("it")
+                            Text("Portuguese").tag("pt-PT")
+                            Text("Galician").tag("gl")
+                            Text("Basque").tag("eu")
+                        }
+                        .pickerStyle(.menu)
+                        .font(.caption)
+                        .fixedSize(horizontal: true, vertical: false)
                     }
-                    .pickerStyle(.menu)
-                    
-                    Text("→")
-                    
-                    Picker("To", selection: $targetLanguage) {
-                        Text("English").tag("en")
-                        Text("Spanish").tag("es")
-                        Text("French").tag("fr")
-                        Text("German").tag("de")
-                        Text("Italian").tag("it")
-                        Text("Portuguese").tag("pt-PT")
-                        Text("Galician").tag("gl")
-                        Text("Basque").tag("eu")
-                    }
-                    .pickerStyle(.menu)
-                },
-                trailing: Button(action: {
-                    // Option to open in external app
-                    TranslationService.shared.openGoogleTranslate(
-                        text: inputText,
-                        sourceLanguage: sourceLanguage,
-                        targetLanguage: targetLanguage
-                    )
-                }) {
-                    Image(systemName: "arrow.up.forward.app")
-                        .foregroundColor(.blue)
                 }
-            )
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        // Option to open in external app
+                        TranslationService.shared.openGoogleTranslate(
+                            text: inputText,
+                            sourceLanguage: sourceLanguage,
+                            targetLanguage: targetLanguage
+                        )
+                    }) {
+                        Image(systemName: "arrow.up.forward.app")
+                            .foregroundColor(.blue)
+                    }
+                }
+            }
             .onAppear {
                 // Handle migration from old "pt" code to new "pt-PT" code
                 if sourceLanguage == "pt" {

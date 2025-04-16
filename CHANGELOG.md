@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.2] - 2024-07-16
+
+### Fixed
+- Adjusted layout (font size, spacing) in `GoogleTranslateView` navigation bar to prevent language picker text from wrapping.
+- Refactored `GoogleTranslateView` to use `.toolbar` modifier for potentially better layout updates.
+- Applied `.fixedSize(horizontal: true, vertical: false)` to language pickers to further discourage wrapping.
+
 ## [0.7.1] - 2024-07-16
 
 ### Changed
