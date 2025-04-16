@@ -253,31 +253,37 @@ struct DestinationDetailView: View {
                         .padding(.horizontal)
                 }
 
-                // MARK: - Distance Details
+                // MARK: - Distance
                 Section("Distance") {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Daily")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            Text("Daily Distance:")
+                                .font(.subheadline)
+                            Spacer()
                             Text(formattedDistance(destination.dailyDistance))
-                                .font(.title2)
-                                .fontWeight(.semibold)
+                                .font(.body.weight(.semibold))
                         }
-
-                        Spacer()
-
-                        VStack(alignment: .trailing) {
-                            Text("Total")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
+                        HStack {
+                            Text("Cumulative Distance:")
+                                .font(.subheadline)
+                            Spacer()
                             Text(formattedDistance(destination.cumulativeDistance))
-                                .font(.title2)
-                                .fontWeight(.semibold)
+                                .font(.body.weight(.semibold))
+                        }
+                        HStack {
+                            Text("Total Remaining:")
+                                .font(.subheadline)
+                            Spacer()
+                            Text(formattedDistance(CaminoDestination.totalDistance - destination.cumulativeDistance))
+                                .font(.body.weight(.semibold))
                         }
                     }
-                    .padding(.horizontal) // Add padding to match other sections
-                    .padding(.vertical, 8) // Add some vertical padding
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(Color.primary.opacity(0.05))
+                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+                    )
                 }
 
                 // MARK: - Route Details
@@ -285,9 +291,9 @@ struct DestinationDetailView: View {
                     RouteDetailView(destinationDay: destination.day)
                 }
 
-                // MARK: - Content/Description
-                Section("Details") {
-                    destinationContent
+                // MARK: - Hotel Information
+                Section("Hotel Details") {
+                    HotelInfoView(destination: destination)
                 }
 
                 Spacer()
@@ -336,18 +342,6 @@ struct DestinationDetailView: View {
             .font(.caption)
             .foregroundColor(.gray)
         }
-    }
-
-    private var destinationContent: some View {
-        Text(destination.content)
-            .font(.body)
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.primary.opacity(0.05))
-                    .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
-            )
     }
 }
 
@@ -960,6 +954,61 @@ struct RouteDetailProvider {
             return nil
         default:
             return nil
+        }
+    }
+}
+
+// MARK: - Helper View for Hotel Information
+private struct HotelInfoView: View {
+    let destination: CaminoDestination
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            if let checkIn = destination.checkInInfo {
+                detailRow(label: "Check-in:", value: checkIn)
+            }
+            if let checkOut = destination.checkOutInfo {
+                detailRow(label: "Check-out:", value: checkOut)
+            }
+            if let bookingRef = destination.bookingReference {
+                detailRow(label: "Booking Ref:", value: bookingRef)
+            }
+            if let room = destination.roomDetails {
+                detailRow(label: "Room:", value: room)
+            }
+            if let meals = destination.mealDetails {
+                detailRow(label: "Meals:", value: meals)
+            }
+            if let luggage = destination.luggageTransferInfo {
+                Divider().padding(.vertical, 4)
+                VStack(alignment: .leading) {
+                    Text("Luggage Transfer:")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    Text(luggage)
+                        .font(.body)
+                }
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.primary.opacity(0.05))
+                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+        )
+    }
+
+    // Helper for consistent row formatting
+    @ViewBuilder
+    private func detailRow(label: String, value: String) -> some View {
+        HStack {
+            Text(label)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .frame(width: 110, alignment: .leading) // Align labels
+            Text(value)
+                .font(.body)
+            Spacer() // Pushes content to the left
         }
     }
 }

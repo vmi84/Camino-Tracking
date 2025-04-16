@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.1] - 2024-07-16
+
+### Changed
+- Populated detailed hotel information (check-in/out, booking ref, room, meals, luggage) for all destinations.
+- Renumbered destination days to start from Day 0 (Saint Jean Pied de Port).
+- Moved hotel information below route details in `DestinationDetailView`.
+- Renamed "Hotel Information" section to "Hotel Details".
+- Removed the now redundant `content` property from `CaminoDestination` and the old "Details" section from `DestinationDetailView`.
+
+### Fixed
+- Corrected destination dates for Days 22-35 in `CaminoDestination` data.
+
 ## [0.7.0] - 2024-07-15
 
 ### Added
