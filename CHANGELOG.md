@@ -33,6 +33,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2024-07-16
+
+### Fixed
+- Corrected navigation title in `DestinationDetailView` to show `<Previous Location> to <Current Location>` instead of `<Current Location> to <Next Location>`.
+
 ## [0.7.4] - 2024-07-16
 
 ### Fixed

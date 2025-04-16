@@ -75,7 +75,7 @@ struct RouteDetailView: View {
             VStack(alignment: .leading, spacing: 16) {
                 // Title section
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Route Details")
+                    Text("Route Specifics")
                         .font(.headline)
                     
                     if let routeTitle = details.title {
@@ -306,13 +306,19 @@ struct DestinationDetailView: View {
     
     // MARK: - Computed Properties for Title
     private var navigationTitleText: String {
-        if let nextName = nextDestinationName, !nextName.isEmpty {
-            if destination.day == 1 && destination.dailyDistance == 0.0 {
-                return destination.locationName
-            } else {
-                return "\(destination.locationName) to \(nextName)"
-            }
+        // Find the previous destination
+        let previousDayIndex = destination.day - 1
+        let previousDestination = (previousDayIndex >= 0 && previousDayIndex < CaminoDestination.allDestinations.count) 
+                                  ? CaminoDestination.allDestinations[previousDayIndex] 
+                                  : nil
+        
+        // Construct the title
+        if destination.day == 0 { // Special case for Day 0
+            return "Starting Point: \(destination.locationName)"
+        } else if let prevDest = previousDestination {
+            return "\(prevDest.locationName) to \(destination.locationName)"
         } else {
+            // Fallback if previous destination can't be found (shouldn't happen after Day 0)
             return destination.locationName
         }
     }
