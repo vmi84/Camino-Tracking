@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2024-07-16
+
+### Added
+- **Feedback Feature:** Added a "Send Feedback" option in Settings, allowing users to compose and send feedback via email using the built-in Mail app.
+- Static app icon (church image) (from v0.7.0).
+- Comprehensive Settings screen (theme, units, language, map, GPS, etc.) (from v0.5.0).
+- Weather tab with deep-link to Apple Weather (based on v0.4.0, fixed in v0.7.4).
+- Translation tab using GoogleTranslate view (based on v0.6.3).
+- Detailed route information in Destination views (from v0.5.1).
+- Hotel information display in Destination views (from v0.7.1).
+
+### Changed
+- Shifted destination day numbering to start from Day 0 (from v0.7.1).
+- Restored distance display in DestinationDetailView (from v0.6.5.3).
+- Updated destination dates/names based on bookings (from v0.5.8).
+- Moved language selection to Settings (from v0.5.5).
+
+### Fixed
+- Corrected app icon configuration and assets (v0.7.3).
+- Refactored Weather view/viewModel for reliable deep-linking (v0.7.4).
+- Adjusted Translator layout for better text display (v0.7.2).
+- Fixed current location button and handling in MapView (v0.6.5).
+- Resolved Git submodule issues (v0.7.0).
+- Corrected route distance calculations (v0.3.3).
+- Numerous minor layout adjustments and stability improvements across versions.
+
 ## [Unreleased]
 
 ## [0.7.4] - 2024-07-16

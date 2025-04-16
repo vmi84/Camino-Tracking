@@ -70,6 +70,7 @@ struct SettingsView: View {
     @State private var showingBackupOptions = false
     @State private var showingClearCacheOptions = false
     @State private var showingAboutInfo = false
+    @State private var showingFeedbackSheet = false
     
     private let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
     
@@ -138,6 +139,14 @@ struct SettingsView: View {
                     showingAboutInfo = true
                 })),
                 SettingsItem(title: "Developer Info", icon: "person.fill", type: .info("Built by Camino Tracking Team"))
+            ]),
+            
+            SettingsSection(title: "Feedback", 
+                description: "Share your thoughts or report issues to help improve the app.",
+                items: [
+                SettingsItem(title: "Send Feedback", icon: "envelope", type: .button({
+                    showingFeedbackSheet = true
+                }))
             ])
         ]
     }
@@ -173,6 +182,9 @@ struct SettingsView: View {
             }
             .sheet(isPresented: $showingAboutInfo) {
                 AboutView()
+            }
+            .sheet(isPresented: $showingFeedbackSheet) {
+                FeedbackView()
             }
         }
     }
