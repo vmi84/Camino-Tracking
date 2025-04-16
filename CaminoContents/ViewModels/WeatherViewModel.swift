@@ -8,112 +8,139 @@ import MapKit
 
 @MainActor
 class WeatherViewModel: ObservableObject {
-    @Published var weatherData: [CaminoDestination: Weather] = [:]
-    @Published var destinations: [CaminoDestination] = []
+    @Published var currentLocationWeather: Weather?
     @Published var errorMessage: String?
     @Published var shouldShowWeatherAppPrompt: Bool = true
     @Published var isTabSelected: Bool = false
-    @Published var hasRedirected: Bool = false
     @Published var hasAttemptedRedirect: Bool = false
+    @Published var isLoading: Bool = false
     
-    private let caminoWeatherViewModel: CaminoWeatherViewModel
     private var locationManager: LocationManager {
         return LocationManager.shared
     }
     
-    init() {
-        self.caminoWeatherViewModel = CaminoWeatherViewModel()
-        self.destinations = CaminoDestination.allDestinations
-    }
+    init() {}
     
     func refreshWeather() async {
-        // Only fetch weather data if explicitly asked to use CaminoWeather
-        if !shouldShowWeatherAppPrompt {
-            await caminoWeatherViewModel.refreshWeather()
-            
-            if let error = caminoWeatherViewModel.errorMessage {
-                self.errorMessage = error
-                // If WeatherKit fails, default back to Apple Weather
-                if error.contains("WeatherKit authorization failed") || 
-                   error.contains("To get live weather data, you need to configure WeatherKit") {
-                    shouldShowWeatherAppPrompt = true
-                    if !hasAttemptedRedirect {
-                        hasAttemptedRedirect = true
-                        openWeatherForCurrentLocation()
-                    }
-                }
-            }
-            
-            if !caminoWeatherViewModel.weatherData.isEmpty {
-                self.weatherData = caminoWeatherViewModel.weatherData
-            }
-        } else {
-            // Default behavior is to open Apple Weather
-            if !hasAttemptedRedirect {
-                hasAttemptedRedirect = true
-                openWeatherForCurrentLocation()
-            }
+        guard !shouldShowWeatherAppPrompt else {
+            print("WeatherViewModel: Skipping fetch, shouldShowWeatherAppPrompt is true.")
+            self.currentLocationWeather = nil
+            self.errorMessage = nil
+            self.isLoading = false
+            return
         }
-    }
-    
-    func openNativeWeatherApp(for destination: CaminoDestination) {
-        // Weather app URL scheme for specific location
-        let weatherURL = URL(string: "weather:///?lat=\(destination.coordinate.latitude)&lon=\(destination.coordinate.longitude)")
+
+        guard let location = locationManager.location else {
+            self.errorMessage = "Current location not available."
+            self.currentLocationWeather = nil
+            self.isLoading = false
+            return
+        }
         
-        if let url = weatherURL, UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else {
-            // Fallback to Apple Maps with weather enabled
-            let coordinate = CLLocationCoordinate2D(
-                latitude: destination.coordinate.latitude,
-                longitude: destination.coordinate.longitude
-            )
-            let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
-            mapItem.name = destination.locationName
-            mapItem.openInMaps(launchOptions: [MKLaunchOptionsShowsTrafficKey: true])
+        self.isLoading = true
+        self.errorMessage = nil
+        self.currentLocationWeather = nil
+
+        print("WeatherViewModel: Attempting to fetch weather via WeatherKit...")
+        
+        do {
+            let weatherService = WeatherService.shared
+            self.currentLocationWeather = try await weatherService.weather(for: location)
+            print("WeatherViewModel: WeatherKit fetch successful.")
+        } catch {
+            print("WeatherViewModel: WeatherKit fetch failed - \(error)")
+            self.errorMessage = "Failed to fetch weather: \(error.localizedDescription)"
+            self.shouldShowWeatherAppPrompt = true
         }
+        self.isLoading = false
     }
     
     func openWeatherForCurrentLocation() {
-        hasRedirected = true
-        
-        // Try to open Weather with current location coordinates
+        print("WeatherViewModel: Attempting to open Apple Weather...")
+        guard !hasAttemptedRedirect else {
+            print("WeatherViewModel: Already attempted redirect, skipping.")
+            return
+        }
+        hasAttemptedRedirect = true
+
         if let currentLocation = locationManager.location {
-            let weatherURL = URL(string: "weather:///?lat=\(currentLocation.coordinate.latitude)&lon=\(currentLocation.coordinate.longitude)")
-            
-            if let url = weatherURL, UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                return
+            let lat = currentLocation.coordinate.latitude
+            let lon = currentLocation.coordinate.longitude
+            if let weatherURL = URL(string: "weather:///?lat=\(lat)&lon=\(lon)") {
+                print("WeatherViewModel: Trying deep link with coords: \(weatherURL)")
+                if UIApplication.shared.canOpenURL(weatherURL) {
+                    UIApplication.shared.open(weatherURL, options: [:]) { success in
+                        print("WeatherViewModel: Deep link with coords open success: \(success)")
+                        if !success {
+                            self.tryOpenBaseWeatherURL()
+                        }
+                    }
+                    return
+                } else {
+                    print("WeatherViewModel: Cannot open deep link with coords.")
+                    self.tryOpenBaseWeatherURL()
+                    return
+                }
             }
+        } else {
+            print("WeatherViewModel: Current location not available for coords deep link.")
         }
         
-        // Fallback to just opening the Weather app
-        if let baseURL = URL(string: "weather:///"), UIApplication.shared.canOpenURL(baseURL) {
-            UIApplication.shared.open(baseURL, options: [:], completionHandler: nil)
-        } else {
-            // Final fallback to Apple Maps
-            if let currentLocation = locationManager.location {
-                let coordinate = currentLocation.coordinate
-                let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
-                mapItem.name = "Current Location"
-                mapItem.openInMaps(launchOptions: [MKLaunchOptionsShowsTrafficKey: true])
+        self.tryOpenBaseWeatherURL()
+    }
+
+    private func tryOpenBaseWeatherURL() {
+        if let baseURL = URL(string: "weather:///") {
+            print("WeatherViewModel: Trying base deep link: \(baseURL)")
+            if UIApplication.shared.canOpenURL(baseURL) {
+                UIApplication.shared.open(baseURL, options: [:]) { success in
+                    print("WeatherViewModel: Base deep link open success: \(success)")
+                    if !success {
+                        self.fallbackToMaps()
+                    }
+                }
+                return
+            } else {
+                print("WeatherViewModel: Cannot open base deep link.")
             }
+        }
+        self.fallbackToMaps()
+    }
+
+    private func fallbackToMaps() {
+        print("WeatherViewModel: Falling back to Apple Maps.")
+        if let currentLocation = locationManager.location {
+            let coordinate = currentLocation.coordinate
+            let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
+            mapItem.name = "Current Location"
+            mapItem.openInMaps(launchOptions: [MKLaunchOptionsShowsTrafficKey: true])
+        } else {
+            print("WeatherViewModel: Cannot fallback to Maps, no location.")
         }
     }
-    
-    // Add method to switch to CaminoWeather
+
     func useCaminoWeather() async {
+        print("WeatherViewModel: Switching to use WeatherKit.")
         shouldShowWeatherAppPrompt = false
+        hasAttemptedRedirect = false
         await refreshWeather()
     }
+
+    func useAppleWeatherPrompt() {
+        print("WeatherViewModel: Switching back to prompting Apple Weather.")
+        shouldShowWeatherAppPrompt = true
+        hasAttemptedRedirect = false
+        self.currentLocationWeather = nil
+        self.errorMessage = nil
+        self.isLoading = false
+    }
     
-    // Track when tab is selected
     func tabWasSelected() {
-        isTabSelected = true
-        // Only try to open Apple Weather if we haven't already attempted a redirect
-        if !hasAttemptedRedirect {
-            hasAttemptedRedirect = true
+        print("WeatherViewModel: Weather tab selected.")
+        if shouldShowWeatherAppPrompt {
             openWeatherForCurrentLocation()
+        } else {
+            print("WeatherViewModel: Tab selected, but not prompting for Apple Weather.")
         }
     }
 } 

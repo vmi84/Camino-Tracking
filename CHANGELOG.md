@@ -7,49 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.7.3] - 2024-07-16
+## [0.7.4] - 2024-07-16
 
 ### Fixed
-- Corrected app icon configuration and assets (used correct 1024x1024 image size, fixed asset catalog naming and build settings references) to ensure the icon displays correctly on devices.
-
-## [0.7.2] - 2024-07-16
-
-### Fixed
-- Adjusted layout (font size, spacing) in `GoogleTranslateView` navigation bar to prevent language picker text from wrapping.
-- Refactored `GoogleTranslateView` to use `.toolbar` modifier for potentially better layout updates.
-- Applied `.fixedSize(horizontal: true, vertical: false)` to language pickers to further discourage wrapping.
-
-## [0.7.1] - 2024-07-16
-
-### Changed
-- Populated detailed hotel information (check-in/out, booking ref, room, meals, luggage) for all destinations.
-- Renumbered destination days to start from Day 0 (Saint Jean Pied de Port).
-- Moved hotel information below route details in `DestinationDetailView`.
-- Renamed "Hotel Information" section to "Hotel Details".
-- Removed the now redundant `content` property from `CaminoDestination` and the old "Details" section from `DestinationDetailView`.
-
-### Fixed
-- Corrected destination dates for Days 22-35 in `CaminoDestination` data.
-
-## [0.7.0] - 2024-07-15
-
-### Added
-- Added static app icon (church image).
-
-### Fixed
-- Resolved Git repository errors related to submodules in build directory.
-- General stability improvements.
-
-## [0.6.5.3] - 2024-07-15
-
-### Changed
-- Restored the daily and cumulative distance display in `DestinationDetailView`, placed between the elevation profile and route details sections.
-
-## [0.6.5.2] - 2024-07-15
-
-### Changed
-- Modified `StageProfileView` to accept `elevationProfileAssetName` string and load elevation profile images directly from the Asset Catalog.
-- Removed dependency on day integer for image loading in `DestinationDetailView`.
+- Refactored `WeatherView` and `WeatherViewModel`.
+- `WeatherView` now uses the shared `WeatherViewModel` instance created in `CaminoMainView`.
+- Fixed Apple Weather deep-link: It now correctly triggers when the Weather tab is selected (if WeatherKit is not enabled).
+- Simplified WeatherViewModel state management.
 
 ## [0.6.5] - 2025-04-29
 
