@@ -5,7 +5,7 @@ import CoreLocation
 import CaminoModels
 
 struct StageProfileView: View {
-    let day: Int
+    let assetName: String
     
     var body: some View {
         // Using a helper method to create the profile view
@@ -20,16 +20,16 @@ struct StageProfileView: View {
     // Helper method to create the elevation image with consistent return type
     private func makeElevationImage() -> some View {
         Group {
-            if let uiImage = UIImage(named: "day\(day)") ?? loadElevationProfileImage(for: day) {
-                // Return image if available
-                Image(uiImage: uiImage)
+            if !assetName.isEmpty {
+                // Return image if assetName is provided
+                Image(assetName) // Load directly from Asset Catalog
                     .resizable()
                     .scaledToFit()
                     .cornerRadius(12)
                     .shadow(radius: 2)
             } else {
-                // Return placeholder if no image available
-                Text("Elevation profile not available for Day \(day)")
+                // Return placeholder if no assetName is provided
+                Text("Elevation profile not available")
                     .frame(height: 150)
                     .frame(maxWidth: .infinity)
                     .background(Color.primary.opacity(0.05))
@@ -37,22 +37,6 @@ struct StageProfileView: View {
                     .shadow(radius: 2)
             }
         }
-    }
-    
-    // Function to load the elevation profile image from the bundle
-    private func loadElevationProfileImage(for day: Int) -> UIImage? {
-        // Try first with the bundle resource path
-        if let bundlePath = Bundle.main.resourcePath {
-            let imagePath = bundlePath + "/ElevationProfileImages/day\(day).png"
-            return UIImage(contentsOfFile: imagePath)
-        }
-        
-        // Fallback to the main bundle path for resource
-        if let imagePath = Bundle.main.path(forResource: "day\(day)", ofType: "png", inDirectory: "ElevationProfileImages") {
-            return UIImage(contentsOfFile: imagePath)
-        }
-        
-        return nil
     }
 }
 
@@ -238,108 +222,104 @@ struct RouteDetailView: View {
 
 struct DestinationDetailView: View {
     let destination: CaminoDestination
-    @State private var region: MKCoordinateRegion
+    let nextDestinationName: String?
     @AppStorage("useMetricUnits") private var useMetricUnits = true
     
-    init(destination: CaminoDestination) {
+    init(destination: CaminoDestination, nextDestinationName: String? = nil) {
         self.destination = destination
-        _region = State(initialValue: MKCoordinateRegion(
-            center: destination.coordinate,
-            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        ))
+        self.nextDestinationName = nextDestinationName
     }
     
-    // Helper method to format distances with proper units
-    private func formatDistance(_ kilometers: Double) -> String {
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                // MARK: - Header
+                destinationHeader
+
+                // MARK: - Elevation Profile
+                Section("Elevation Profile") {
+                    StageProfileView(assetName: destination.elevationProfileAssetName)
+                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal)
+                }
+
+                // MARK: - Route Details
+                Section("Route Details") {
+                    RouteDetailView(destinationDay: destination.day)
+                }
+
+                // MARK: - Content/Description
+                Section("Details") {
+                    destinationContent
+                }
+
+                Spacer()
+            }
+            .padding()
+        }
+        .navigationTitle(navigationTitleText)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    // MARK: - Computed Properties for Title
+    private var navigationTitleText: String {
+        if let nextName = nextDestinationName, !nextName.isEmpty {
+            if destination.day == 1 && destination.dailyDistance == 0.0 {
+                return destination.locationName
+            } else {
+                return "\(destination.locationName) to \(nextName)"
+            }
+        } else {
+            return destination.locationName
+        }
+    }
+
+    // MARK: - Subviews
+    private var destinationHeader: some View {
+        VStack(alignment: .leading) {
+            Text("Day \(destination.day): \(destination.locationName)")
+                .font(.title)
+                .bold()
+
+            if !destination.hotelName.isEmpty {
+                HStack {
+                    Image(systemName: "bed.double.fill")
+                        .foregroundColor(.blue)
+                    Text(destination.hotelName)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+            }
+
+            HStack {
+                Text("Date: \(destination.formattedDate)")
+                Spacer()
+                Text("Dist: \(formattedDistance(destination.dailyDistance)) / \(formattedDistance(destination.cumulativeDistance)) cumulative")
+            }
+            .font(.caption)
+            .foregroundColor(.gray)
+        }
+    }
+
+    private var destinationContent: some View {
+        Text(destination.content)
+            .font(.body)
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color.primary.opacity(0.05))
+                    .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
+            )
+    }
+
+    private func formattedDistance(_ kilometers: Double) -> String {
         if useMetricUnits {
             return String(format: "%.1f km", kilometers)
         } else {
             let miles = kilometers * 0.621371
             return String(format: "%.1f mi", miles)
         }
-    }
-    
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                // Show the elevation profile image for the day
-                StageProfileView(day: destination.day)
-                    .frame(maxWidth: .infinity) // Use max width instead of fixed height
-                    .padding(.horizontal) // Add padding inside the container
-                
-                // Basic destination info
-                VStack(alignment: .leading, spacing: 8) {
-                    HStack {
-                        Text("Day \(destination.day)")
-                            .font(.headline)
-                        Text("(\(destination.formattedDate))")
-                            .font(.headline)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    Text(destination.locationName)
-                        .font(.title)
-                        .bold()
-                    
-                    Text(destination.hotelName)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Route Information:")
-                            .font(.headline)
-                        Text("• Distance: \(formatDistance(destination.dailyDistance))")
-                        Text("• Total: \(formatDistance(destination.cumulativeDistance))")
-                    }
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Location Coordinates:")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                        Text(String(format: "%.4f° N, %.4f° W",
-                                  destination.coordinate.latitude,
-                                  abs(destination.coordinate.longitude)))
-                            .font(.caption)
-                            .monospaced()
-                        
-                        Text("Hotel: \(destination.hotelName) Coordinates:")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                        Text(String(format: "%.4f° N, %.4f° W",
-                                  destination.coordinate.latitude,
-                                  abs(destination.coordinate.longitude)))
-                            .font(.caption)
-                            .monospaced()
-                    }
-                }
-                .padding(.horizontal)
-                
-                // Detailed route information
-                RouteDetailView(destinationDay: destination.day)
-                    .padding(.horizontal)
-                
-                // Directions section
-                if !destination.content.isEmpty {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Directions:")
-                            .font(.headline)
-                            .padding(.horizontal)
-                        
-                        Text(destination.content)
-                            .font(.body)
-                            .padding(.horizontal)
-                            .lineSpacing(4)
-                    }
-                }
-                
-                // Mini map of the day's route could be added here
-                // MapView showing just this day's route segment
-                
-                Spacer()
-            }
-            .padding(.vertical)
-        }
-        .navigationTitle("Destination Details")
     }
 }
 
@@ -953,5 +933,13 @@ struct RouteDetailProvider {
         default:
             return nil
         }
+    }
+}
+
+// MARK: - Preview
+#Preview {
+    NavigationView {
+        DestinationDetailView(destination: CaminoDestination.allDestinations[0], nextDestinationName: CaminoDestination.allDestinations[1].locationName)
+            .environmentObject(CaminoAppState())
     }
 } 

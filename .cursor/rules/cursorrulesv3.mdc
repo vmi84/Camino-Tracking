@@ -1,0 +1,146 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+- # Cursor Global Ruleset Template
+# Instructions: Copy this file and `.cursorreferences` to a new project's root to apply these rules.
+
+# TypeScript Rules
+1. Always use explicit TypeScript types, never 'any'. Suggest interfaces for props and state in React components.
+
+# Modern Syntax
+2. Use async/await instead of .then() for promises. Avoid callbacks unless required by a library.
+
+# Error Handling
+3. For every API call, include try/catch blocks and log errors with console.error(). Return a structured error object { success: false, error: string }.
+
+# React Guidelines
+4. For React components, use functional components with hooks. Define props with an interface at the top. Export default at the bottom.
+   Example:
+   ```typescript
+   interface Props { name: string }
+   const MyComponent = ({ name }: Props) => <div>{name}</div>
+   export default MyComponent
+
+#Styling Standards
+5. Use Tailwind CSS classes for styling. Group related classes (e.g., layout, typography) on the same line. Avoid inline styles.
+   @file ../tailwind.config.js
+
+#Deprecation Prevention
+6. Do not use class components or Redux with connect(). Use Redux Toolkit instead if state management is needed.
+
+#Testing Automation
+7. When writing a function, suggest a Jest test case with at least one happy path and one edge case. Create tests in `__tests__` folder:
+   ```typescript:__tests__/function.test.ts
+   describe('add', () => {
+     it('handles happy path', () => { expect(add(2, 3)).toBe(5); });
+     it('handles edge case', () => { expect(add(-1, 0)).toBe(-1); });
+   });
+
+- **Meaning**: When you ask the AI to write a function, it should also suggest a Jest test file (e.g., `__tests__/function.test.ts`) with two test cases: one for normal use (happy path) and one for an unusual scenario (edge case). The `typescript:path` syntax tells Cursor to create this file directly in the project.
+- **Action**: None now. This happens automatically when you request a function.
+
+# Next.js Routing
+8. For page components, use App Router syntax. Place them in `app/` directory:
+   ```typescript:app/page.tsx
+   export default function Page() { return <h1>Hello</h1>; }
+
+# Edge Case Handling
+9. For form inputs, check null/undefined values and provide defaults (e.g., ''). Suggest zod validation.
+
+# Verification
+10. After generating code, validate against @file ../tsconfig.json and suggest 'npm test' if tests exist. Warn if rules are violated.
+
+# Agent Chat Logging
+11. For every Agent mode interaction, append a summary to `agent_chat_history.md` in the project root:
+   ```markdown:agent_chat_history.md
+   ## 2025-04-06 09:15 AM PDT
+   **Prompt**: [User prompt here]
+   **Response**: [AI response here]
+
+# Xcode/SwiftUI Integration
+12. When queries contain "xcode" or "swiftui", include @file .cursorreferences for best practices and documentation.
+
+# Debug Logging
+13. Implement a global logging utility to pipe all development logs to a project-specific `.projectlog` file in the project root. Define it in a `logger.ts` file at the project root and use it across all modules. The utility should check for `.projectlog` when the project is opened: if it exists, pipe logs to it; if not, create it with a header and then pipe logs. Support log levels (info, warn, error) with a context prefix and timestamp. Example implementation:
+   ```typescript:logger.ts
+   import { appendFileSync, existsSync } from 'fs';
+
+   type LogLevel = 'info' | 'warn' | 'error';
+
+   const logFile = '.projectlog';
+
+   // Check if .projectlog exists; if not, create it with a header
+   if (!existsSync(logFile)) {
+     try {
+       appendFileSync(logFile, `--- New Project Log Started: ${new Date().toISOString()} ---\n`);
+     } catch (err) {
+       console.error('Failed to create log file:', err);
+     }
+   }
+
+   const logger = {
+     log: (context: string, message: string, ...args: any[]) => {
+       const logMessage = `[${new Date().toISOString()}] [${context}] INFO: ${message} ${args.length ? JSON.stringify(args) : ''}\n`;
+       try {
+         appendFileSync(logFile, logMessage);
+       } catch (err) {
+         console.error('Failed to write to log file:', err);
+       }
+     },
+     warn: (context: string, message: string, ...args: any[]) => {
+       const logMessage = `[${new Date().toISOString()}] [${context}] WARN: ${message} ${args.length ? JSON.stringify(args) : ''}\n`;
+       try {
+         appendFileSync(logFile, logMessage);
+       } catch (err) {
+         console.error('Failed to write to log file:', err);
+       }
+     },
+     error: (context: string, message: string, ...args: any[]) => {
+       const logMessage = `[${new Date().toISOString()}] [${context}] ERROR: ${message} ${args.length ? JSON.stringify(args) : ''}\n`;
+       try {
+         appendFileSync(logFile, logMessage);
+       } catch (err) {
+         console.error('Failed to write to log file:', err);
+       }
+     }
+   };
+
+   export default logger;
+
+# Python Logging Integration
+14. For Python-based projects, use the cursor_logs.py script in .cursor/rules/ to handle logging. The script will automatically:
+    - Create a .projectlog file if it doesn't exist
+    - Log all Cursor events with timestamps and context
+    - Support different log levels (INFO, DEBUG, WARN, ERROR)
+    - Include file and line information when available
+    Example usage in Python code:
+    ```python
+    from subprocess import run
+    run(['python3', '.cursor/rules/cursor_logs.py', 'INFO', 'MODULE', 'Message', 'file=example.py'])
+    ```
+
+# File/Folder Naming
+15. Prevent duplicate file or folder names in the project. Before creating a new file or folder, check if a file or folder with the same name already exists in the target directory. If a duplicate is detected:
+   - For files: Append a unique identifier (e.g., timestamp or counter) to the filename
+   - For folders: Suggest an alternative name or append a descriptive suffix
+   Example implementation:
+   ```typescript:utils/fileUtils.ts
+   import { existsSync } from 'fs';
+   import { join } from 'path';
+
+   function getUniqueFileName(basePath: string, fileName: string): string {
+     let counter = 1;
+     let uniqueName = fileName;
+     const [name, ext] = fileName.split('.');
+     
+     while (existsSync(join(basePath, uniqueName))) {
+       uniqueName = `${name}_${counter}.${ext}`;
+       counter++;
+     }
+     return uniqueName;
+   }
