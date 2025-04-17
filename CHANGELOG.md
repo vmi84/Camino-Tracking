@@ -33,10 +33,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.1] - 2024-07-16
+## [1.0.2] - 2024-07-30
+### Added
+- Settings: Added a button to link to a user-selected documents folder in the Files app.
 
+### Changed
+- Settings: Refactored 'My Documents' section to support linking a single folder instead of multiple individual files.
+
+### Removed
+- Settings: Removed functionality for linking and previewing individual Voucher, Dossier, and Insurance PDFs.
+
+## [1.0.1] - 2024-07-29
 ### Fixed
-- Corrected navigation title in `DestinationDetailView` to show `<Previous Location> to <Current Location>` instead of `<Current Location> to <Next Location>`.
+- `DestinationDetailView`: Corrected the navigation title to display the previous destination name instead of the next one.
+
+## [1.0.0] - 2024-07-29
+### Added
+- Feedback feature allowing users to send comments via email.
+- Email address updated to `vmi84@me.com`.
+
+### Changed
+- Dismiss `FeedbackView` after sending email.
 
 ## [0.7.4] - 2024-07-16
 

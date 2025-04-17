@@ -1,4 +1,5 @@
 import SwiftUI
+import QuickLook
 
 // MARK: - Settings Models
 struct SettingsSection: Identifiable {
@@ -13,6 +14,7 @@ struct SettingsItem: Identifiable {
     let title: String
     let icon: String?
     let type: SettingsItemType
+    var isDisabled: Bool = false
 }
 
 enum SettingsItemType {
@@ -47,6 +49,9 @@ struct SettingsView: View {
     @AppStorage("sourceLanguageCode") private var sourceLanguageCode = "en"
     @AppStorage("targetLanguageCode") private var targetLanguageCode = "es"
     
+    // AppStorage for storing secure bookmark data
+    @AppStorage("documentsFolderBookmarkData") private var documentsFolderBookmarkData: Data?
+    
     // Options arrays
     private let languages = ["English", "Spanish (Castilian)", "French", "Galician", "Basque"]
     private let mapStyles = ["Standard", "Satellite", "Hybrid"]
@@ -71,6 +76,9 @@ struct SettingsView: View {
     @State private var showingClearCacheOptions = false
     @State private var showingAboutInfo = false
     @State private var showingFeedbackSheet = false
+    
+    // State for presenting file importers
+    @State private var showingDocumentsFolderImporter = false
     
     private let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
     
@@ -147,6 +155,14 @@ struct SettingsView: View {
                 SettingsItem(title: "Send Feedback", icon: "envelope", type: .button({
                     showingFeedbackSheet = true
                 }))
+            ]),
+            
+            // Add My Documents Section
+            SettingsSection(title: "My Documents", 
+                description: "Link to a folder in your Files app containing your important documents for quick access.",
+                items: [
+                // Link to Documents Folder
+                SettingsItem(title: "Link Documents Folder", icon: "folder.badge.plus", type: .button({ showingDocumentsFolderImporter = true }))
             ])
         ]
     }
@@ -185,6 +201,14 @@ struct SettingsView: View {
             }
             .sheet(isPresented: $showingFeedbackSheet) {
                 FeedbackView()
+            }
+            // --- File Importer for Documents Folder --- //
+            .fileImporter(
+                isPresented: $showingDocumentsFolderImporter,
+                allowedContentTypes: [.folder],
+                allowsMultipleSelection: false
+            ) { result in
+                handleFolderImportResult(result, bookmarkData: $documentsFolderBookmarkData)
             }
         }
     }
@@ -231,6 +255,7 @@ struct SettingsView: View {
                         .foregroundColor(.primary)
                 }
             }
+            .disabled(item.isDisabled)
             
         case .navigationLink(let destination):
             if item.title == "From Language" {
@@ -381,6 +406,36 @@ struct SettingsView: View {
             }
         }
         .navigationTitle(title)
+    }
+    
+    // --- Helper function to handle folder import result ---
+    private func handleFolderImportResult(_ result: Result<[URL], Error>, bookmarkData: Binding<Data?>) {
+        switch result {
+        case .success(let urls):
+            guard let url = urls.first else { return }
+            do {
+                // Start accessing the resource
+                guard url.startAccessingSecurityScopedResource() else {
+                    print("Error: Could not start accessing security scoped resource.")
+                    // Show error to user?
+                    return
+                }
+                // Create bookmark data
+                let data = try url.bookmarkData(options: [])
+                bookmarkData.wrappedValue = data
+                // Stop accessing immediately after creating the bookmark
+                url.stopAccessingSecurityScopedResource()
+                print("Successfully created bookmark for: \(url.lastPathComponent)")
+            } catch {
+                print("Error creating bookmark: \(error.localizedDescription)")
+                // Show error to user?
+                // Stop accessing if bookmark creation failed
+                 url.stopAccessingSecurityScopedResource()
+            }
+        case .failure(let error):
+            print("Error importing file: \(error.localizedDescription)")
+            // Show error to user?
+        }
     }
 }
 
