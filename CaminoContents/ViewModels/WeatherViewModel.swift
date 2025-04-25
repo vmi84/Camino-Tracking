@@ -57,12 +57,6 @@ class WeatherViewModel: ObservableObject {
     
     func openWeatherForCurrentLocation() {
         print("WeatherViewModel: Attempting to open Apple Weather...")
-        guard !hasAttemptedRedirect else {
-            print("WeatherViewModel: Already attempted redirect, skipping.")
-            return
-        }
-        hasAttemptedRedirect = true
-
         if let currentLocation = locationManager.location {
             let lat = currentLocation.coordinate.latitude
             let lon = currentLocation.coordinate.longitude

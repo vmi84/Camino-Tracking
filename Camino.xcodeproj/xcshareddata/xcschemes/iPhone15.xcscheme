@@ -18,7 +18,7 @@
                BlueprintIdentifier = "EE6A229E2DA0B6B20013F9FD"
                BuildableName = "Camino.app"
                BlueprintName = "Camino"
-               ReferencedContainer = "container:Camino.xcodeproj">
+               ReferencedContainer = "container:Camino_Custom.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,7 +47,7 @@
             BlueprintIdentifier = "EE6A229E2DA0B6B20013F9FD"
             BuildableName = "Camino.app"
             BlueprintName = "Camino"
-            ReferencedContainer = "container:Camino.xcodeproj">
+            ReferencedContainer = "container:Camino_Custom.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -64,7 +64,7 @@
             BlueprintIdentifier = "EE6A229E2DA0B6B20013F9FD"
             BuildableName = "Camino.app"
             BlueprintName = "Camino"
-            ReferencedContainer = "container:Camino.xcodeproj">
+            ReferencedContainer = "container:Camino_Custom.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
