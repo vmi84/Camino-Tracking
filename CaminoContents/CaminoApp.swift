@@ -32,6 +32,8 @@ struct CaminoApp: App {
 class CaminoAppState: ObservableObject {
     @Published var isShowingMap: Bool = false
     @Published var selectedTab: Int = 0
+    @Published var selectedDestinationDay: Int? = nil // Track selected day for list highlighting etc.
+    @Published var focusedRouteDay: Int? = nil // NEW: Track which day's route to show on main map
     @Published var userSettings = UserSettings()
     @Published var routeProgress: Double = 0.0
     

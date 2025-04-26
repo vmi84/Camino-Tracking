@@ -21,7 +21,7 @@ struct CaminoMainView: View {
         TabView(selection: $appState.selectedTab) {
             MapView()
                 .tabItem {
-                    Label("Map", systemImage: "map")
+                    Label("Map", systemImage: "map.fill")
                 }
                 .tag(0)
             

@@ -32,25 +32,18 @@ struct DestinationsView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(filteredDestinations) { destination in
-                    if let currentIndex = filteredDestinations.firstIndex(where: { $0.id == destination.id }) {
-                        let nextDestinationName: String? = (currentIndex + 1 < filteredDestinations.count) ? filteredDestinations[currentIndex + 1].locationName : nil
-                        
-                        NavigationLink(destination: DestinationDetailView(
-                            destination: destination, 
-                            nextDestinationName: nextDestinationName
-                        )) { 
-                            DestinationRow(destination: destination)
-                        }
-                    } else {
-                        DestinationRow(destination: destination)
-                    }
+            List(filteredDestinations) { destination in
+                NavigationLink(destination: DestinationDetailView(destination: destination)) {
+                    DestinationRow(destination: destination)
                 }
             }
-            .navigationTitle("Camino Stages")
-            .searchable(text: $searchText, prompt: "Search days or locations")
             .listStyle(.plain)
+            .searchable(text: $searchText, prompt: "Search Destinations")
+            .navigationTitle("Destinations")
+            // Clear selection when view disappears
+            .onDisappear {
+                appState.selectedDestinationDay = nil
+            }
         }
     }
 }
