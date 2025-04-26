@@ -34,6 +34,7 @@ class CaminoAppState: ObservableObject {
     @Published var selectedTab: Int = 0
     @Published var selectedDestinationDay: Int? = nil // Track selected day for list highlighting etc.
     @Published var focusedRouteDay: Int? = nil // NEW: Track which day's route to show on main map
+    @Published var initialMapTargetDay: Int? = nil // NEW: Track day to show on initial map load
     @Published var userSettings = UserSettings()
     @Published var routeProgress: Double = 0.0
     
@@ -44,15 +45,20 @@ class CaminoAppState: ObservableObject {
             // Always set to Map tab when toggling from welcome screen
             if isShowingMap {
                 selectedTab = 0
+                initialMapTargetDay = 1 // Set initial target when toggling TO map
+            } else {
+                initialMapTargetDay = nil // Clear target when toggling AWAY from map (if needed)
             }
         }
     }
     
     // Helper method to show the map screen with the Map tab selected
-    func showMap() {
+    // Renamed to startJourney for clarity and specific purpose
+    func startJourney() {
         withAnimation {
-            isShowingMap = true
-            selectedTab = 0 // Explicitly set to Map tab
+            initialMapTargetDay = 1 // Target Day 1
+            isShowingMap = true     // Show the main view (which contains the map)
+            selectedTab = 0         // Select the Map tab
         }
     }
 }

@@ -10,6 +10,18 @@ import MapKit
 import CoreLocation
 import CaminoModels
 
+// MARK: - MKCoordinateRegion Extension for Comparison
+extension MKCoordinateRegion {
+    func isApproximatelyEqual(to otherRegion: MKCoordinateRegion, tolerance: Double = 0.0001) -> Bool {
+        let latDiff = abs(self.center.latitude - otherRegion.center.latitude)
+        let lonDiff = abs(self.center.longitude - otherRegion.center.longitude)
+        let spanLatDiff = abs(self.span.latitudeDelta - otherRegion.span.latitudeDelta)
+        let spanLonDiff = abs(self.span.longitudeDelta - otherRegion.span.longitudeDelta)
+
+        return latDiff < tolerance && lonDiff < tolerance && spanLatDiff < tolerance && spanLonDiff < tolerance
+    }
+}
+
 // MARK: - Main Map View using UIViewRepresentable
 struct MapView: View {
     // Inject AppState
@@ -127,6 +139,7 @@ struct MapKitView: UIViewRepresentable {
         mapView.delegate = context.coordinator
         mapView.mapType = mapType
         mapView.showsUserLocation = true // Show user location dot
+        mapView.setUserTrackingMode(.none, animated: false) // ADDED: Prevent initial auto-center on user
         // Register custom annotation view class if needed later
         // mapView.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: "custom")
         return mapView
@@ -144,9 +157,13 @@ struct MapKitView: UIViewRepresentable {
         // Update overlays based on *current* state
         updateOverlays(mapView: uiView, polyline: viewModel.currentPolyline, context: context)
 
-        // Zoom logic might need adjustment based on whether it's overview or detail
-        // The viewModel's adjustRegionToFitContent() handles zooming now.
-        // We don't need the initialZoomDone flag here anymore.
+        // ---> UPDATE MAP REGION <--- 
+        // Check if the viewModel's region is different enough from the map's current region
+        if !uiView.region.isApproximatelyEqual(to: viewModel.region) {
+            // Use the viewModel's desired region
+            print("updateUIView: Setting map region to viewModel.region (Center: \(viewModel.region.center), Span: \(viewModel.region.span))")
+            uiView.setRegion(viewModel.region, animated: true) // Animate the change
+        }
     }
 
     // MARK: - Coordinator

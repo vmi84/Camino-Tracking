@@ -87,8 +87,8 @@ struct CaminoWelcomeView: View {
     
     private var startButton: some View {
         Button(action: { 
-            // Use the dedicated method for consistency
-            appState.showMap()
+            // Use the new startJourney method name
+            appState.startJourney()
         }) {
             Text("Start Your Journey")
                 .font(.headline)

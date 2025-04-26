@@ -92,17 +92,38 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         appStateSubscription = appState.$focusedRouteDay
             .removeDuplicates()
             .sink { [weak self] focusedDay in
-                // Use Task to ensure updateMapDisplay runs on MainActor
                 Task {
-                    // Ignore the return value as we just need the side effects (updating published properties)
                     _ = await self?.updateMapDisplay(focusedDay: focusedDay)
                 }
             }
             
+        // --- Revised Initial Day 1 Centering --- 
+        var initialTargetCoordinate: CLLocationCoordinate2D? = nil
+        if appState.initialMapTargetDay == 1 {
+            print("Initial target day is 1. Will center map after initial load.")
+            if let day1Destination = CaminoDestination.allDestinations.first(where: { $0.day == 1 }) {
+                initialTargetCoordinate = day1Destination.coordinate // Store the target coord
+            } else {
+                print("Warning: Could not find destination for Day 1.")
+            }
+            // Reset the initial target day flag *immediately*
+            appState.initialMapTargetDay = nil 
+        }
+        // --- End Revised Section ---
+            
         // Initial map display based on current state
-        // Use Task to ensure updateMapDisplay runs on MainActor
         Task {
-             await updateMapDisplay(focusedDay: appState.focusedRouteDay)
+             // Let the normal initial display happen first (likely overview)
+             await updateMapDisplay(focusedDay: appState.focusedRouteDay) 
+             
+             // NOW, if we had an initial target, apply it
+             if let targetCoord = initialTargetCoordinate {
+                 print("Applying initial center on Day 1 coordinate.")
+                 let initialSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1) // Zoom closer for day 1
+                 // Ensure region update happens on main thread
+                 // self is already @MainActor isolated, direct assignment is fine
+                 self.region = MKCoordinateRegion(center: targetCoord, span: initialSpan)
+             }
         }
     }
     
@@ -378,29 +399,43 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func centerOnUserLocation() {
-        if let userCoord = userLocation {
-            adjustRegion(center: userCoord, spanDelta: 0.01)
-        } else {
-             print("User location not available to center.")
-            isLocationAlertPresented = true 
+        guard let userCoord = userLocation else { 
+            print("User location not available.")
+            // Optionally show an alert or feedback
+            return
         }
+        // Use a relatively zoomed-in span
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05) 
+        region = MKCoordinateRegion(center: userCoord, span: span)
     }
     
     func zoomIn() {
-        adjustRegion(spanDelta: region.span.latitudeDelta * 0.5) // Zoom in by 50%
+        var currentSpan = region.span
+        currentSpan.latitudeDelta /= 1.5
+        currentSpan.longitudeDelta /= 1.5
+        region.span = currentSpan
     }
-    
-    func zoomOut() {
-         adjustRegion(spanDelta: region.span.latitudeDelta * 2.0) // Zoom out by 100%
-    }
-    
-    // Center on the start point of the *entire* Camino
-    func centerOnStartingPoint() {
-        let startCoord = CaminoDestination.allDestinations.first(where: { $0.day == 0 })?.coordinate 
-                         ?? CaminoDestination.allDestinations.first?.coordinate 
-                         ?? CLLocationCoordinate2D(latitude: 43.1636, longitude: -1.2386) // Fallback
 
-        adjustRegion(center: startCoord, spanDelta: 5.0) // Use wider overview span
+    func zoomOut() {
+        var currentSpan = region.span
+        currentSpan.latitudeDelta *= 1.5
+        currentSpan.longitudeDelta *= 1.5
+        // Optional: Add clamping to prevent zooming out too far
+        region.span = currentSpan
+    }
+    
+    // MARK: - Map Control Actions
+
+    func centerOnStartingPoint() {
+        print("Centering on starting point (St. Jean Pied de Port)")
+        // Find Day 0 Destination
+        guard let startDestination = CaminoDestination.allDestinations.first(where: { $0.day == 0 }) else {
+            print("Error: Could not find Day 0 destination (St. Jean) in allDestinations.")
+            return
+        }
+        // Use a span appropriate for a town/start area
+        let startSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1) 
+        region = MKCoordinateRegion(center: startDestination.coordinate, span: startSpan)
     }
     
     // Helper to adjust region smoothly

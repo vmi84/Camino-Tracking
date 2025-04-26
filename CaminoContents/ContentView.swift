@@ -85,8 +85,8 @@ struct WelcomeView: View {
                 Spacer()
                 
                 Button(action: { 
-                    // Use the dedicated method to show map and set tab
-                    appState.showMap()
+                    // Call the new startJourney method which handles state changes
+                    appState.startJourney()
                 }) {
                     Text("Start Your Journey")
                         .font(.headline)
