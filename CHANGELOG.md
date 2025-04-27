@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.2] - 2025-04-06
+
+### Fixed
+
+- Corrected string interpolation logic in `DestinationDetailView.swift` to ensure correct elevation profile asset names (e.g., "elevation_day23") are loaded.
+- Ensured elevation profile images (e.g., `day23.png`) are correctly added to the `Assets.xcassets` catalog with the corresponding names (e.g., `elevation_day23`).
+
 ## [1.2.1] - 2025-04-06
 
 ### Fixed
