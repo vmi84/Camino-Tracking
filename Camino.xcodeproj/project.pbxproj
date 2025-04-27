@@ -196,7 +196,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EE6A229A2DA0B6B20013F9FD /* Build configuration list for PBXProject "Camino_Custom" */;
+			buildConfigurationList = EE6A229A2DA0B6B20013F9FD /* Build configuration list for PBXProject "Camino" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -592,7 +592,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EE6A229A2DA0B6B20013F9FD /* Build configuration list for PBXProject "Camino_Custom" */ = {
+		EE6A229A2DA0B6B20013F9FD /* Build configuration list for PBXProject "Camino" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EE6A22BF2DA0B6B30013F9FD /* Debug */,

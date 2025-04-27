@@ -254,9 +254,10 @@ struct DestinationDetailView: View {
 
                 // MARK: - Elevation Profile
                 Section("Elevation Profile") {
-                    // Adjust asset name based on rest day
-                    let profileDay = destination.day > 22 ? destination.day - 1 : destination.day
-                    let assetName = "elevation_day\(profileDay)"
+                    // Adjust asset name based on rest day -- REMOVED Incorrect Logic
+                    let profileDay = destination.day // Use destination day directly
+                    let assetName = "elevation_day\(profileDay)" // <-- REMOVE extra backslash
+                    let _ = print("Attempting to load elevation profile asset: \(assetName)") // <-- REMOVE extra backslash
                     
                     StageProfileView(assetName: assetName)
                         .frame(maxWidth: .infinity)
