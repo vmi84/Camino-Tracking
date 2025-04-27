@@ -416,35 +416,35 @@ struct RouteDetailProvider {
                         distance: 5.0,
                         services: nil,
                         details: "After Honto, take a left-hand path to avoid a road curve, rejoin the road, and head to Orisson.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 43.137, longitude: -1.268)
                     ),
                     LocationPoint(
                         name: "Orisson",
                         distance: 7.6,
                         services: "Bar, Restaurant",
                         details: "Continue on a low-traffic road through alpine meadows; 4 km ahead, spot the Virgin of Biakorri statue (shepherds' protector) on the left if clear.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 43.120, longitude: -1.280)
                     ),
                     LocationPoint(
                         name: "Arnéguy",
                         distance: 12.7,
                         services: nil,
                         details: "Pass Arnéguy on the right (option to link to Valcarlos), leave the road after 2.0 km for a right-hand path by the Urdanarre Cross.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 43.1130, longitude: -1.2830)
                     ),
                     LocationPoint(
                         name: "Collado de Bentartea",
                         distance: 16.2,
                         services: "Bentartea Pass",
                         details: "After 1.4 km, reach the pass with Roldán Fountain (commemorates Charlemagne's officer, 778). Follow a beech forest track along the border fence, pass a stone pillar marking Navarre, take a right-hand track along Txangoa and Menditxipi mountains' northern slopes.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 43.075, longitude: -1.299)
                     ),
                     LocationPoint(
                         name: "Collado de Lepoeder",
                         distance: 20.2,
                         services: nil,
                         details: "Two descent options: 1) Direct Route: Steep descent through Mount Donsimon beech forest (caution in fog), go right then left of the road. 2) Ibañeta Pass Route: Divert to Ibañeta Pass (Monument to Roldan, Chapel), descend left of the national road.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 43.0483, longitude: -1.3086)
                     )
                 ],
                 endPoint: LocationPoint(
@@ -473,28 +473,28 @@ struct RouteDetailProvider {
                         distance: 2.8,
                         services: "Bars, Stores, Health Center, Pharmacy, ATM",
                         details: "Cross via the main street, pass the Parish Church of San Nicolas, turn right, cross a footbridge over a stream to the Urrobi River, climb a wooded trail with water sources and a steep hill.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.9905, longitude: -1.3350)
                     ),
                     LocationPoint(
                         name: "Espinal",
                         distance: 6.5,
                         services: "Bar, Store, Medical Clinic",
                         details: "After 2.6 km, enter via a paved path, head right (bar and bakery nearby), follow the sidewalk, turn left after a crosswalk, climb to Mezkiritz.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.9722, longitude: -1.3590)
                     ),
                     LocationPoint(
                         name: "Alto de Mezkiritz",
                         distance: 8.2,
                         services: "924 m",
                         details: "Cross the N-135, see the Virgen of Roncesvalles carving, descend on a wooded trail (some deteriorated), enter a beech forest via a metal gate, reach Bizkarreta.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.960, longitude: -1.380)
                     ),
                     LocationPoint(
                         name: "Bizkarreta",
                         distance: 11.5,
                         services: nil,
                         details: "Historic stage end with a former pilgrims' hospital (12th century).",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.9500, longitude: -1.4000)
                     )
                 ],
                 endPoint: LocationPoint(
@@ -523,63 +523,63 @@ struct RouteDetailProvider {
                         distance: 2.9,
                         services: "Drinking fountain",
                         details: nil,
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.923, longitude: -1.528)
                     ),
                     LocationPoint(
                         name: "Ezkirotz",
                         distance: 3.7,
                         services: "Drinking fountain",
                         details: nil,
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.920, longitude: -1.535)
                     ),
                     LocationPoint(
                         name: "Larrasoaña",
                         distance: 5.5,
                         services: "Bar, Store, Supermarket, Medical Clinic",
                         details: "Exit via the entry bridge, keep the Arga River right, ascend to Akerreta (off-path across the river).",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.9190, longitude: -1.5500)
                     ),
                     LocationPoint(
                         name: "Akerreta",
                         distance: 6.1,
                         services: nil,
                         details: "Pass the Church of the Transfiguration, go by a rural hotel, cross a gate and gravel stretch, reach a local road, cross it, descend to the Arga River shore, follow to Zuriain.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.917, longitude: -1.555)
                     ),
                     LocationPoint(
                         name: "Zuriain",
                         distance: 9.2,
                         services: "Bar",
                         details: "Walk beside the N-135 for 600 m, turn left, cross the Arga River.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.898, longitude: -1.580)
                     ),
                     LocationPoint(
                         name: "Irotz",
                         distance: 11.2,
                         services: "Bar",
                         details: "Pass the Church of San Pedro, reach the Romanesque Iturgaiz Bridge, choose: Arre (narrow trail to Zabaldika) or Riverside Walk (to Huarte).",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.888, longitude: -1.595)
                     ),
                     LocationPoint(
                         name: "Trinidad de Arre",
                         distance: 16.0,
                         services: nil,
                         details: "Cross the medieval bridge over the Ultzama River, turn left.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.8900, longitude: -1.6200)
                     ),
                     LocationPoint(
                         name: "Villava",
                         distance: 16.4,
                         services: "All services",
                         details: "Follow Mayor de Villava Street, cross the road, pass roundabouts, link to Burlada.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.830, longitude: -1.625)
                     ),
                     LocationPoint(
                         name: "Burlada",
                         distance: 17.5,
                         services: "All services",
                         details: "Cross Main Street, turn right at a mechanic, cross a pedestrian walkway, follow pavement markers, turn left onto the Camino of Burlada walkway.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.825, longitude: -1.630)
                     )
                 ],
                 endPoint: LocationPoint(
@@ -608,28 +608,28 @@ struct RouteDetailProvider {
                         distance: 5.0,
                         services: "Bar, store",
                         details: "Pass the Church of San Miguel, continue on a paved path.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.795, longitude: -1.680)
                     ),
                     LocationPoint(
                         name: "Alto del Perdon",
                         distance: 13.0,
                         services: "770 m",
                         details: "Reach the ridge, descend on a rocky path (caution advised).",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.7400, longitude: -1.7100)
                     ),
                     LocationPoint(
                         name: "Uterga",
                         distance: 16.5,
                         services: "Bar",
                         details: "Enter via a dirt track, continue westward.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.7100, longitude: -1.7600)
                     ),
                     LocationPoint(
                         name: "Obanos",
                         distance: 19.5,
                         services: "Bar, store",
                         details: "Pass the Church of San Juan Bautista, merge with the Aragonés Camino route.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.6800, longitude: -1.7900)
                     )
                 ],
                 endPoint: LocationPoint(
@@ -658,28 +658,28 @@ struct RouteDetailProvider {
                         distance: 4.6,
                         services: "Bar, store",
                         details: "Village on a hillside, follow main street through the center.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.673, longitude: -1.865)
                     ),
                     LocationPoint(
                         name: "Cirauqui",
                         distance: 8.1,
                         services: "Bar, store, pharmacy",
                         details: "Enter through medieval gate, follow steep streets, exit via Roman road.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.6750, longitude: -1.8900)
                     ),
                     LocationPoint(
                         name: "Lorca",
                         distance: 15.5,
                         services: "Bar, water fountain",
                         details: "Small village with fountain, continue straight through.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.6700, longitude: -1.9500)
                     ),
                     LocationPoint(
                         name: "Villatuerta",
                         distance: 18.8,
                         services: "Bar, store",
                         details: "Cross river, follow path up the hill into town.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.6600, longitude: -2.0000)
                     )
                 ],
                 endPoint: LocationPoint(
@@ -708,28 +708,28 @@ struct RouteDetailProvider {
                         distance: 2.2,
                         services: "Wine fountain, monastery",
                         details: "Pass the notable 12th-century monastery and the wine fountain where pilgrims can take a free drink.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.6600, longitude: -2.0500)
                     ),
                     LocationPoint(
                         name: "Azqueta",
                         distance: 5.7,
                         services: "Bar, water",
                         details: "Small village with pilgrim fountain, continue through main street.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.6500, longitude: -2.0800)
                     ),
                     LocationPoint(
                         name: "Villamayor de Monjardín",
                         distance: 8.1,
                         services: "Bar, fountain",
                         details: "Village at the foot of Mount Monjardín, with the ruins of San Esteban de Deyo Castle above.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.6400, longitude: -2.1000)
                     ),
                     LocationPoint(
                         name: "Luquin",
                         distance: 14.6,
                         services: "Water",
                         details: "Cross fields, follow dirt path through olive groves.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.605, longitude: -2.135)
                     )
                 ],
                 endPoint: LocationPoint(
@@ -758,21 +758,21 @@ struct RouteDetailProvider {
                         distance: 7.6,
                         services: "Bar, fountain",
                         details: "Village with an octagonal church (Church of the Holy Sepulchre), continue west.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.5500, longitude: -2.2700)
                     ),
                     LocationPoint(
                         name: "Viana",
                         distance: 17.8,
                         services: "All services",
                         details: "Historic walled town, impressive Church of Santa María, pass by where Cesare Borgia died in 1507.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.5200, longitude: -2.3700)
                     ),
                     LocationPoint(
                         name: "Navarre-La Rioja Border",
                         distance: 20.1,
                         services: nil,
                         details: "Cross from Navarre into La Rioja region, marked by a stone monument.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.500, longitude: -2.400)
                     )
                 ],
                 endPoint: LocationPoint(
@@ -801,14 +801,14 @@ struct RouteDetailProvider {
                         distance: 12.9,
                         services: "Bars, restaurants, shops",
                         details: "Town known for pottery, see the Church of the Assumption and Santiago ruins.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.4300, longitude: -2.5600)
                     ),
                     LocationPoint(
                         name: "Ventosa",
                         distance: 18.2,
                         services: "Bar, fountain",
                         details: "Small hill village with views of vineyards, follow main road through town.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.4200, longitude: -2.6200)
                     )
                 ],
                 endPoint: LocationPoint(
@@ -837,14 +837,14 @@ struct RouteDetailProvider {
                         distance: 5.5,
                         services: "Bar, fountain, store",
                         details: "Traditional pilgrim stop with fountain in the main square.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.4200, longitude: -2.8000)
                     ),
                     LocationPoint(
                         name: "Cirueña",
                         distance: 12.0,
                         services: "Bar",
                         details: "Small village near golf course, follow path through fields.",
-                        coordinate: nil
+                        coordinate: CLLocationCoordinate2D(latitude: 42.4300, longitude: -2.9000)
                     )
                 ],
                 endPoint: LocationPoint(
