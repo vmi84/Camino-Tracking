@@ -28,6 +28,8 @@ struct MapView: View {
     @EnvironmentObject private var appState: CaminoAppState 
     // Use StateObject for the ViewModel owned by this View
     @StateObject private var viewModel = MapViewModel()
+    // ADDED: State for presenting the detail sheet
+    @State private var showingDetailSheet = false
     
     @AppStorage("mapStyle") private var mapStyleSetting = "Standard"
     
@@ -61,21 +63,53 @@ struct MapView: View {
                     .cornerRadius(10) // Add corner radius to background
                     .padding(.bottom, 10) // Add padding from bottom edge
                 
-                // Show Full Route Button Overlay (Top)
+                // Buttons Overlay (Top Right)
                 if appState.focusedRouteDay != nil {
-                    Button {
-                        appState.focusedRouteDay = nil // Clear focus
-                    } label: {
-                        Label("Show Full Route", systemImage: "map.circle.fill")
-                            .padding(.vertical, 8)
-                            .padding(.horizontal, 12)
+                    // Use a VStack to stack the buttons vertically
+                    VStack(spacing: 8) {
+                        // Existing button to show full route
+                        Button {
+                            appState.focusedRouteDay = nil // Clear focus
+                        } label: {
+                            Label("Show Full Route", systemImage: "map.circle.fill")
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 12)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.blue) 
+                        .cornerRadius(10)
+                        .shadow(radius: 3)
+
+                        // ADDED: Button to show route details sheet
+                        Button {
+                            showingDetailSheet = true // Trigger the sheet
+                        } label: {
+                            Label("Route Details", systemImage: "list.bullet.rectangle.portrait.fill")
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 12)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.orange) // Use a different color
+                        .cornerRadius(10)
+                        .shadow(radius: 3)
+                        
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.blue) // Use a distinct color
-                    .cornerRadius(10)
-                    .shadow(radius: 3)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing) // Position top-right
                     .padding([.top, .trailing])
+                }
+            }
+            // ADDED: Sheet modifier to present DestinationDetailView
+            .sheet(isPresented: $showingDetailSheet) {
+                // Find the destination for the focused day
+                if let focusedDay = appState.focusedRouteDay,
+                   let destination = CaminoDestination.allDestinations.first(where: { $0.day == focusedDay }) {
+                    NavigationView { // Embed in NavigationView for title bar
+                        DestinationDetailView(destination: destination)
+                            .environmentObject(appState)
+                    }
+                } else {
+                    // Fallback if destination not found (should not happen in normal use)
+                    Text("Details not found for day \(appState.focusedRouteDay ?? -1)")
                 }
             }
             .navigationTitle("Camino Map")
@@ -213,6 +247,7 @@ struct MapKitView: UIViewRepresentable {
                 view?.displayPriority = .required 
             } else if caminoAnnotation.isWaypoint {
                  // Waypoint (only shown in focused day mode)
+                 print("DEBUG: Configuring waypoint annotation: \(caminoAnnotation.title ?? "Unknown")") // Debug print
                  view?.markerTintColor = .orange
                  view?.glyphImage = UIImage(systemName: "mappin")
                  view?.displayPriority = .defaultHigh // Slightly higher than default

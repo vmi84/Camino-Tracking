@@ -254,7 +254,11 @@ struct DestinationDetailView: View {
 
                 // MARK: - Elevation Profile
                 Section("Elevation Profile") {
-                    StageProfileView(assetName: destination.elevationProfileAssetName)
+                    // Adjust asset name based on rest day
+                    let profileDay = destination.day > 22 ? destination.day - 1 : destination.day
+                    let assetName = "elevation_day\(profileDay)"
+                    
+                    StageProfileView(assetName: assetName)
                         .frame(maxWidth: .infinity)
                         .padding(.horizontal)
                 }
@@ -323,7 +327,8 @@ struct DestinationDetailView: View {
         .toolbar { 
             if isPresentedModally {
                  ToolbarItem(placement: .navigationBarLeading) { // Or .navigationBarTrailing
-                     Button("Return") {
+                     Button("< Back") { // <-- Changed text
+                         appState.selectedTab = 1 // <-- Set tab to Destinations (assuming 1)
                          presentationMode.wrappedValue.dismiss() // Dismiss the sheet
                      }
                  }
@@ -1269,9 +1274,7 @@ struct RouteDetailProvider {
                 ascent: 150,
                 descent: 50
             )
-        case 22:
-            return nil
-        case 23:
+        case 22: // <- WAS nil, NOW contains León to Chozas
             return RouteDetail(
                 title: "León to Chozas de Abajo (Villar de Mazarife)",
                 startPoint: LocationPoint(
@@ -1304,10 +1307,10 @@ struct RouteDetailProvider {
                     details: "End at Albergue San Antonio de Padua, near Camino León.",
                     coordinate: CLLocationCoordinate2D(latitude: 42.4980, longitude: -5.6860)
                 ),
-                ascent: 180,
-                descent: 670
+                ascent: 180, // Assuming previous ascent/descent were correct for this stage
+                descent: 670 // Assuming previous ascent/descent were correct for this stage
             )
-        case 24:
+        case 23: // <- WAS León to Chozas, NOW Chozas to Astorga
             return RouteDetail(
                 title: "Chozas de Abajo to Astorga",
                 startPoint: LocationPoint(
@@ -1340,11 +1343,11 @@ struct RouteDetailProvider {
                     details: "End at Hotel Astur Plaza, near Plaza de España.",
                     coordinate: CLLocationCoordinate2D(latitude: 42.4580, longitude: -6.0530)
                 ),
-                ascent: 100,
-                descent: 160
+                ascent: 100, // Assuming previous ascent/descent were correct for this stage
+                descent: 160 // Assuming previous ascent/descent were correct for this stage
             )
-        case 25:
-            return RouteDetail(
+        case 24: // <- WAS Chozas to Astorga, NOW Astorga to Rabanal
+             return RouteDetail(
                 title: "Astorga to Rabanal del Camino",
                 startPoint: LocationPoint(
                     name: "Astorga",
@@ -1376,10 +1379,10 @@ struct RouteDetailProvider {
                     details: "End at Hotel Rural Casa Indie, near the main street.",
                     coordinate: CLLocationCoordinate2D(latitude: 42.4810, longitude: -6.2840)
                 ),
-                ascent: 720,
-                descent: 120
+                ascent: 720, // Assuming previous ascent/descent were correct for this stage
+                descent: 120 // Assuming previous ascent/descent were correct for this stage
             )
-        case 26:
+        case 25: // <- WAS Astorga to Rabanal, NOW Rabanal to Ponferrada
             return RouteDetail(
                 title: "Rabanal del Camino to Ponferrada",
                 startPoint: LocationPoint(
@@ -1419,10 +1422,10 @@ struct RouteDetailProvider {
                     details: "End at Hotel El Castillo, near the Templar Castle.",
                     coordinate: CLLocationCoordinate2D(latitude: 42.5460, longitude: -6.5900)
                 ),
-                ascent: 150,
-                descent: 570
+                ascent: 150, // Assuming previous ascent/descent were correct for this stage
+                descent: 570 // Assuming previous ascent/descent were correct for this stage
             )
-        case 27:
+        case 26: // <- WAS Rabanal to Ponferrada, NOW Ponferrada to Villafranca
             return RouteDetail(
                 title: "Ponferrada to Villafranca del Bierzo",
                 startPoint: LocationPoint(
@@ -1455,11 +1458,11 @@ struct RouteDetailProvider {
                     details: "End at Hostal Tres Campanas, near the Church of Santiago.",
                     coordinate: CLLocationCoordinate2D(latitude: 42.6060, longitude: -6.8110)
                 ),
-                ascent: 300,
-                descent: 400
+                ascent: 300, // Assuming previous ascent/descent were correct for this stage
+                descent: 400 // Assuming previous ascent/descent were correct for this stage
             )
-        case 28:
-            return RouteDetail(
+        case 27: // <- WAS Ponferrada to Villafranca, NOW Villafranca to O Cebreiro
+             return RouteDetail(
                 title: "Villafranca del Bierzo to O Cebreiro",
                 startPoint: LocationPoint(
                     name: "Villafranca del Bierzo",
@@ -1498,11 +1501,11 @@ struct RouteDetailProvider {
                     details: "End at Casa Navarro, near the church of Santa María la Real.",
                     coordinate: CLLocationCoordinate2D(latitude: 42.7080, longitude: -7.0020)
                 ),
-                ascent: 250,
-                descent: 170
+                ascent: 250, // Assuming previous ascent/descent were correct for this stage
+                descent: 170 // Assuming previous ascent/descent were correct for this stage
             )
-        case 29:
-            return RouteDetail(
+        case 28: // <- WAS Villafranca to O Cebreiro, NOW O Cebreiro to Triacastela
+             return RouteDetail(
                 title: "O Cebreiro to Triacastela",
                 startPoint: LocationPoint(
                     name: "O Cebreiro",
@@ -1541,10 +1544,10 @@ struct RouteDetailProvider {
                     details: "End at Complexo Xacobeo, near the town center.",
                     coordinate: CLLocationCoordinate2D(latitude: 42.7560, longitude: -7.2340)
                 ),
-                ascent: 380,
-                descent: 340
+                ascent: 380, // Assuming previous ascent/descent were correct for this stage
+                descent: 340 // Assuming previous ascent/descent were correct for this stage
             )
-        case 30:
+        case 29: // <- WAS O Cebreiro to Triacastela, NOW Triacastela to Sarria
             return RouteDetail(
                 title: "Triacastela to Sarria (Via San Xil)",
                 startPoint: LocationPoint(
@@ -1584,10 +1587,10 @@ struct RouteDetailProvider {
                     details: "End at Hotel Mar de Plata, near Rúa Maior.",
                     coordinate: CLLocationCoordinate2D(latitude: 42.7810, longitude: -7.4140)
                 ),
-                ascent: 270,
-                descent: 380
+                ascent: 270, // Assuming previous ascent/descent were correct for this stage
+                descent: 380 // Assuming previous ascent/descent were correct for this stage
             )
-        case 31:
+        case 30: // <- WAS Triacastela to Sarria, NOW Sarria to Portomarín
             return RouteDetail(
                 title: "Sarria to Portomarín",
                 startPoint: LocationPoint(
@@ -1620,10 +1623,10 @@ struct RouteDetailProvider {
                     details: "End at Casona Da Ponte Portomarín, near the Church of San Nicolás.",
                     coordinate: CLLocationCoordinate2D(latitude: 42.8070, longitude: -7.6160)
                 ),
-                ascent: 180,
-                descent: 230
+                ascent: 180, // Assuming previous ascent/descent were correct for this stage
+                descent: 230 // Assuming previous ascent/descent were correct for this stage
             )
-        case 32:
+        case 31: // <- WAS Sarria to Portomarín, NOW Portomarín to Palas de Rei
             return RouteDetail(
                 title: "Portomarín to Palas de Rei",
                 startPoint: LocationPoint(
@@ -1663,10 +1666,10 @@ struct RouteDetailProvider {
                     details: "End at Hotel Mica, near the town center.",
                     coordinate: CLLocationCoordinate2D(latitude: 42.8730, longitude: -7.8690)
                 ),
-                ascent: 160,
-                descent: 140
+                ascent: 160, // Assuming previous ascent/descent were correct for this stage
+                descent: 140 // Assuming previous ascent/descent were correct for this stage
             )
-        case 33:
+        case 32: // <- WAS Portomarín to Palas de Rei, NOW Palas de Rei to Arzúa
             return RouteDetail(
                 title: "Palas de Rei to Arzúa",
                 startPoint: LocationPoint(
@@ -1682,7 +1685,7 @@ struct RouteDetailProvider {
                         distance: 4.0,
                         services: nil,
                         details: "Village with a bar.",
-                        coordinate: CLLocationCoordinate2D(latitude: 42.7200, longitude: -7.6950)
+                        coordinate: CLLocationCoordinate2D(latitude: 42.7200, longitude: -7.6950) // Note: Coordinate seems far off for 4km, might need checking in source data
                     ),
                     LocationPoint(
                         name: "Melide",
@@ -1706,10 +1709,10 @@ struct RouteDetailProvider {
                     details: "End at Hotel Arzúa, near the town center.",
                     coordinate: CLLocationCoordinate2D(latitude: 42.9280, longitude: -8.1600)
                 ),
-                ascent: 240,
-                descent: 310
+                ascent: 240, // Assuming previous ascent/descent were correct for this stage
+                descent: 310 // Assuming previous ascent/descent were correct for this stage
             )
-        case 34:
+        case 33: // <- WAS Palas de Rei to Arzúa, NOW Arzúa to A Rúa
             return RouteDetail(
                 title: "Arzúa to A Rúa",
                 startPoint: LocationPoint(
@@ -1749,10 +1752,10 @@ struct RouteDetailProvider {
                     details: "End at Hotel Rural O Acivro, near O Pedrouzo.",
                     coordinate: CLLocationCoordinate2D(latitude: 42.9080, longitude: -8.3670)
                 ),
-                ascent: nil,
-                descent: nil
+                ascent: nil, // Assuming previous ascent/descent were correct for this stage (or nil if not available)
+                descent: nil // Assuming previous ascent/descent were correct for this stage (or nil if not available)
             )
-        case 35:
+        case 34: // <- WAS Arzúa to A Rúa, NOW A Rúa to Santiago
             return RouteDetail(
                 title: "A Rúa to Santiago de Compostela",
                 startPoint: LocationPoint(
@@ -1768,7 +1771,7 @@ struct RouteDetailProvider {
                         distance: 2.0,
                         services: nil,
                         details: "Town with all services.",
-                        coordinate: CLLocationCoordinate2D(latitude: 42.8200, longitude: -8.2200)
+                        coordinate: CLLocationCoordinate2D(latitude: 42.8200, longitude: -8.2200) // Note: Coordinate seems far off for 2km, might need checking
                     ),
                     LocationPoint(
                         name: "Monte do Gozo",
@@ -1785,9 +1788,11 @@ struct RouteDetailProvider {
                     details: "End at Hotel Alda Avenida, near Praza do Obradoiro.",
                     coordinate: CLLocationCoordinate2D(latitude: 42.8800, longitude: -8.5450)
                 ),
-                ascent: nil,
-                descent: nil
+                ascent: nil, // Assuming previous ascent/descent were correct for this stage (or nil if not available)
+                descent: nil // Assuming previous ascent/descent were correct for this stage (or nil if not available)
             )
+        case 35: // <- WAS A Rúa to Santiago, NOW nil
+            return nil
         default:
             return nil
         }

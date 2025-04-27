@@ -280,6 +280,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     private func createDetailAnnotations(for day: Int, from routeDetail: RouteDetail) -> [CaminoMapAnnotation] {
         var annotations: [CaminoMapAnnotation] = []
         let destination = CaminoDestination.allDestinations.first { $0.day == day }
+        var waypointsWithCoordsCount = 0 // Debug counter
 
         if let start = routeDetail.startPoint, let coord = start.coordinate {
             let subtitle = "Day \(day) Start"
@@ -288,6 +289,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         if let waypoints = routeDetail.waypoints {
             for waypoint in waypoints {
                 if let coord = waypoint.coordinate {
+                    waypointsWithCoordsCount += 1 // Debug increment
                     let subtitle = "Day \(day) Waypoint"
                     annotations.append(CaminoMapAnnotation(title: waypoint.name, subtitle: subtitle, coordinate: coord, locationPoint: waypoint, destination: destination, isWaypoint: true, isStartPoint: false, isEndPoint: false))
                 }
@@ -297,7 +299,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             let subtitle = "Day \(day) End"
             annotations.append(CaminoMapAnnotation(title: end.name, subtitle: subtitle, coordinate: coord, locationPoint: end, destination: destination, isWaypoint: false, isStartPoint: false, isEndPoint: true))
         }
-        print("Created \(annotations.count) detail annotations for day \(day).")
+        print("DEBUG: Created \(annotations.count) total annotations for day \(day). Found \(waypointsWithCoordsCount) waypoints with coordinates.") // Debug print
         return annotations
     }
     
@@ -328,7 +330,8 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             
             do {
                 // Add a small delay to potentially avoid throttling, especially for overview
-                if day == nil && i > 0 { try await Task.sleep(nanoseconds: 50_000_000) } // 50ms delay for overview segments
+                // Consider removing or adjusting this delay if not needed or causing issues
+                // if day == nil && i > 0 { try await Task.sleep(nanoseconds: 50_000_000) } 
                 
                 let response = try await directions.calculate()
                 if let route = response.routes.first {

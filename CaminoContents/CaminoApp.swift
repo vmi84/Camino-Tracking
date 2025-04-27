@@ -56,7 +56,7 @@ class CaminoAppState: ObservableObject {
     // Renamed to startJourney for clarity and specific purpose
     func startJourney() {
         withAnimation {
-            initialMapTargetDay = 1 // Target Day 1
+            initialMapTargetDay = 0 // Target Day 0 (St. Jean)
             isShowingMap = true     // Show the main view (which contains the map)
             selectedTab = 0         // Select the Map tab
         }
