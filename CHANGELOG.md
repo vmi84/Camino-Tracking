@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2025-04-06
+
+### Fixed
+
+- Corrected `RouteDetailProvider` logic to display correct route details for days following the rest day in León (Day 22).
+- Adjusted `DestinationDetailView` to load the correct elevation profile asset for days following the rest day.
+
+### Added
+
+- Added a 'Route Details' button to the `MapView` when a specific route is focused, presenting a modal `DestinationDetailView`.
+- Added a '< Back' button to the modally presented `DestinationDetailView` that returns the user to the 'Destinations' tab before dismissing.
+
 ## [1.2.0] - 2025-04-06
 
 ### Added
